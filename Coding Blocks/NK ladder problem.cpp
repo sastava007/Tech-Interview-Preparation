@@ -37,13 +37,15 @@ vector<vector<ll>> power(vector<vector<ll>> t,ll n)
 ll solve(int n)
 {
     vector<ll> b(4);
-    b[1]=1;b[2]=2;b[3]=4;
+    b[1]=1;b[2]=1;b[3]=2;
 
     vector<ll> c(4);
     c[1]=1;c[2]=1;c[3]=1;
 
     if(n<0)
         return 0;
+    if(n==0)
+        return 1;
     if(n<4)
         return b[n];
 
