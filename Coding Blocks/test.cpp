@@ -1,32 +1,31 @@
-#include<bits/stdc++.h>
+#include<iostream>
+#define ull unsigned long long
 using namespace std;
-#define ll long long
 
-bool powerof10(ll n)
+int main()
 {
-    double x=log10(n);
-    ll y=(ll)x;
-    return x==y;
-}
-
-ll solve(ll n)
-{
-    ll ans=10+9*n;
-    if(powerof10(ans))
-        ans=19+9*n;
-    return ans;
-}
-
-main()
-{
-    ios_base::sync_with_stdio(false);
-    cin.tie(0);
-    ll t,n;
-    cin>>t;
-    while(t--)
+    int n;
+    scanf("%d",&n);
+    ull a[n];
+    if(n>=130)
     {
-        cin>>n;
-        cout<<powerof10(n)<<"\n";
+             printf("Yes\n");
+             return 0;
     }
-}
+    for(int i=0;i<n;i++)
+    {
+        scanf("%llu",&a[i]);
+    }
+    for(int i=0;i<n-3;i++)
+            for(int j=i+1;j<n-2;j++)
+                    for(int k=j+1;k<n-1;k++)
+                            for(int l=k+1;l<n;l++)
+                                    if((a[i]^a[j]^a[k]^a[l])==0)
+                                    {
+                                        printf("Yes\n");
+                                        return 0;
+                                    }
 
+    printf("No\n");
+    return 0;
+}
