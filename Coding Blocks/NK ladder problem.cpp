@@ -37,7 +37,7 @@ vector<vector<ll>> power(vector<vector<ll>> t,ll n)
 ll solve(int n)
 {
     vector<ll> b(4);
-    b[1]=1;b[2]=1;b[3]=2;
+    b[1]=1;b[2]=2;b[3]=4;
 
     vector<ll> c(4);
     c[1]=1;c[2]=1;c[3]=1;
@@ -61,13 +61,14 @@ ll solve(int n)
             else
                 t[i][j]=0;
         }
-        t[i][j]=c[4-j];
+        else
+            t[i][j]=c[4-j];  // I think this should be in else block. I have modified it, Try now and let me know.
     }
 
     t=power(t,n-1);
     ll ans=0;
     for(ll i=1;i<4;i++)
-        ans+=(t[1][i]*b[i]);
+        ans=(ans + (t[1][i]*b[i])%mod)%mod;  // Modified
     return ans;
 }
 main()
