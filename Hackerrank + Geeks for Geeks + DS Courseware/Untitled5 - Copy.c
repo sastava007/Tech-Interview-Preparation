@@ -1,0 +1,24 @@
+#include<stdio.h>
+main()
+{
+ int n;
+ char arr[10002];
+ scanf("%d",&n);
+ for(int i=0;i<n;i++)
+ {    scanf("%s",arr);
+     for(int j=0;arr[j]!='\0';j+=1)
+         if(j%2==0)
+             printf("%c",arr[j]);
+         printf("  ");
+    for(int k=0;arr[k]!='\0';k++)
+         if(k%2!=0)
+          printf("%c",arr[k]);
+         printf("\n");
+ }
+
+
+
+
+
+ }
+
