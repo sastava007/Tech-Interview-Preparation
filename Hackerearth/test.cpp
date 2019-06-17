@@ -1,43 +1,29 @@
-#include<bits/stdc++.h>
-using namespace std;
-#define ll long long
-
-ll power(ll A,ll B,int C)
+#include<stdio.h>
+int main(void)
 {
-	// Base cases
-	if (A == 0)
-		return 0;
-	if (B == 0)
-		return 1;
+    int i=0,j=0,fact[20000],k=0,l=0,n=0,temp=0;
 
-	// If B is even
-	ll y;
-	if (B % 2 == 0) {
-		y = power(A, B / 2, C);
-		y = (y * y) % C;
-	}
+    fact[0]=1;
+    l=1;
+    printf("enter value: ");
+    scanf("%d",&n);
+    for(i=2;i<=n;i++)
+     {
+       for(j=0;j<l;j++)
+        {k=temp+i*fact[j];
+         fact[j]=k%10;
+         temp=k/10;
+        }
+        while(temp>0)
+         {
+            fact[l++]=temp%10;
+            temp=temp/10;
+         }
+     }
+     for(i=l-1;i>-1;i--)
+     printf("%d",fact[i]);
 
-	// If B is odd
-	else {
-		y = A % C;
-		y = (y * power(A, B - 1, C) % C) % C;
-	}
-
-	return (ll)((y + C) % C);
-}
-main()
-{
-	ios_base::sync_with_stdio(false);
-	cin.tie(0);
-	int t;
-	cin>>t;
-	while(t--)
-	{
-		ll a,b;
-		cin>>a>>b;
-		ll ans=power(a,b,10);
-		cout<<ans<<"\n";
-	}
-
-
-}
+     printf("\npress any  key to exit.... ");
+     getchar(); //On windows change this  line to getch();
+     return 0;
+     }
