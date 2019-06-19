@@ -3,7 +3,7 @@ using namespace std;
 
 // Here we have implemented sieve of eranthostenes and its time complexicity is O(n log(log(n))) by making 2 modifications:
 //    1) Mark only odd numbers as true at first
-//    2) Start iterating from i*i because all the nmbers less than it has been already cancelled
+//    2) Start iterating from i*i because all the numbers less than it has been already cancelled
 
 void find_prime(int n)
 {
@@ -32,11 +32,6 @@ main()
 {
     int n,i;
     cin>>n;
-
-    /*
-    for(i=0;i<n;i++)
-        prime[i]=true;
-    */
 
     // Optimisation1: Mark only odd numbers as true because even numbers are not prime except 2
 
