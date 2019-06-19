@@ -2,6 +2,7 @@
                         Similar to Coupon Collector Problem (Mathematical Expectation)
 
                         Spoj: https://www.spoj.com/problems/FAVDICE/
+                        https://math.stackexchange.com/questions/28905/expected-time-to-roll-all-1-through-6-on-a-die
 */
 
 #include<bits/stdc++.h>
