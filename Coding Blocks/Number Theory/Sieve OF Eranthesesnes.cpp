@@ -18,7 +18,7 @@ void find_prime(int n)
         prime[i]=true;
 
 
-    for(i=3;i<n;i+=2)
+    for(i=3;i*i<n;i+=2)
     {
         if(prime[i])
         for(j=i*i;j<n;j+= 2*i)
@@ -36,7 +36,6 @@ main()
     cin>>n;
 
     // Optimisation1: Mark only odd numbers as true because even numbers are not prime except 2
-
 
     find_prime(n);
 
