@@ -19,7 +19,7 @@ vector<bool> sieve(int n)
 
 vector<bool> segmented_sieve(ll a,ll b)
 {
-    int n=sqrt(b);
+    int n=floor(sqrt(b))+1;;
     vector<bool> prime=sieve(n);
 
     vector<bool> ans(b-a+1,true);
@@ -39,10 +39,15 @@ main()
     ios_base::sync_with_stdio(false);
     cin.tie(0);
 
+    int t;
+    cin>>t;
     ll a,b;
-    cin>>a>>b;
-    vector<bool> prime=segmented_sieve(a,b);
-    for(int i=0;i<(b-a+1);i++)
-        if(prime[i])cout<<a+i<<" ";
-
+    while(t--)
+    {
+        cin>>a>>b;
+        vector<bool> prime=segmented_sieve(a,b);
+        for(int i=0;i<(b-a+1);i++)
+            if(prime[i])cout<<a+i<<"\n";
+            cout<<"\n";
+    }
 }

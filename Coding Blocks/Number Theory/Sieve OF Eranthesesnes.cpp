@@ -28,7 +28,9 @@ void find_prime(int n)
 
     for(j=0;j<n;j++)
         if(prime[j])
-        cout<<j<<endl;
+        {
+
+        }
 }
 main()
 {
