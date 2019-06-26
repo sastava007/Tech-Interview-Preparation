@@ -35,12 +35,13 @@ vector<ll> find_prime()
     return ans;
 }
 
+// Fast modular exponentiation
 ll power(ll a,ll b, ll c)
 {
     if(b==0)
         return 1;
 
-    // If b is even then b/2 else a(b/2)
+    // If b is even then b/2 else a*(b/2)
 
     ll pre_ans=power(a,b/2,c);
     pre_ans=(pre_ans*pre_ans)%c;
