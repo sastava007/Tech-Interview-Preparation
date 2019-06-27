@@ -1,3 +1,8 @@
+/*
+	Problem: To calculate nCr mod P where P=1e9+7
+	Constraints: 1<=n,r<=1000000 1<=r<=n
+*/
+
 #include<bits/stdc++.h>
 using namespace std;
 #define ll long long
@@ -37,7 +42,8 @@ main()
     temp1=power(temp1,mod-2,mod);
     temp2=power(temp2,mod-2,mod);
 
-    ll ans=((fac[n]%mod)*(temp1%mod)*(temp2%mod))%mod;
+    ll ans=((fac[n]%mod)*(temp1%mod))%mod;
+    ans=(ans*temp2)%mod;
     cout<<ans;
 
 }

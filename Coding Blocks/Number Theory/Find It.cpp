@@ -15,15 +15,18 @@ main()
     ll MAX=*max_element(a,a+n);
 
     ll cnt[MAX+1]={0};
-    ll ans[MAX+1]={0};
+    ll ans[100005]={0};
 
     for(i=0;i<n;i++)
         cnt[a[i]]++;
 
     // Time complexity will be O(MAX*log(MAX))
     for(i=1;i<=MAX;i++)
-        for(j=i;j<=MAX;j+=i)
-        ans[i]+=cnt[j];
+    {
+        ans[i]=cnt[i];
+        for(j=2*i;j<=MAX;j+=i)
+             ans[i]+=cnt[j];
+    }
 
     cin>>q;
     while(q--)

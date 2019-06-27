@@ -26,7 +26,7 @@ vector<int> factorize(int n)
     vector<int>prime=prime_sieve(n);
     int p=prime[i];
     vector<int>factors;
-    while(p*p<=n)
+    while(p*p<=n)3
     {
         while(n%p==0)
         {
