@@ -33,3 +33,41 @@ main()
         cout<<compute(n)<<"\n";
     }
 }
+/*
+    More generalised version of tiling problem
+    here f(n)=f(n-1) +f(n-m) ; n>m
+
+*/
+
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define mod 1000000007
+
+ll compute(ll n,ll m)
+{
+    ll res[n+1],i;
+    for(i=1;i<=n;i++)
+    {
+        if(i<m)
+        res[i]=1;
+        else if(i==m)
+        res[i]=2;
+        else
+        res[i]=(res[i-1]+res[i-m])%mod;
+    }
+    return res[n];
+}
+main()
+{
+	int t;
+	ll n,m;
+	cin>>t;
+	while(t--)
+	{
+		 cin>>n>>m;
+    	cout<<compute(n,m)<<"\n";
+	}
+
+
+}
