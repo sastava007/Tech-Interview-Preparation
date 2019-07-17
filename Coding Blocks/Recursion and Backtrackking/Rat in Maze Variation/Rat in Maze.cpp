@@ -1,3 +1,8 @@
+/*
+*   Solved Simple Variation: https://www.geeksforgeeks.org/rat-in-a-maze-backtracking-2/
+*
+*/
+
 #include<bits/stdc++.h>
 using namespace std;
 #define ll long long
@@ -23,7 +28,8 @@ bool compute(char maze[][10], int solu[][10],int i, int j, int m, int n)
         for(int x=0;x<=m;x++)
             {
                 for(int y=0;y<=n;y++)
-                cout<<solu[x][y]<<" ";
+                    cout<<solu[x][y]<<" ";
+
                 cout<<"\n";
             }
             return true;
@@ -32,10 +38,10 @@ bool compute(char maze[][10], int solu[][10],int i, int j, int m, int n)
     {
         solu[i][j]=1;
         bool forwardMovePossible=compute(maze,solu,i,j+1,m,n);
-        if(forwardMovePossible)
+        if(forwardMovePossible )
             return true;
-
         bool downMovePossible=compute(maze,solu,i+1,j,m,n);
+
         if(downMovePossible)
             return true;
         else
@@ -45,6 +51,7 @@ bool compute(char maze[][10], int solu[][10],int i, int j, int m, int n)
             return false;
         }
     }
+    return false;
 }
 main()
 {
