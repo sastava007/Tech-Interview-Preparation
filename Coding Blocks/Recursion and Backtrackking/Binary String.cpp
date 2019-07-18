@@ -2,6 +2,7 @@
 *	Let a[i] represent the no. of such binary strings which don not have any consecutive 1, and ends with 0
 *	and b[i] represent the no. of such strings which end with 0. So we can append 0 & 1 to a[i] but only 0 to b[i]
 * 	a[i]=a[i-1]+b[i-1] ; b[i]=a[i-1];
+*   https://www.geeksforgeeks.org/count-number-binary-strings-without-consecutive-1s/
 */
 
 
