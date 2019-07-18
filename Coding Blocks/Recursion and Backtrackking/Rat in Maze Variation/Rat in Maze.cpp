@@ -1,6 +1,6 @@
 /*
 *   Solved Simple Variation: https://www.geeksforgeeks.org/rat-in-a-maze-backtracking-2/
-*
+*   To print all such paths just replace #36 base case to false. as we did in N queen problem to find all possible configuration
 */
 
 #include<bits/stdc++.h>
@@ -32,6 +32,9 @@ bool compute(char maze[][10], int solu[][10],int i, int j, int m, int n)
 
                 cout<<"\n";
             }
+            cout<<"\n";
+
+            // return false: to print all possible paths
             return true;
     }
     if(isSafe(maze,i,j,m,n))
