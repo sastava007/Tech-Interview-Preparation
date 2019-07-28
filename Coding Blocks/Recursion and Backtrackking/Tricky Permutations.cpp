@@ -30,6 +30,7 @@ main()
     cin.tie(0);
     char in[100],out[100];
     cin>>in;
+    sort(in,in+strlen(in));
     permute(in,0);
 }
 
