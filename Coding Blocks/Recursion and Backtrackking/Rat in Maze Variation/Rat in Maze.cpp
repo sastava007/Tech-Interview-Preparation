@@ -44,7 +44,6 @@ bool compute(char maze[][10], int solu[][10],int i, int j, int m, int n)
         if(forwardMovePossible )
             return true;
         bool downMovePossible=compute(maze,solu,i+1,j,m,n);
-
         if(downMovePossible)
             return true;
         else

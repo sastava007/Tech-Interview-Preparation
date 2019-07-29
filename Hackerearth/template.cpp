@@ -1,17 +1,12 @@
-/*
-                Author:  Shivansh Srivastava
-                Website: https://sastava007.github.io
-                CS Sophomore, Indian Institute Of Information Technology Gwalior
-*/
 #include<bits/stdc++.h>
 using namespace std;
 #define ll long long
-#define pb(x) push_back(x)
+#define deb(x) cout<<#x<<" "<<x<<"\n";
 main()
 {
-   int t,i,j;
-   ll n;
-   vector<int> v(6);
-   bool a=v[2];
-   cout<<!a;
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
+    int x(20),y(22);
+    deb(x);
+    deb(y);
 }
