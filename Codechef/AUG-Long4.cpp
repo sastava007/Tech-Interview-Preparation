@@ -1,88 +1,71 @@
-/**
- * In this code we have a very large array called arr, and very large set of operations
- * Operation #1: Increment the elements within range [i, j] with value val
- * Operation #2: Get max element within range [i, j]
- * Build tree: build_tree(1, 0, N-1)
- * Update tree: update_tree(1, 0, N-1, i, j, value)
- * Query tree: query_tree(1, 0, N-1, i, j)
- */
-
-#include<iostream>
-#include<algorithm>
+#include<bits/stdc++.h>
 using namespace std;
+#define ll long long
 
-#include<string.h>
-#include<math.h>
+void update(ll *d, ll l, ll r, ll value)
+{
+    d[l]+=value;
+    d[r+1]-=value;
 
-#define N 6
-#define MAX (1+(1<<6)) // Why? :D
-#define inf 0x7fffffff
-
-int arr[N];
-int tree[MAX];
-
-/**
- * Build and init tree
- */
-void build_tree(int node, int a, int b) {
-    if(a > b) return; // Out of range
-
-  	if(a == b) { // Leaf node
-    		tree[node] = arr[a]; // Init value
-		return;
-	}
-
-	build_tree(node*2, a, (a+b)/2); // Init left child
-	build_tree(node*2+1, 1+(a+b)/2, b); // Init right child
-
-	tree[node] = max(tree[node*2], tree[node*2+1]); // Init root value
 }
 
-/**
- * Increment elements within range [i, j] with value value
- */
-void update_tree(int node, int a, int b, int i, int j, int value) {
+main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    ll t,i,n;
+    cin>>t;
+    while(t--)
+    {
+        cin>>n;
+        ll c[n];
 
-	if(a > b || a > j || b < i) // Current segment is not within range [i, j]
-		return;
+        for(i=0;i<n;i++)
+        cin>>c[i];
 
-  	if(a == b) { // Leaf node
-    		tree[node] += value;
-    		return;
-	}
+        ll temp;
+        unordered_map<ll,ll> z;
+        for(i=0;i<n;i++)
+        {
+            cin>>temp;
+            z[temp]++;
+        }
 
-	update_tree(node*2, a, (a+b)/2, i, j, value); // Updating left child
-	update_tree(1+node*2, 1+(a+b)/2, b, i, j, value); // Updating right child
+        ll a[n]={0},d[n]={0};
 
-	tree[node] = max(tree[node*2], tree[node*2+1]); // Updating root with max value
-}
+        for(i=0;i<n;i++)
+        {
+            ll x=max(0ll, i-c[i]);
 
-/**
- * Query tree to get max element value within range [i, j]
- */
-int query_tree(int node, int a, int b, int i, int j) {
+            ll y=min((n-1),i+c[i]);
 
-	if(a > b || a > j || b < i) return -inf; // Out of range
+            update(d,x,y,1);
+        }
 
-	if(a >= i && b <= j) // Current segment is totally within range [i, j]
-		return tree[node];
+        unordered_map<ll,ll> m;
+        for(i=0;i<n;i++)
+        {
+            if(i!=0)
+                a[i]=a[i-1]+d[i];
+            else
+                a[i]=d[i];
+            m[a[i]]++;
+        }
 
-	int q1 = query_tree(node*2, a, (a+b)/2, i, j); // Query left child
-	int q2 = query_tree(1+node*2, 1+(a+b)/2, b, i, j); // Query right child
+        ll flag=0;
+        for(auto it:z)
+        {
+            auto x=m.find(it.first);
+            if(x==m.end() || x->second!=it.second)
+                {
+                    flag=1;
+                    break;
+                }
+        }
+        if(flag==0)
+        cout<<"YES\n";
+        else
+        cout<<"NO\n";
+    }
 
-	int res = max(q1, q2); // Return final result
-
-	return res;
-}
-
-int main() {
-	for(int i = 0; i < N; i++) cin>>arr[i];
-
-	build_tree(1, 0, N-1);
-
-//	update_tree(1, 0, N-1, 0, 6, 0); // Increment range [0, 6] by 5
-//	update_tree(1, 0, N-1, 7, 10, 12); // Incremenet range [7, 10] by 12
-//	update_tree(1, 0, N-1, 10, N-1, 100); // Increment range [10, N-1] by 100
-
-	cout << query_tree(1, 0, N-1, 0, N-1) << endl; // Get max element in range [0, N-1]
 }
