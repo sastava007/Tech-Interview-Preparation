@@ -132,15 +132,20 @@ main()
 
     builtseg(arr,seg,0,n-1,0);
     cout<<"Without Update\n";
-    cout<<rangeQuery(seg,1,5,0,n-1,0)<<"\n";
+    cout<<rangeQuery(seg,1,n-1,0,n-1,0)<<"\n";
 
     updateQuery(seg, 0, n-1, 0, n-1, 0, 10);
     cout<<"After update\n";
-    cout<<rangeQuery(seg,0,5,0,n-1,0)<<"\n";
+    cout<<rangeQuery(seg,0,n-1,0,n-1,0)<<"\n";
 
+    for(i=0;i<max_size;i++)
+    cout<<seg[i]<<" ";
 
     updateLazyQuery(seg, lazy, 0, n-1, 0, n-1, 0, 10);
     cout<<"After Lazy update\n";
-    cout<<rangeLazyQuery(seg,lazy,0,5,0,n-1,0)<<"\n";
+    cout<<rangeLazyQuery(seg,lazy,0,n-1,0,n-1,0)<<"\n";
+
+    for(i=0;i<max_size;i++)
+    cout<<seg[i]<<" ";
 
 }
