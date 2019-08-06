@@ -7,7 +7,7 @@ using namespace std;
 
 void builtseg(int *arr, int *seg, int low, int high, int node)
 {
-    if(low==high)
+    if(low==high)       ///we are building the tree bottom to top
     {
         seg[node]=arr[low];
         return;
@@ -25,7 +25,7 @@ void updateQuery(int *seg, int qlow, int qhigh, int low, int high, int node, int
     if(high<qlow || low>qhigh)     /// no overlapping
     return;
 
-    if(low==high)
+    if(low==high)           ///we are updating the tree bottom to top
     {
         seg[node]+=value;
         return;
@@ -39,7 +39,7 @@ void updateQuery(int *seg, int qlow, int qhigh, int low, int high, int node, int
 
 void updateLazyQuery(int* seg, int *lazy, int qlow, int qhigh, int low, int high, int node, int value)
 {
-    if(lazy[node]!=0) ///it means it's content need to be updated
+    if(lazy[node]!=0) ///it means it's some previous updates need to be done so first finish them then move forward
     {
         seg[node]+=lazy[node];
 
@@ -77,13 +77,13 @@ int rangeQuery(int *seg,int qlow, int qhigh, int low, int high, int node)
         /// 2. Total overlapping: when segment range lies completely within query range
         /// 3. No overlapping: when segment range lies totally outside the query range
 
-    if(low>=qlow && high<=qhigh)   ///total overlaping
+    if(low>=qlow && high<=qhigh)   ///total overlapping
     return seg[node];
 
     if(high<qlow || low>qhigh)     /// no overlapping
     return INT_MAX;
 
-    int mid=(low+high)/2;
+    int mid=(low+high)/2;          ///this is a top-bottom approach
     return min(rangeQuery(seg,qlow,qhigh,low,mid,2*node+1),rangeQuery(seg,qlow,qhigh,mid+1,high,2*node+2));
 
 }
@@ -105,7 +105,7 @@ int rangeLazyQuery(int *seg, int *lazy, int qlow, int qhigh, int low, int high, 
     if(high<qlow || low>qhigh)     /// no overlapping
     return INT_MAX;
 
-    if(low>=qlow && high<=qhigh)   ///total overlaping
+    if(low>=qlow && high<=qhigh)   ///total overlapping
     return seg[node];
 
     int mid=(low+high)/2;

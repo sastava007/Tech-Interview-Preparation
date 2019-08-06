@@ -37,6 +37,36 @@ void updateQuery(int *seg, int qlow, int qhigh, int low, int high, int node, int
 
 }
 
+void lazyUpdateQuery(int *seg, int *lazy, int qlow, int qhigh, int low, int high, int node, int value)
+{
+    if(lazy[node]!=0)
+    {
+        seg[node]+=lazy[node];
+        if(low!=high)
+        {
+            lazy[2*node+1]+=lazy[node];
+            lazy[2*node+2]+=lazy[node];
+        }
+        lazy[node]=0;
+
+    }
+
+    if(qlow<=low && high<=qhigh)
+    {
+        seg[node]+=value;
+        if(low!=high)
+        {
+            lazy[2*node+1]+=value;
+            lazy[2*node+2]+=value;
+        }
+        return ;
+    }
+    int mid=(low+high)/2;
+    lazyUpdateQuery(seg,lazy,qlow,qhigh,low,mid,2*node+1,value);
+    lazyUpdateQuery(seg,lazy,qlow,qhigh,mid+1,high,2*node+2,value);
+
+}
+
 int rangeQuery(int* seg, int qlow, int qhigh, int low, int high, int node)
 {
         ///We have total 3 types of overlapping possible
@@ -58,6 +88,32 @@ int rangeQuery(int* seg, int qlow, int qhigh, int low, int high, int node)
 
 }
 
+int lazyRangeQuery(int* seg, int * lazy, int qlow, int qhigh, int low, int high, int node)
+{
+    if(lazy[node]!=0)
+    {
+        seg[node]+=lazy[node];
+        if(low!=high)
+        {
+            lazy[2*node+1]+=lazy[node];
+            lazy[2*node+2]+=lazy[node];
+        }
+        lazy[node]=0;
+
+    }
+
+    /// no overlapping
+    if(high<qlow || low>qhigh)
+        return 0;
+    /// total overlapping
+    if(low>=qlow && high<=qhigh)
+        return seg[node];
+
+    ///partial overlapping
+
+    int mid=(low+high)/2;
+    return lazyRangeQuery(seg,lazy,qlow,qhigh,low,mid,2*node+1)+lazyRangeQuery(seg,lazy,qlow,qhigh,mid+1,high,2*node+2);
+}
 
 main()
 {
@@ -73,15 +129,15 @@ main()
     int x = (int)(ceil(log2(n)));
     int max_size = 2*(int)pow(2, x) - 1;
 
-    int seg[max_size];
+    int seg[max_size],lazy[max_size];
 
     buildTree(a,seg,0,n-1,0);
 
-    cout<<"Sum of values in given range: "<<rangeQuery(seg,1,3,0,n-1,0)<<"\n";
+    cout<<"Sum of values in given range: "<<lazyRangeQuery(seg,lazy,1,3,0,n-1,0)<<"\n";
 
-    updateQuery(seg,1,1,0,n-1,0,10);
+    lazyUpdateQuery(seg,lazy,1,1,0,n-1,0,10);
 
-    cout<<"Sum of values in given range after upgradation : "<<rangeQuery(seg,1,3,0,n-1,0)<<"\n";
+    cout<<"Sum of values in given range after upgradation : "<<lazyRangeQuery(seg,lazy,1,3,0,n-1,0)<<"\n";
 
 
 
