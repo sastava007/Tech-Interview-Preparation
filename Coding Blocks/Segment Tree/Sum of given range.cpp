@@ -1,5 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
+#define ll long long
 
 void buildTree(int *a, int *seg, int low, int high, int node)
 {
@@ -13,7 +14,9 @@ void buildTree(int *a, int *seg, int low, int high, int node)
     buildTree(a,seg,low,mid,2*node+1);
     buildTree(a,seg,mid+1,high,2*node+2);
 
-    seg[node]=seg[2*node+1]+seg[2*node+2];
+    ll t1=seg[2*node+1]+seg[2*node+2];
+    ll t2=max(seg[2*node+1],seg[2*node+2]);
+    seg[node]=max(t1,t2);
 
 }
 
@@ -133,11 +136,13 @@ main()
 
     buildTree(a,seg,0,n-1,0);
 
-    cout<<"Sum of values in given range: "<<lazyRangeQuery(seg,lazy,1,3,0,n-1,0)<<"\n";
+    //cout<<"Sum of values in given range: "<<lazyRangeQuery(seg,lazy,1,3,0,n-1,0)<<"\n";
 
-    lazyUpdateQuery(seg,lazy,1,1,0,n-1,0,10);
+    //lazyUpdateQuery(seg,lazy,1,1,0,n-1,0,10);
 
-    cout<<"Sum of values in given range after upgradation : "<<lazyRangeQuery(seg,lazy,1,3,0,n-1,0)<<"\n";
+    //cout<<"Sum of values in given range after upgradation : "<<lazyRangeQuery(seg,lazy,1,3,0,n-1,0)<<"\n";
+
+    cout<<rangeQuery(seg,3,3,0,n-1,0);
 
 
 
