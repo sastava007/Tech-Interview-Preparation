@@ -13,7 +13,7 @@ public:
         int n=temp.size();
         if(n&1)
         {
-            double ans=setprecision(2)(temp[n/2]);
+            double ans=(double)(temp[n/2]*1.0);
             return ans;
         }
         else
@@ -31,6 +31,6 @@ main()
     cin.tie(NULL);
 
     Solution obj;
-    vector<int> a{1,3},b{2};
+    vector<int> a{1,2},b{3};
     cout<<obj.findMedianSortedArrays(a,b);
 }
