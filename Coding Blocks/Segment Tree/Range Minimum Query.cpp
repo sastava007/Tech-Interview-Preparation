@@ -65,8 +65,8 @@ void updateLazyQuery(int* seg, int *lazy, int qlow, int qhigh, int low, int high
         return;
     }
     int mid=(low+high)/2;
-    updateLazyQuery(seg,lazy,qlow,qhigh,low,mid,node,value);
-    updateLazyQuery(seg,lazy,qlow,qhigh, mid+1,high,node,value);
+    updateLazyQuery(seg,lazy,qlow,qhigh,low,mid,2*node+1,value);
+    updateLazyQuery(seg,lazy,qlow,qhigh, mid+1,high,2*node+2,value);
     seg[node]=min(seg[2*node+1],seg[2*node+2]);
 
 }
@@ -83,7 +83,7 @@ int rangeQuery(int *seg,int qlow, int qhigh, int low, int high, int node)
     if(high<qlow || low>qhigh)     /// no overlapping
     return INT_MAX;
 
-    int mid=(low+high)/2;          ///this is a top-bottom approach
+    int mid=low+(high-low)/2;         ///this is a top-bottom approach
     return min(rangeQuery(seg,qlow,qhigh,low,mid,2*node+1),rangeQuery(seg,qlow,qhigh,mid+1,high,2*node+2));
 
 }
@@ -108,7 +108,7 @@ int rangeLazyQuery(int *seg, int *lazy, int qlow, int qhigh, int low, int high, 
     if(low>=qlow && high<=qhigh)   ///total overlapping
     return seg[node];
 
-    int mid=(low+high)/2;
+    int mid=low+(high-low)/2;
     return min(rangeLazyQuery(seg,lazy,qlow,qhigh,low,mid,2*node+1),rangeLazyQuery(seg,lazy,qlow,qhigh,mid+1,high,2*node+2));
 
 
@@ -134,18 +134,16 @@ main()
     cout<<"Without Update\n";
     cout<<rangeQuery(seg,1,n-1,0,n-1,0)<<"\n";
 
-    updateQuery(seg, 0, n-1, 0, n-1, 0, 10);
-    cout<<"After update\n";
+//    updateLazyQuery(seg, 0, n-1, 0, n-1, 0, 10);
+//    cout<<"After update\n";
+//    cout<<rangeLazyQuery(seg,0,n-1,0,n-1,0)<<"\n";
+
+    for(i=0;i<n;i++)
+    updateQuery(seg,i, i, 0, n-1, 0, 10);
+    cout<<"After Lazy update\n";
     cout<<rangeQuery(seg,0,n-1,0,n-1,0)<<"\n";
 
-    for(i=0;i<max_size;i++)
-    cout<<seg[i]<<" ";
-
-    updateLazyQuery(seg, lazy, 0, n-1, 0, n-1, 0, 10);
-    cout<<"After Lazy update\n";
-    cout<<rangeLazyQuery(seg,lazy,0,n-1,0,n-1,0)<<"\n";
-
-    for(i=0;i<max_size;i++)
-    cout<<seg[i]<<" ";
+    for(i=0;i<n;i++)
+    cout<<rangeQuery(seg,i,i,0,n-1,0)<<" ";
 
 }
