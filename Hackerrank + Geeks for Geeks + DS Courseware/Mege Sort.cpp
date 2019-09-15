@@ -1,54 +1,74 @@
 #include<iostream>
 using namespace std;
-void merge(int *a,int s,int e)
-{
-    int mid=(s+e)/2;
-    int i=s;
-    int j=mid+1;
-    int k=s;
-    int result[e-s+1];
-    int c=0;
 
-    while(i<=mid && j<=e)
-    {
-        if(a[i]<a[j])
-            result[k++]=a[i++];
-        else
-        {
-          result[k++]=a[j++];
+void merge(int *a,int s,int e){
+    int mid = (s+e)/2;
 
+    int i = s;
+    int j = mid+1;
+    int k = s;
+
+    int temp[100];
+
+    while(i<=mid && j<=e){
+        if(a[i] < a[j]){
+            temp[k++] = a[i++];
         }
-
+        else{
+            temp[k++] = a[j++];
+        }
     }
-    // IF ONE OF THE ARRAY GET EXHAUSTED THEN COPY ALL THE REMAINING ELEMENTS
-    while(i<=mid)
-        result[k++]=a[i++];
-    while(j<=e)
-    result[k++]=a[j++];
-    for(int i=s;i<=e;i++)
-        a[i]=result[i];
+    while(i<=mid){
+        temp[k++] = a[i++];
+    }
+    while(j<=e){
+        temp[k++]  = a[j++];
+    }
+
+    //We need to copy all element to original arrays
+    for(int i=s;i<=e;i++){
+        a[i] = temp[i];
+    }
+
 
 }
-void merge_sort(int a[],int s,int e)
-{
-    if(s>=e)
+
+void mergeSort(int a[],int s,int e){
+    //Base case - 1 or 0 elements
+    if(s>=e){
         return;
+    }
 
-    //1. DIVIDE
-        int mid=(s+e)/2;
+    //Follow 3 steps
+    //1. Divide
+    int mid = (s+e)/2;
 
-    //2. RECURSIVELY SORT
-        merge_sort(a,s,mid);
-        merge_sort(a,mid+1,e);
+    //Recursively the arrays - s,mid and mid+1,e
+    mergeSort(a,s,mid);
+    mergeSort(a,mid+1,e);
 
-    //3. COMBINE ALL SORTED PARTS
-        merge(a,s,e);
+    //Merge the two parts
+    merge(a,s,e);
+
 }
-main()
-{
-    int a[]={ 1, 20, 6, 4, 5 };
-    merge_sort(a,0,4);
-//    for(int i=0;i<6;i++)
-//        cout<<a[i]<<" ";
-        cout<<c;
+
+
+
+
+int main(){
+
+	int a[100];
+	int n;
+	cin>>n;
+
+	for(int i=0;i<n;i++){
+		cin>>a[i];
+	}
+	mergeSort(a,0,n-1);
+
+	for(int i=0;i<n;i++){
+	    cout<<a[i]<<" , ";
+	}
+
+
 }
