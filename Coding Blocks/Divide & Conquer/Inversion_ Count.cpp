@@ -1,13 +1,15 @@
 #include <bits/stdc++.h>
+#define ll long long
+#pragma gcc optimize("ofast")
 using namespace std;
 
-int merge(int *a, int low, int high)
+int merge(ll *a, int low, int high)
 {
     int mid=(low+high)/2;
     int i=low;
     int inv_count=0;
 
-    int temp[1000];
+    int temp[100009];
 
     int j=mid+1;
     int k=low;
@@ -31,7 +33,7 @@ int merge(int *a, int low, int high)
 
 }
 
-int mergeSort(int *a, int low, int high)
+int mergeSort(ll *a, int low, int high)
 {
     int inv_count=0;
     if(high>low)
@@ -46,8 +48,20 @@ int mergeSort(int *a, int low, int high)
 }
 
 
-main()
+int main()
 {
-    int a[]={ 1, 20, 6, 4, 5 };
-    cout<<mergeSort(a,0,4);
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int i,n;
+        cin>>n;
+        ll a[n];
+        for(i=0;i<n;i++)
+        cin>>a[i];
+
+        cout<<mergeSort(a,0,n-1)<<"\n";
+    }
+    return 0;
+
 }
