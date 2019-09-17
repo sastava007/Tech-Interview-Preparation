@@ -6,14 +6,21 @@ using namespace std;
 vector<ll> v;
 void solve(ll n)
 {
-    if(n<=1)
+//    if(n<=1)
+//    {
+//        v.emplace_back(n);
+//        return;
+//    }
+    if(n==0)
+        return;
+    if(n==1)
     {
-        v.emplace_back(n);
+        v.emplace_back(1);
         return;
     }
     solve(n/2);
     solve(n%2);
-    solve(n/2);
+    solve(n/2);kk
 }
 
 main()
