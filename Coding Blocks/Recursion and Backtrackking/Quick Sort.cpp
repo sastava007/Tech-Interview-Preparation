@@ -1,4 +1,6 @@
 #include<bits/stdc++.h>
+#define ll long long
+#pragma gcc optimize("ofast")
 using namespace std;
 
 /*
@@ -8,7 +10,7 @@ using namespace std;
     * And call quicksort on left and right region of pivot element
 */
 
-void shuffle(int *a, int s, int e)
+void shuffle(ll *a, int s, int e)
 {
     // to randomly shuffle all the elements of array on each run
     srand(time(NULL));
@@ -19,9 +21,9 @@ void shuffle(int *a, int s, int e)
     }
 }
 
-int partition(int *a, int s, int e)
+int partition(ll *a, int s, int e)
 {
-    int pivot=a[e];
+    ll pivot=a[e];
     int i=s-1;
     int j=s;
     for(;j<e;j++)
@@ -35,7 +37,7 @@ int partition(int *a, int s, int e)
     return i+1;
 }
 
-void quicksort(int *a, int s, int e)
+void quicksort(ll *a, int s, int e)
 {
     if(s>=e)
         return;
@@ -50,14 +52,14 @@ main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(0);
-    int a[]={1,2,3,4,5,6,7};
-    shuffle(a,0,6);
-    for(int i=0;i<=6;i++)
-        cout<<a[i]<<" ";
-    cout<<"\n";
-
-    quicksort(a,0,6);
-    for(int i=0;i<=6;i++)
+    int n,i;
+    cin>>n;
+    ll a[n];
+    for(i=0;i<n;i++)
+        cin>>a[i];
+    shuffle(a,0,n-1);
+    quicksort(a,0,n-1);
+    for(int i=0;i<n;i++)
         cout<<a[i]<<" ";
 }
 
