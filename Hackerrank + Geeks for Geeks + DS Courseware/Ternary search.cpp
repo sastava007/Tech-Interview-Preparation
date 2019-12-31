@@ -27,25 +27,25 @@ int ternarySearch(int low, int high, int *a, int key)
 
 main()
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-
-    int i,n;
-    cin>>n;
+    int i,n=25000;
     int a[n];
-    for(i=0;i<n;i++)
-        cin>>a[i];
+    for(int i=0;i<n;i++)
+    {
+        srand(time(NULL));
+        a[i]=rand();
+    }
     sort(a,a+n);
-
     int t;
+
+    for(auto it:a)
+    
+    cout<<"Enter no. of test cases: ";
     cin>>t;
     while(t--)
     {
-        int k;
-        cin>>k;
+        srand(time(NULL));
+        int k=rand();
         cout<<ternarySearch(0,n-1,a,k)<<"\n";
 
     }
-
-
 }

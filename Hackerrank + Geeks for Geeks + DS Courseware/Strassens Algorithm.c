@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<math.h>
 #include<stdlib.h>
+#include<time.h>
 #define MAX_SIZE 32
 void add(int **a, int **b, int size,int **c);
 void sub(int **a, int **b, int size,int **c);
@@ -260,6 +261,19 @@ void sub(int **a,int **b,int size,int **c){
         }
 }
 
+void naiveMultiplication(int **a, int **b, int n, int **res)
+{
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<n;j++)
+        {
+            res[i][j]=0;
+            for(int k=0;k<n;k++)
+                res[i][j]+=(a[i][k]*b[k][j]);
+        }
+    }
+}
+
 main()
 {
     int size,p,itr,itr1,i,j,nsize;
@@ -297,19 +311,45 @@ main()
             scanf("%d",&b[i][j]);
         }
     }
-    int **new = malloc(size * sizeof(int *));
+    int **res = malloc(size * sizeof(int *));
     for(i=0;i<size;i++){
-        new[i] = malloc(size*sizeof(int));
+        res[i] = malloc(size*sizeof(int));
     }
-    multiply(a,b,size,size,new);
+
+    int **res1 = malloc(size * sizeof(int *));
+    for(i=0;i<size;i++){
+        res1[i] = malloc(size*sizeof(int));
+    }
+
+    clock_t start1,end1,start2,end2;
+    double cpu_time_used;
+    start1=clock();
+    multiply(a,b,size,size,res);
+    end1=clock();
+    cpu_time_used=((double) (end1 - start1)) / CLOCKS_PER_SEC;
 
     if(tempS<size)
         size =tempS;
     for(i=0;i<size;i++){
         for(j=0;j<size;j++){
-            printf("%d   ",new[i][j]);
+            printf("%d   ",res[i][j]);
         }
         printf("\n");
     }
+    printf("Time taken by Strassen Algo: %lf\n",cpu_time_used);
+
+    //Printing Naive Multiplication
+
+    start2=clock();
+    naiveMultiplication(a,b,size,res1);
+    end2=clock();
+
+    for(i=0;i<size;i++){
+        for(j=0;j<size;j++){
+            printf("%d   ",res[i][j]);
+        }
+        printf("\n");
+    }
+
 }
 
