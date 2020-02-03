@@ -1,4 +1,12 @@
-*.exe
-*.o
-/test.cpp.*
+# Ignore all
+*
 
+# Unignore all with extensions
+!*.c*
+
+!*.cpp*
+
+!*.pdf*
+
+# Unignore all dirs
+!*/
