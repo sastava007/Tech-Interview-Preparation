@@ -8,5 +8,7 @@
 
 !*.pdf*
 
+!*.h*
+
 # Unignore all dirs
 !*/
