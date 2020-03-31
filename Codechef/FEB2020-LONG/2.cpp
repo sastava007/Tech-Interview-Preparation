@@ -1,3 +1,12 @@
+/*
+problem : https://www.codechef.com/FEB20B/problems/CASH
+solution: since all bags contain coins which is a multiple of k,
+          their sum will also be multiple of k.Hence to minimize  the
+	  number of coins to be removed, we must maximize the number of coins 
+	  in all bags. So, the number of coins to be removed is the  remainder 
+	  when s is divided by k.
+	  
+*/
 #include <iostream>
 #define ll long long int
 using namespace std;
