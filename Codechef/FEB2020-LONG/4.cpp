@@ -1,4 +1,10 @@
-#include <iostream>
+/*
+ problem : codechef.com/FEB20B/problems/NOCHANGE
+ solution : we need to check various cases.first of all we check if d[i]
+ divides all d[j] for all j > i along with p. If it happens then their each linear combination greater than p can 
+ be made equal to p by removing coin of any dominion.
+ If this is not the case,the answer is YES, The array can be made by using the method shown below.
+ */#include <iostream>
 #define ll long long 
 using namespace std;
 
@@ -8,7 +14,7 @@ int main(){
 	int t;
 	cin >> t ;
 	while(t--){
-    ll c=0, n, p;
+        ll c=0, n, p;
 	bool b = false;
 	cin >> n >> p;
 	ll d[n], a[n];
