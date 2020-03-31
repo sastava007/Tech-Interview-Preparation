@@ -87,7 +87,7 @@ int main() {
 	           x++;
 	       }
 	    }
-	       cout << x << endl;   // adding them tofether to get the answer
+	       cout << x << endl;   // adding them together to get the answer
 	}
 	return 0;
 }
