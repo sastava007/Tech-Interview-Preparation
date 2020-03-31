@@ -1,3 +1,13 @@
+/*
+problem  : https://www.codechef.com/FEB20B/problems/CASH/
+solution : We need to simply apply the brute force approach to solve this problem 
+           since ther are only 4!(24) possible cases which arise.First we create a
+	   4*4 array which contains the number of requests at a given time for a 
+	   given movie.Then we check all possible cases and find the maximum 
+	   profit among them. We do so by sorting the number of requests for a given 
+	   case and setting maximum ticket price at the time when the nummber of requests 
+	   are maximum.
+*/
 #include <bits/stdc++.h>
 #define ll long long int 
 using namespace std;
@@ -36,7 +46,7 @@ int main(){
                     for(int l = 0;l < 4; l++){
                         if(l == k || l == j || l == i)
                             continue;
-                        int d[4]={ x[i][0], x[j][1], x[k][2], x[l][3]};
+                        int d[4]={ x[i][0], x[j][1], x[k][2], x[l][3]};   
                         sort(d,d + 4);
                           for(int m = 0; m < 4 ; m++){
                             if(d[m] == 0)
