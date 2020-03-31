@@ -1,3 +1,9 @@
+/*
+problem : https://www.codechef.com/FEB20B/problems/SNUG_FIT
+solution: the diameter of the circle inscribed in a rectangle is minimum of its length and breadth.
+          pair the small elements with the small elements, middle elements with the middle elements,
+	  and the big elements with the big elements, in order to maximize the final sum. 
+*/
 #include <iostream>
 #include <algorithm>
 #define ll long long int 
