@@ -160,3 +160,30 @@ int countLeaves(Node* root)
     
     return left+right;
 }
+
+//Non leaves node
+int countNonLeafNodes(Node* root)
+{
+    if(root==NULL || (root->left==NULL && root->right==NULL))
+        return 0;
+        
+    int left=countNonLeafNodes(root->left);
+    int right=countNonLeafNodes(root->right);
+    
+    return (left+ right + 1);
+    
+}
+
+//convert a binary tree to it's mirror trees
+void mirror(Node* node) 
+{
+    if(node==NULL)
+        return;
+    
+    mirror(node->left);
+    mirror(node->right);
+    
+    Node* temp=node->left;
+    node->left=node->right;
+    node->right=temp;
+}
