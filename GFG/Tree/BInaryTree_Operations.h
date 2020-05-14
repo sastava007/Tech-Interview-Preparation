@@ -187,6 +187,19 @@ void mirror(Node* node)
     node->left=node->right;
     node->right=temp;
 }
+// check if two trees are mirror
+int areMirror(Node* a, Node* b) 
+{
+    if(!a && !b)
+        return 1;
+    if(!a || !b)
+        return 0;
+        
+    int left = areMirror(a->left, b->right);
+    int right = areMirror(a->right, b->left);
+    
+    return ((a->data==b->data) && left && right);
+}
 
 //is Tree identical
 bool isIdentical(Node *r1, Node *r2)

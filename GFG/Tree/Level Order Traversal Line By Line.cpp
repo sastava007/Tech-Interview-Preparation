@@ -30,3 +30,19 @@ void levelOrder(Node* node)
         cout<<"$ ";
     }
 }
+
+/* Print level at distance K from root */
+void printKdistance(struct Node *root, int k)
+{
+    if(root==NULL)
+        return;
+        
+    if(k==0)
+        cout<<root->data<<" ";
+    
+    if(k>0)
+    {
+        printKdistance(root->left, k-1);
+        printKdistance(root->right, k-1);
+    }
+}
