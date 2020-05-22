@@ -31,24 +31,24 @@ int main()
             }
             else
             {
-                sum+=a[r];
-                if(sum>maxsum)
+                sum += a[r];
+                if(sum > maxsum)
                 {
-                    maxsum=sum;
-                    al=l;
-                    ar=r+1;
+                    maxsum = sum;
+                    al = l;
+                    ar = r;
                 }
-                else if(sum==maxsum && (r+1-l > ar-al))
+                else if(sum == maxsum && (r-l+1 > ar-al+1))
                 {
-                    al=l;
-                    ar=r+1;
+                    al = l;
+                    ar = r;
                 }
             }
         }
         if(al==-1 || ar==-1)
             cout<<"0";
         else
-            for(int i=al;i<ar;i++)
+            for(int i=al;i<=ar;i++)
                 cout<<a[i]<<" ";
         cout<<"\n";
     }

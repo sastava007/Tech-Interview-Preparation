@@ -31,7 +31,7 @@ int main()
                 lmax=i;
                 lmin=i;
             }
-            lmax = a[i]>=lmax?i:lmax;
+            lmax = a[i]>=a[lmax]?i:lmax;
         }
         if(lmax==n-1 && lmax-lmin>=1)
         ans.push_back({lmin,lmax});
@@ -48,3 +48,44 @@ int main()
 	return 0;
 }
 
+/* Another solution */
+
+void stockBuySell(int a[], int n) 
+{
+    int left=0, right=0;
+    int maxprice = a[0];
+    
+    bool ifProfit = false;
+    
+    for(int i=1;i<n;i++)
+    {
+        if(a[i]>=maxprice)
+        {
+            maxprice = a[i];
+            right++;
+        }
+        else
+        {
+            if(right-left >= 1)
+            {
+                cout<<"("<<left<<" "<<right<<") ";
+                ifProfit = true;
+            }
+            left = i;
+            right = i;
+            maxprice = a[i];
+        }
+    }
+    
+    if(right == n-1 && right-left>=1)
+    {
+        ifProfit = true;
+        cout<<"("<<left<<" "<<right<<") ";
+    }
+    
+    if(!ifProfit)
+        cout<<"No Profit";
+        
+    cout<<endl;
+        
+}

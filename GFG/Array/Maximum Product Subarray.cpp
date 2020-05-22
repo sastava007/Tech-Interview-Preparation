@@ -4,6 +4,8 @@
     Keep two variables minVal and maxVal which represents the minimum and maximum product value till the ith index of the array
     if the ith element of the array is negative that means now the values of minVal and maxVal will be swapped as value of maxVal will 
     become minimum by multiplying it with a negative number.
+
+    And in case, -ve numbers are present even no. of times the overall swapping get nullifies and we end up getting maximum value in maxval by the end of array. 
 */
 
 #include<bits/stdc++.h>

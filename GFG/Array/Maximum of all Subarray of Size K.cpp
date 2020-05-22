@@ -1,10 +1,17 @@
 /*
     Very useful concept, and this is the base problem for all the further variations.
-
     So basically, idea is to maintain a deque that stores all the useful elements, a element is useful if it lies in current winodw and is is greater than all all elements on its left
     In this way, we end up with maximum element of each window at front of queue.
-
 */
+
+/* 
+    Most sliding window questions uses this same template all the time. The only difference is the data structure used for the window.
+    If the question asks about the unique element in window -> use set
+    If the question asks about the frequency of element in window -> use map/ unordered_map
+    If the question asks about window sum -> use prefix sum array
+    If the question asks about min/max element -> use monotonous queue
+ */
+
 
 #include<bits/stdc++.h>
 using namespace std;
@@ -53,7 +60,6 @@ int main()
         cout<<a[q.front()]<<"\n";
         
     }
-    
-    
+
     return 0;
 }

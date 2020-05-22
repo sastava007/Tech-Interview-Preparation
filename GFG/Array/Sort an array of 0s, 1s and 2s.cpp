@@ -15,23 +15,23 @@ int main()
     cin>>t;
     while(t--)
     {
-        int n,ele,i,j=0,size;
+        int n,i;
         cin>>n;
-        size=n;
         int a[n];
         for(i=0;i<n;i++)
             cin>>a[i];
-        i=0;
-        while(i<n)
+            
+        int low=0, mid = 0, high = n-1;
+        while(mid<=high)
         {
-            if(a[i]==0)
-            swap(a[i++],a[j++]);
-            else if(a[i]==2)
-            swap(a[i],a[--n]);
+            if(a[mid]==0)
+            swap(a[mid++],a[low++]);
+            else if(a[mid]==2)
+            swap(a[mid],a[high--]);
             else
-            i++;
+            mid++;
         }
-        for(i=0;i<size;i++)
+        for(i=0;i<n;i++)
         cout<<a[i]<<" ";
         cout<<"\n";
     }
