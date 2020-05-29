@@ -83,7 +83,7 @@ int partition(int *a, int s, int e)
 int KthSmallestElement(int *a, int s, int e, int k)
 {
     if(k>0 && k<=e-s+1)   //if size of array is greater than K
-    {   
+    {
         int index = partition(a, s, e);
 
         if(index-s+1 == k)
