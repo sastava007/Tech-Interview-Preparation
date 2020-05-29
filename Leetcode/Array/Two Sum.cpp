@@ -1,4 +1,3 @@
-
 #include<bits/stdc++.h>
 using namespace std;
 #define ll long long
@@ -6,21 +5,23 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> twoSum(vector<int>& nums, int target) {
-
-        unordered_map<int, int> m;
+    vector<int> twoSum(vector<int>& nums, int target) 
+    {
+        unordered_map<int, int> hash;
         vector<int> ans(2);
-        for(int i=0;i<nums.size();i++)
+        
+        for(int i=0; i<nums.size(); i++)
         {
-            int comp=target-nums[i];
-            if(m.find(comp)!=m.end())
+            if(hash.find(target-nums[i]) != hash.end())
             {
-                ans[0]=i;
-                ans[1]=m[comp];
+                ans[0] = i;
+                ans[1] = hash[target-nums[i]];
                 return ans;
             }
-            m[nums[i]]=i;
+            else
+                hash[nums[i]] = i;
         }
+        
         return ans;
     }
 };
