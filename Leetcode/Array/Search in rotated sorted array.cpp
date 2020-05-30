@@ -37,7 +37,7 @@ private:
 };
 
 
-/* Handling duplicates : Worst case O(n) time */
+/* Follow Up: handling duplicates Worst case O(n) time */
 
 public boolean search(int[] nums, int target) 
 {

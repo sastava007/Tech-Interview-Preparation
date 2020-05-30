@@ -3,50 +3,34 @@ using namespace std;
 
 class Solution {
 public:
-
-    char findPair(char c)
+    
+    bool isSame(char x, char y)
     {
-        if(c==')')
-        return '(';
-        else if(c=='}')
-        return '{';
-        else
-        return '[';
-
-    }
-
-    bool isValid(string s)
-    {
-        stack<char> temp;
-        int flag=0;
-
-        for(int i=0;i<s.length();i++)
-        {
-
-            if(s[i]=='(' || s[i]=='{' || s[i]=='[')
-            temp.push(s[i]);
-
-            else
-            {
-                char c=findPair(s[i]);
-
-                /// make this check to ensure that if closing bracket is the first thing which we encounter then it's unbalanced and we should return false without checking
-                if(temp.empty())
-                return false;
-
-                if(c!=temp.top())
-                {
-                    flag=1;
-                    break;
-
-                }
-                temp.pop();
-            }
-        }
-        if(flag==1 || !temp.empty())
+        if(x=='(' && y==')')
+           return true;
+        if(x=='{' && y=='}')
+           return true;
+        if(x=='[' && y==']')
+           return true;
+        
         return false;
-        else
-        return true;
+    }
+    
+    bool isValid(string s) 
+    {
+        stack<char> todo;
+        
+        for(int i=0; i<s.length(); i++)
+        {
+            if(todo.empty())
+                todo.push(s[i]);
+            else if(isSame(todo.top(), s[i]))
+                todo.pop();
+            else
+                todo.push(s[i]);
+        }
+        
+        return (todo.size()==0);
     }
 };
 
