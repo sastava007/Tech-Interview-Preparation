@@ -1,12 +1,18 @@
-/*  The idea is to build a graph of email id with edge connecting from first email to all other emails. 
-    And if there are some common mails in some account, then there will be connected component and we can find such relations by doing a DFS.
+/*  
+    The idea is to build a undirected graph of email id with edge connecting from first email to all other emails. 
+    And if there are some common emails between two accounts, then there will be connected component and we can find such relations by doing a DFS.
 
     We'll also need a maintatin a hash table with emaild id and name of person.
+    
+    TC: Summation(a[i]*loga[i]) where ai=length of account[i]
+    Space: Summation(a[i])
+
+    Note: If the graph is static then use DFS, else if queries are made to update the vertex then use DSU
 */
 
 class Solution {
 public:
-    vector<vector<string>> accountsMerge(vector<vector<string>>& accounts) 
+    vector<vector<string>> accountsMerge(vector<vector<string>>& accounts)
     {
         unordered_map<string, string> emailToName;
         unordered_map<string, vector<string>> graph;
@@ -36,14 +42,13 @@ public:
                 while(!todo.empty())
                 {
                     string cur = todo.top();
-                    
+                    todo.pop();
+
                     if(visited.find(cur) == visited.end())
                     {
                         temp.emplace_back(cur);
                         visited.insert(cur);
                     }
-                    
-                    todo.pop();
                     
                     for(string edge: graph[cur])
                         if(visited.find(edge) == visited.end())

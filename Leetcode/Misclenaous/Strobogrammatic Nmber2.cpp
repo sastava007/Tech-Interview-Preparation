@@ -59,7 +59,7 @@ int main()
 {
 
     Solution obj;
-    vector<string> res = obj.findStrobogrammatic(2);
+    vector<string> res = obj.findStrobogrammatic(3);
 
     for(auto it: res)
         cout<<it<<" ";

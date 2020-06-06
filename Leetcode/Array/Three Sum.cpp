@@ -1,20 +1,60 @@
-#include<bits/stdc++.h>
-using namespace std;
-#define ll long long
-#define deb(x) cout<<#x<<" "<<x<"\n"
+/* O(n2) AC Leetcode Solution: Remove/skip the duplicates */
+class Solution {
+public:
+    
+    vector<vector<int>> threeSum(vector<int>& nums)
+    {
+        sort(nums.begin(), nums.end());
+        vector<vector<int>> ans;
+        
+        for(int i=0;i<(int)nums.size()-1;i++)
+            {
+                int low=i+1, high=nums.size()-1;
+            
+                if(nums[i] > 0)
+                    break;
+            
+                while(low<high)
+                {
+                    if(nums[low]+nums[high]+nums[i] < 0)
+                        low++;
+                    else if(nums[low]+nums[high]+nums[i] > 0)
+                        high--;
+                    else
+                    {
+                        vector<int> triplet{nums[i], nums[low], nums[high]};
+                        
+                        while(low<high && nums[low]==triplet[1])    //skip duplicates for second element
+                            low++;
+                        while(low<high && nums[high]==triplet[2])   //skip duplicates for third element
+                            high--;
+                        
+                        ans.emplace_back(triplet);
+                    }
+                }
+                
+                while((i+1)<nums.size() && (nums[i]==nums[i+1]))  //skip duplicates for the first element
+                    i++;
+            }
+        
+        return ans;
+    }
+    
+ };
+
+/* Without removing duplicates: Not Yet Tested */
 
 class Solution {
 public:
     vector<vector<int>> threeSum(vector<int>& nums)
     {
-
         vector<vector<int>> ans;
         for(int i=0;i<nums.size()-1;i++)
             {
                 unordered_set<int> s;
                 for(int j=i+1;j<nums.size();j++)
                 {
-                    int x=-(nums[i]+nums[j]);
+                    int x =-(nums[i]+nums[j]);
                     if(s.find(x)!=s.end())
                     {
                         vector<int> v;
@@ -25,11 +65,9 @@ public:
                     }
                     else
                         s.insert(nums[j]);
-
                 }
             }
         return ans;
-
     }
 };
 

@@ -39,7 +39,7 @@ vector<int> productExceptSelf(vector<int>& nums)
     }
     return res;
 
-// using single traversal
+// using single traversal O(N) TC and O(1) extra space
 class Solution {
 public:
     vector<int> productExceptSelf(vector<int>& nums) {

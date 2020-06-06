@@ -49,14 +49,14 @@ public boolean search(int[] nums, int target)
         if (target == nums[mid]) {
             return true;
         }
-        if (nums[left] < nums[mid])
+        if(nums[left] < nums[mid])
         {
             if (target >= nums[left] && target < nums[mid]) {
                 right= mid - 1;
             } else {
                 left = mid + 1;
             }
-        } else if(nums[left] == nums[mid])
+        }else if(nums[left] == nums[mid])
         {
             left++;
         }

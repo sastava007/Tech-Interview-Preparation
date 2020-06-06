@@ -1,4 +1,52 @@
+/* https://leetcode.com/problems/find-all-anagrams-in-a-string/discuss/92007/Sliding-Window-algorithm-template-to-solve-all-the-Leetcode-substring-search-problem. */
+
 class Solution {
+public:
+    string minWindow(string s, string t) 
+    {
+        if(t.length() > s.length())
+            return "";
+        
+        unordered_map<char, int> map;
+        for(char c: t)
+            map[c]++;
+        
+        int start = 0, end = 0, n = s.length(), minstart = 0, remaining = map.size(), minlen = INT_MAX;
+        
+        while(end<n)
+        {
+            if(map.find(s[end]) != map.end())
+            {
+                map[s[end]]--;
+                if(map[s[end]] == 0)
+                    remaining--;
+            }
+            end++;
+            
+            while(remaining == 0)
+            {
+                if(end-start<minlen)
+                {
+                    minlen=end-start;
+                    minstart=start;
+                }
+                
+                if(map.find(s[start]) != map.end())
+                {
+                    map[s[start]]++;
+                    if(map[s[start]] > 0)
+                        remaining++;
+                }
+                start++;
+            }
+        }
+        
+        if(minlen != INT_MAX)
+            return s.substr(minstart, minlen);
+        else
+            return "";
+    }
+};class Solution {
 public:
     string minWindow(string s, string t) 
     {

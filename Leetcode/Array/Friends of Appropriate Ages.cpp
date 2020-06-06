@@ -18,7 +18,7 @@ public:
                     continue;
 
                 if(a==b)
-                    request += hash[a]*(hash[a]-1);
+                    request += hash[a]*(hash[a]-1); //if both has same age, then send everyone except itself, so that's why hash[a]-1
                 else
                 {
                     request += hash[a]*hash[b];

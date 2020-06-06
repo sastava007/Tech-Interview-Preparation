@@ -14,7 +14,7 @@ class Solution
             if(nums1[i]>nums2[j])
                 nums1[e--] = nums1[i--];
             else
-                nums1[e--] = nums2[j--]; 
+                nums1[e--] = nums2[j--];
         }
         
         while(j>=0)

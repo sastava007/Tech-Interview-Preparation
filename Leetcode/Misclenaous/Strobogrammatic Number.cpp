@@ -64,6 +64,7 @@ class Solution
         {
             if(low==high && it.first!=it.second)
                 continue;
+                
             s[low]=it.first;    
             s[high]=it.second;
             helper(low+1, high-1, s, res);

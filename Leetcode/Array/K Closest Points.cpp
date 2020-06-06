@@ -1,3 +1,12 @@
+/* 
+    The other two possible approaches
+    Sorting: O(nlogn)
+    Max Heap: O(nlogK) to find Kth smallest element, and then add all the points which has distance <= this value
+
+ */
+
+/* Quickselect Algorithm: O(n) */
+
 #include<bits/stdc++.h>
 using namespace std;
 

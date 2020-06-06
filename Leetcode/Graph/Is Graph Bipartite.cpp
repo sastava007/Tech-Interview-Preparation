@@ -33,7 +33,7 @@ public:
         
         for(int child: graph[v])
         {
-            if(colors[child] == -1)     //node is not yet visited
+            if(colors[child] == -1)     //vertex is not yet visited
             {
                 if(isBipartiteUtil(graph, child, !c) == false)
                     return false;

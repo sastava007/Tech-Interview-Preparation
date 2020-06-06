@@ -1,18 +1,26 @@
 /* Using set, idea is to delay insertion of presum by using pre variable to ensure that length is >1 */
 
-class Solution 
-{
-    public:
-    bool checkSubarraySum(vector<int>& nums, int k) {
-        int n = nums.size(), sum = 0, pre = 0;
-        unordered_set<int> modk;
-        for (int i = 0; i < n; ++i) {
-            sum += nums[i];
-            int mod = k == 0 ? sum : sum % k;
-            if (modk.count(mod)) return true;
-            modk.insert(pre);
-            pre = mod;
+class Solution {
+public:
+    bool checkSubarraySum(vector<int>& nums, int k) 
+    {
+        unordered_set<int> s;
+        
+        int pre = 0, sum = 0;
+        for(auto it: nums)
+        {
+            sum += it;
+            
+            if(k != 0)
+                sum %= k;
+            
+            if(s.find(sum) != s.end())
+                return true;
+            
+            s.insert(pre);
+            pre = sum;
         }
+        
         return false;
     }
 };

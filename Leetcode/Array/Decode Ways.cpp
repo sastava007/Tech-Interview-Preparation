@@ -4,7 +4,7 @@ class Solution {
 public:
     int numDecodings(string s) 
     {
-        if(s.length()==0 || s[0]=='0')
+        if(s.length()==0 || s[0]=='0')  //becz we can't decode 0 to any alphabet, the mapping lies in b/w [1-26]
             return 0;
         
         int n = s.length();

@@ -22,7 +22,7 @@ public:
         for(int i = 1; i<intervals.size(); i++)
         {
             int n = merged.size();
-            if(intervals[i][0]<=merged[n-1][1])
+            if(intervals[i][0]<=merged[n-1][1])     //if staring of current interval is smaller or equal than ending of our previous one, then it will be intersected 
                 merged[n-1][1] = max(intervals[i][1], merged[n-1][1]);
             else
                 merged.emplace_back(intervals[i]);

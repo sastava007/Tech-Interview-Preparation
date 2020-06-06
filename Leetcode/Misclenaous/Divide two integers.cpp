@@ -1,4 +1,6 @@
-/* The no. are in range int [-2^31 - 2^31-1], so upon peformning  any bitwise shifting if can get overflow, so that's why doing all precautions*/
+/*  The no. are in range int [-2^31 - 2^31-1], so upon peformning  any bitwise shifting if can get overflow, so that's why doing all precautions
+    Time Complexity: O(logn)
+*/
 
 class Solution {
 public:
@@ -19,7 +21,6 @@ public:
             
             dividend += abs(divisor);
             quotient = 1;
-                
         }
         
         bool isNegative = (dividend<0) ^ (divisor<0);

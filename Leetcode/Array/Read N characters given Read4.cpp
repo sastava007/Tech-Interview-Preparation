@@ -37,7 +37,7 @@ int read(string &buff, int n)
     int total = 0;
     while(!eof && total<n)
     {
-        if(charactersInBuffer == 0)
+        if(charactersInBuffer == 0) //if buffer is empty, then only perform call the read4() API
         {
             charactersInBuffer = read4(temp);
             eof = charactersInBuffer<4;

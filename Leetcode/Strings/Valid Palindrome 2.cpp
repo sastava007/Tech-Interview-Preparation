@@ -18,7 +18,7 @@ public:
             }
             else
             {
-                //remove the left element
+                //remove or skip the left element
                 int l = i+1, r = j;
                 while(l<=r && s[l]==s[r])
                 {
@@ -28,7 +28,7 @@ public:
                 if(l>=r)
                     return true;
                 
-                //remove the right element
+                //remove or skip the right element
                 l = i, r = j-1;
                 while(l<=r && s[l]==s[r])
                 {

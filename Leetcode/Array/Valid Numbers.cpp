@@ -1,5 +1,7 @@
-/*  It's a very ambigious problem, so we need to think for a lot of edge cases. Like we can't have decimal after finding exponent, and there must exist
-    some numbers that you find exponent, and many other such cases. 
+/*  It's a very ambigious problem, so we need to think for a lot of edge cases. Like 
+    1. We can't have decimal after finding exponent
+    2. Amd there must exist some numbers before & after finding exponent
+    3. There couldn't be more that 1 dots(.) and exponent(e) in a number
 
     https://www.youtube.com/watch?v=5gmtCtAooZE  
 */
@@ -8,6 +10,7 @@ class Solution {
 public:
     bool isNumber(string s) {
         
+        //remove all the white space from starting and ending
         while(!s.empty() && s[0]==' ')
             s.erase(s.begin());
         while(!s.empty() && s[s.size()-1]==' ')
@@ -28,7 +31,7 @@ public:
             }
             else if(s[i] == 'e')
             {
-                if(eSeen || !numSeen)
+                if(eSeen || !numSeen)   // if we've already encountered 'e' or haven't encountered any number
                     return false;
                 eSeen = true;
                 numSeen = false;

@@ -5,10 +5,16 @@
 */
 
 //Iterative BFS solution, replace queue to stack to implement DFS.
+
+class Node {
+    int val;
+    vector<Node> neighbors;
+}
+
 class Solution
 {
 private:
-    unordered_map<Node *, Node *> hash;
+    unordered_map<Node*, Node*> hash;
 
 public:
     Node *cloneGraph(Node *node)

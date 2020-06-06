@@ -29,14 +29,14 @@ public:
     {
         if(low<=high)
         {
-            int mid = (low+high)/2;
+            int mid = low+(high-low)/2;
             
             if(nums[mid] == key)
             {
                 l = min(l, mid);
                 r = max(r, mid);
                 
-                if((mid-1)>=0 && nums[mid-1] == key)
+                if((mid-1)>=low && nums[mid-1] == key)
                     bsearch(nums, low, mid-1, key, l, r);
                 if((mid+1<=high) && nums[mid+1] == key)
                     bsearch(nums, mid+1, high, key, l, r);

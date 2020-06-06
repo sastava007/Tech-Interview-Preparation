@@ -1,3 +1,5 @@
+/* Recursive solution: fast exponentiation */
+
 class Solution {
 public:
     double myPow(double x, int n) 
