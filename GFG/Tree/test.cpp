@@ -1,0 +1,12 @@
+/*
+    pale
+    
+    pole
+
+    poll
+
+    poll
+
+
+
+*/

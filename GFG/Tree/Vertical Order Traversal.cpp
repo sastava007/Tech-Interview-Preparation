@@ -2,6 +2,8 @@
 /*  We just need to keep traversing, and everytime we go left decrease the horizontal distance by 1 and every time we go to right increase by 1 
     But, make sure that we're doing this by level order traversal otherwise through preorder it may be possible that a node may come before than it's top node
 
+We should use BFS(level-order), not DFS here. Because order needs to be from top to bottom, and left to right. Using DFS could append lower level nodes before upper level nodes
+
              1
           /     \
          2       3
@@ -15,12 +17,11 @@
                         12      
 
     Like here using preorder we get 12 before 9.
-
 */
 
 
 
-// PS: here 'level' actually means horizontal distance(hd) and not level which is technically wrong.
+// PS: Here the sol. assumes that if two nodes have same position then output is printed from left->right
 
 void verticalOrderUtil(Node* root, map<int, vector<int>> &m)
 {
@@ -58,3 +59,83 @@ void verticalOrder(Node *root)
             cout<<jt<<" ";
         }
 }
+
+/* LC Version: Resulting the final output in a vector */
+class Solution {
+public:
+    vector<vector<int>> verticalOrder(TreeNode * root) 
+    {
+        vector<vector<int>> ans;
+        if(root==NULL)
+            return ans;
+            
+        queue<pair<TreeNode*, int>> q;
+        q.push({root, 0});
+        
+        map<int, vector<int>> m;
+        while(!q.empty())
+        {
+            pair<TreeNode*, int> temp = q.front();
+            q.pop();
+            
+            m[temp.second].push_back(temp.first->val);
+            
+            if(temp.first->left)
+                q.push({temp.first->left, temp.second-1});
+                
+            if(temp.first->right)
+                q.push({temp.first->right, temp.second+1});
+            
+        }
+        
+        for(auto it: m)
+        {
+            vector<int> temp;
+            for(int node: it.second)
+                temp.push_back(node);
+            ans.push_back(temp);
+        }
+            
+        return ans;    
+    }
+};
+
+/* Ps: If two nodes are in the same row and column, the order should be from small to large, which is diferent from above solution where we were simply printing from L->R */
+class Solution {
+public:
+    vector<vector<int>> verticalTraversal(TreeNode * root) 
+    {
+        vector<vector<int>> ans;
+        if(root==NULL)
+            return ans;
+            
+        queue<pair<TreeNode*, pair<int, int>>> q;
+        q.push({root, {0,0}});
+        
+        map<int, map<int, set<int>>> m;
+        while(!q.empty())
+        {
+            auto temp = q.front();
+            q.pop();
+            
+            m[temp.second.first][temp.second.second].insert(temp.first->val);
+            
+            if(temp.first->left)
+                q.push({temp.first->left, {temp.second.first-1, temp.second.second+1}});
+                
+            if(temp.first->right)
+                q.push({temp.first->right, {temp.second.first+1, temp.second.second+1}});
+            
+        }
+        
+        for(auto it: m)
+        {
+            vector<int> col;
+            for(auto jt: it.second)
+                col.insert(col.end(), jt.second.begin(), jt.second.end());
+            ans.push_back(col);
+        }
+            
+        return ans;    
+    }
+};

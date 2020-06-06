@@ -1,3 +1,62 @@
+/* Right Side view using Recursion: O(N) TC & O(h) space due to call stack but it can be in order of N incase of a skewed binary Tree */
+
+// DFS Approach
+class Solution {
+public:
+    vector<int> rightSideView(TreeNode* root) 
+    {
+        vector<int> ans;
+        if(root == NULL)
+            return ans;
+        
+        int maxLevel = -1;
+        util(root, 0, maxLevel, ans);
+        return ans;
+    }
+private:
+    void util(TreeNode* root, int level, int &maxLevel, vector<int> &ans)
+    {
+        if(root==NULL)
+            return;
+        
+        if(level>maxLevel)
+            ans.emplace_back(root->val);
+        
+        maxLevel = max(maxLevel, level);
+        
+        util(root->right, level+1, maxLevel, ans);
+        util(root->left, level+1, maxLevel, ans);
+    }
+};
+
+/* Right View without using Recursion */
+
+// BFS Approach
+void rightView(Node* node)
+{
+    if(node==NULL)
+    return;
+    
+    queue<Node*> q;
+    q.push(node);
+    
+    while(!q.empty())
+    {
+        cout<<q.front()->data<<" ";
+        int size = q.size();
+        while(size--)
+        {
+            Node* temp = q.front();
+            q.pop();
+            
+            if(temp->right)
+                q.push(temp->right);
+            if(temp->left)
+                q.push(temp->left);
+        }
+    }
+}
+
 /* Left view Using Recursion */
 void leftViewUtil(Node *root, int level, int &maxLevel)
 {
@@ -40,33 +99,6 @@ void leftView(Node* node)
                 q.push(temp->left);
             if(temp->right)
                 q.push(temp->right);
-        }
-    }
-}
-
-
-/* Right View without using Recursion */
-void rightView(Node* node)
-{
-    if(node==NULL)
-    return;
-    
-    queue<Node*> q;
-    q.push(node);
-    
-    while(!q.empty())
-    {
-        cout<<q.front()->data<<" ";
-        int size = q.size();
-        while(size--)
-        {
-            Node* temp = q.front();
-            q.pop();
-            
-            if(temp->right)
-                q.push(temp->right);
-            if(temp->left)
-                q.push(temp->left);
         }
     }
 }

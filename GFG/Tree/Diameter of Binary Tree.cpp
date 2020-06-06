@@ -7,7 +7,7 @@ int diameterUtil(Node* node)
         return 0;
     
     int longestPathInLeftSubtree = diameterUtil(node->left);
-    int longestPathInRightSubtree = diameterUtil(node->right);
+    int longestPathInLeftSubtree = diameterUtil(node->right);
     
     ans=max(ans, longestPathInLeftSubtree + longestPathInRightSubtree + 1); //here we are returning no. of nodes on longest path b/w two leaves of binary tree
     
@@ -37,13 +37,13 @@ private:
         if(root==NULL)
             return 0;
         
-        int leftPathSum = util(root->left, diameter);
-        int rightPathSum = util(root->right, diameter);
+        int longestPathInLeftSubtree = util(root->left, diameter);
+        int longestPathInLeftSubtree = util(root->right, diameter);
         
-        diameter = max(diameter, leftPathSum+rightPathSum);
+        diameter = max(diameter, longestPathInLeftSubtree + longestPathInLeftSubtree);
         
         
-        return max(leftPathSum, rightPathSum) + 1;
+        return max(longestPathInLeftSubtree, longestPathInLeftSubtree) + 1;
         
     }
 };
@@ -51,10 +51,13 @@ private:
 /* Using iterative postorder traversal */
 class Solution {
 public:
-    int diameterOfBinaryTree(TreeNode* root) {
-        if (!root) {
+    int diameterOfBinaryTree(TreeNode* root) 
+    {
+        if (!root) 
+        {
             return 0;
         }
+        
         int diameter = 0;
         unordered_map<TreeNode*, int> depths;
         stack<TreeNode*> todo;

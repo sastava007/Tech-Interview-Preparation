@@ -2,7 +2,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 int main()
-{   
+{
     int t;
     cin>>t;
     while(t--)
@@ -69,7 +69,7 @@ int partition(int *a, int s, int e)
     int i;
     for(i=s; i<e;i++)
     {
-        if(a[i]<pivot)
+        if(a[i]<pivot)  //change to > for finding Kth largest element
         {
             j++;
             swap(a[i], a[j]);
