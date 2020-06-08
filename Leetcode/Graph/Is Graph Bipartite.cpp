@@ -1,4 +1,4 @@
-/* The idea is to check if it's possible to color graph with 2 colors 
+/*  The idea is to check if it's possible to color graph with 2 colors
     Even cycle length => Yes it's possible | Odd cycle lebgth => Not possible
     Explore node using DFS, and mark the color of current node and it's children with opposite colors. And if we reach at a node such that it visited and
     it's color and it's child color is same then return false.

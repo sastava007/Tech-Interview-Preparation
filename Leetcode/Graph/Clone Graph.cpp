@@ -1,12 +1,15 @@
-/*  We've to make a deep copy of given graph, so basic idea is to traverse the graph using BFS/DFS and map the visiting nodes to it's new copy 
+/*  We've to make a deep copy of given graph, so basic idea is to traverse the graph using BFS/DFS and map the visiting nodes to it's new copy. 
     Here, I'm using map<> to store visited nodes as well as build the connection while traversing.
 
     The first value in map is the original node, and we'are mapping it's copy to it.
+
+    There are 2 methods to perform copy, the first one is Deep Copy & Shallow Copy.
 */
 
 //Iterative BFS solution, replace queue to stack to implement DFS.
 
-class Node {
+class Node 
+{
     int val;
     vector<Node> neighbors;
 }

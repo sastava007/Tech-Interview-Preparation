@@ -1,4 +1,4 @@
-/* So basically we are interested in knowing how far away is any cell from the gate and we've to find the shortest distance of Gate from open area without going through any wall. 
+/*  So basically we are interested in knowing how far away is any cell from the gate and we've to find the shortest distance of Gate from open area without going through any wall. 
     The idea is to run a BFS. We first enqueue all the cells that contains a Gate and then we'll explore all it's adjacent 4 cells, if they are valid and their current distance 
     is greater then we'll update them with correct distance i.e dist[i][j]+1. 
 
@@ -60,8 +60,7 @@ void findDistance(int a[100][100], int n, int m)
             cout<<dist[i][j]<<" ";
         
         cout<<"\n";
-    }
-        
+    }       
 }
 
 int main()
