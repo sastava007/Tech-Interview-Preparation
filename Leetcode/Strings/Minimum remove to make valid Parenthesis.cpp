@@ -1,6 +1,8 @@
-/*  O(N) time and O(1) space: Idea is to iterate the string two times maintaining the count of opening & closing parenthsesi first pass will remove all the unbalanced closing parenthses
+/*  
+    O(N) time and O(1) space: Idea is to iterate the string two times maintaining the count of opening & closing parenthsesi first pass will remove all the unbalanced closing parenthses
     Wheras the second pass will remove all the unbalanced opening parenthesis.
 */
+
 class Solution {
 public:
     string minRemoveToMakeValid(string s) 

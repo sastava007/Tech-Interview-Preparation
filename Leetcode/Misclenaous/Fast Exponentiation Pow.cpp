@@ -25,11 +25,14 @@ public:
 
 class Solution {
 public:
-    double myPow(double x, int n) {
+    double myPow(double x, int n) 
+    {
         long p = labs(n);
         double pow = 1;
-        while (p) {
-            if (p % 2) {
+        while (p) 
+        {
+            if (p % 2) 
+            {
                 pow *= x;
             }
             x *= x;

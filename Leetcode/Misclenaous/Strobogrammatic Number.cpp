@@ -1,7 +1,8 @@
 /* Strobogrammatic Number is the number which is rotationally symmetric, i.e same when rotated 180deg */
 
 //check if given number is Strobogrammatic or not
-//buggy code, fails for 00 which is not even a valid number because of leading zeroes
+//buggy code, fails for 00 which is not even a valid number because of leading zeroes, ask the interviewer about leading zeroes
+
 bool isStrobogrammatic(string nums)
 {
     unordered_map<char,char> m;

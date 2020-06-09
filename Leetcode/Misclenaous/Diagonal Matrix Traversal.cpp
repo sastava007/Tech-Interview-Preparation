@@ -1,4 +1,9 @@
-/* Important concept of moving heads from both direction */
+/* Naive approach is to build a map of vector with indexex sum as key, and reverse vector of even key but this would require Space Complexiy O(mn) */
+
+
+/* Important concept of moving heads from both direction 
+    TC: O(mn) : Space: O(1)
+*/
 
 class Solution {
 public:

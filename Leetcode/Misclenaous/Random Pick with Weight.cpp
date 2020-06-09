@@ -5,10 +5,7 @@
 
 
     The solution here is similar but instead we construct the following array (accumulated sum). We can generate random number in range [1, maxsum]
-    {1, 6, 8} So if we the random generated number as lets say
-    [upto 1] -> 0
-    (1, 6] -> 1
-    (6, 8 -> 2
+    {1, 6, 8} So if we generated number is up to 1 is index 0. all numbers generated greater than 1 and up to 6 are index 1 and all numbers greater than 6 and up to 8 are index 2. After we generate a random number to find which index to return we use binary search.
 
     After we generate a random number to find which index to return we use binary search or lower_bound
 
@@ -27,8 +24,8 @@ public:
     
     int pickIndex() {
         int m = s.back();
-        int r = rand() % m;
-        auto it = lower_bound(s.begin(), s.end(), r+1);
+        int r = rand() % m+1;
+        auto it = lower_bound(s.begin(), s.end(), r);
         return it - s.begin();
     }
 };

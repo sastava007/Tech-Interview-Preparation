@@ -57,7 +57,6 @@ public:
 
 int main()
 {
-
     Solution obj;
     vector<string> res = obj.findStrobogrammatic(3);
 

@@ -23,7 +23,7 @@ public:
             }
             end++;
             
-            while(remaining == 0)
+            while(remaining == 0)   //keep removing the characters from current window by shiting begin, untill they become invalid, the again look for in next window.
             {
                 if(end-start<minlen)
                 {
