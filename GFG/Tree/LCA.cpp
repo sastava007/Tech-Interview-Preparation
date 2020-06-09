@@ -130,3 +130,24 @@ class Solution {
     }
 
 }
+
+/* If we have access to parent pointer then */
+
+node* lca(node* root, node* n1, node* n2)
+{
+    unordered_set<node*> ancestors;
+    while (n!=NULL)
+    {
+        ancestors.insert(n1);
+        n=n1->parent;
+    }
+
+    while(n2!=NULL)
+    {
+        if(ancestors.find(n2) != ancestors.end())
+            return n2;
+        n2=n2->parent;
+    }
+
+    return NULL; //if we've reached till here means ancestor doesn't exits
+}
