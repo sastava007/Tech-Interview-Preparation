@@ -1,4 +1,5 @@
-/* Using D&C we can solve divide this problem by pairing & mergeing 2 sorted linked list which can be done in O(n) time.
+/*  
+    Using D&C we can solve divide this problem by pairing & mergeing 2 sorted linked list which can be done in O(n) time.
     After the first interval, we'll end up having K/2 lists, after second interval we'll end up having K/4 lists and so on, it continues untill we have just one list.
     So, here we can see our range of K keep on decreasing by factor of 2 so overall TC is O(NlogK), where N is total no. of nodes
     

@@ -53,3 +53,40 @@ private:
         return sum;
     }
 };
+
+/* Nested List Weight Sum 2: Here weight is defined from bottom to up. The leaf level integers have weight 1 and root level have largest weight  */
+
+class Solution {
+public:
+    int depthSumInverse(vector<NestedInteger>& nestedList) {
+        int depth = getDepth(nestedList);
+        return helper(nestedList, depth);
+    }
+
+private:
+    int getDepth(vector<NestedInteger>& nestedList) {   //this will give the maximum depth of list
+        int depth = 0;
+        for (auto& nestedInt : nestedList) {
+            if (nestedInt.isInteger()) {
+                depth = max(depth, 1);
+            } else {
+                depth = max(depth, 1 + getDepth(nestedInt.getList()));
+            }
+        }
+
+        return depth;
+    }
+
+    int helper(vector<NestedInteger>& nestedList, int depth) {
+        int sum = 0;
+        for (auto& nestedInt : nestedList) {
+            if (nestedInt.isInteger()) {
+                sum += depth * nestedInt.getInteger();
+            } else {
+                sum += helper(nestedInt.getList(), depth - 1);
+            }
+        }
+
+        return sum;
+    }
+};

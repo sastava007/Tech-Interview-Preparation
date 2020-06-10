@@ -1,4 +1,7 @@
-/*  O(N) and O(1) solution 
+/*  
+    One solution is by using a hash table, but that requires O(N) space.
+
+    O(N) and O(1) solution 
     Idea: Create the copy of node 1 and insert it between node 1 & node 2 in original Linked List and similarly do it for all the remaining node.
     Now adjust the random pointers in newly created node, which can be set by 
     original->next->random = original->random->next where original->next is our clone copy of original node
@@ -31,7 +34,7 @@ public:
             if(curr->next)
                 curr->next->random = curr->random?curr->random->next:curr->random;
             
-            curr = curr->next?curr->next->next:curr->next;
+            curr = curr->next?curr->next->next:curr->next;      //here we'are moving/jumping by 2, becz we owns duplicated cloned copy of node as well
         }
         
         Node* original = head, *copy = head->next;

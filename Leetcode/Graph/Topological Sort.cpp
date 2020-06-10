@@ -19,7 +19,7 @@ public:
 
 Graph::Graph(int V) 
 { 
-	this->V = V; 
+	this->V = V;
 	adj = new list<int>[V]; 
 }
 
@@ -52,7 +52,7 @@ void Graph::topologicalSort()
 
 	// Call the recursive helper function to store Topological 
 	// Sort starting from all vertices one by one 
-	for (int i = 0; i < V; i++) 
+	for (int i = 0; i < V; i++)
 		if (visited[i] == false) 
 			topologicalSortUtil(i, visited, Stack); 
 

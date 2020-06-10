@@ -1,5 +1,5 @@
 /*  
-    One way is to recursively find the mid of LL using slow & fast pointers and the disconnect the portion of list to the left of the middle element. And then processing the list, bt this method
+    One way is to recursively find the mid of LL using slow & fast pointers and then disconnect the portion of list to the left of the middle element. And then processing the list, bt this method
     takes O(nlogn) time as to find mid element it take O(n) time but each time basically we ae decesing out list into 2 halves. So the complexity get redced to O(nlogn)
 
     But a better solu. will be to maintain a global copy of variable and find the size once, and similar as we do with arrays, process thiis list. This takes O(n) time and O(1) space. 
