@@ -1,4 +1,4 @@
-/* TC: O(N) because the begin and end points will move from left to right only once. */
+/* TC: O(M+N) because the begin and end points will move from left to right only once. */
 
 class Solution {
 public:

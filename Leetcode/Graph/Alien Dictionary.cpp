@@ -1,3 +1,11 @@
+/*  TC of topological sorting is O(V+E) here O(N+alphabets) 
+    1. First, build a degree map for each character in all the words:
+    2. Then build the hashmap by comparing the adjacent words, the first character that is different between two adjacent words reflect the lexicographical order.
+    3. Then in last call a topological sorting() to get the required ordering of alphabets in dictionary
+
+*/
+
+
 #include<bits/stdc++.h> 
 using namespace std; 
   
@@ -9,7 +17,7 @@ public:
         vector<int> indegree(26);
 
         buildGraph(words, graph, indegree);
-        return bfs(graph, indegree);   //topological sorting using BFS
+        return bfs(graph, indegree);   //topological sorting using BFS to get the required ordering
     }
 
 private:

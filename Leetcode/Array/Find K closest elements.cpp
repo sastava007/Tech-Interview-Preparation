@@ -1,7 +1,7 @@
 /*  Naive Approach: Sorting (nlogn)  
     Max Heap: O(nlogk) 
     {
-        If there isn't k elements on the heap yet, we can just push the element onto the heap
+        If there isn't k elements on the heap yet, we can just push the element onto the max_heap
         If there is k elements on the heap and the current element we are on is closer to x than the element at the top of the heap , we can pop of the top element and push the current element on.
         Finally after iterating over the list we can pop all k elements off the heap into a list and sort the list
     }

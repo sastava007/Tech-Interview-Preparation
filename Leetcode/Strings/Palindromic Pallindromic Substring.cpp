@@ -2,7 +2,7 @@
     palindromic string length is odd or even. For example aaa, aa. The fucntion palindrom checks from the 'center' to end. If the two
     character equals, move on, left pointer moves left, right pointer moves right, if not, break the loop.
     
-    O(n2 time) and O(1) space
+    O(N^2 time) and O(1) space
 
 */
 

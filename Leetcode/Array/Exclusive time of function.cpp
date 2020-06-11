@@ -7,6 +7,8 @@ Thus, we can conclude that the function which is entered at the end finishes fir
 The basic idea is to maintain a stack DS that stores the starting timestamp for each process & when we encounter an ending log we just need to subtract from 
 starting timestamp. But here have to takecare of condtion when a func() calls other functions, so we've to subtract the time spend/consumed by those functions. 
 
+    TC: O(N) and Space: O(N/2) becz the stack can grow upto the depth atmost N/2 here
+
 */
 
 class Solution {

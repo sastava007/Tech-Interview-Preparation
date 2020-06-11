@@ -1,4 +1,8 @@
-/* https://leetcode.com/problems/find-all-anagrams-in-a-string/discuss/92007/Sliding-Window-algorithm-template-to-solve-all-the-Leetcode-substring-search-problem. */
+/* https://leetcode.com/problems/find-all-anagrams-in-a-string/discuss/92007/Sliding-Window-algorithm-template-to-solve-all-the-Leetcode-substring-search-problem. 
+
+    TC: O(M+N)
+
+*/
 
 class Solution {
 public:
@@ -46,7 +50,9 @@ public:
         else
             return "";
     }
-};class Solution {
+};
+
+class Solution {
 public:
     string minWindow(string s, string t) 
     {

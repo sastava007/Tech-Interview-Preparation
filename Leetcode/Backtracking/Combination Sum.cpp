@@ -1,5 +1,9 @@
 /* Given a set of candidate numbers (candidates) (without duplicates) and a target number (target), find all unique combinations in candidates where the candidate numbers sums to target. */
-// TC:  Every time you have N choice (since you can use number repeatedly), and you can choose at most target times (actually it's smaller than target), so we can assume the worst-case time complexity is O(N^target). Space:O(target)
+/* TC:  Every time you have N choice (since you can use number repeatedly), and you can choose at most target times (actually it's smaller than target), so we can assume the worst-case time       complexity is O(N^target) Space:O(target)
+
+    Backtracking Solution
+
+*/
 
 class Solution {
 public:
@@ -29,6 +33,35 @@ private:
         }
     }
 };
+
+/* DP Solution */
+Let me help illustrate the idea.
+/*
+    We consider, what targets will be yielded, every time a candidate is appended to all the existing combinations.
+
+    Here is my more understandable code using the same idea. 
+*/
+
+vector<vector<int>> Solution::combinationSum_dp_increment(vector<int> &candidates, int target) {
+    sort(candidates.begin(), candidates.end());
+
+    vector<vector<vector<int>>> dp(target + 1, vector<vector<int>>());
+    dp[0].push_back(vector<int>());
+
+    for (const int &candidate : candidates) {
+        // all the existing combinations, except for those whose sum exceeds target
+        for (int sub_target = 0; sub_target + candidate <= target; ++sub_target){  
+            vector<vector<int>> new_combinations = dp[sub_target];
+            for (vector<int> &new_combination: new_combinations) {  // append a candidate
+                new_combination.push_back(candidate);
+            }
+            int target_yielded = sub_target + candidate;  // the target yielded
+            dp[target_yielded].insert(dp[target_yielded].end(), new_combinations.begin(), new_combinations.end());
+        }
+    }
+
+    return dp[target];
+}
 
 /*  Combination Sum 2: We can't use the same number again & again and there will be duplicates 
     Time Complexity: There are (2^n) such elements and hence the time complexity is O(2^n)

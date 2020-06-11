@@ -1,5 +1,5 @@
-
-/*  Using Sample Reservoir concept: O(1) space 
+/*  
+    Using Sample Reservoir concept: O(1) space 
     [1,2,3,3,3] & target = 3, so idea is to maintain counter of target value. 
     When we have just ecncountered 3 for the first time, then probability of selecting index 2 is => 1 (coz that's the only occurence we've met so far)
     When counter = 2, we have 2 options to select from[2,3], so probablity of selecting any one from them will be 1/2

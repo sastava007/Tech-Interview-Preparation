@@ -24,7 +24,7 @@ public:
     
     int pickIndex() {
         int m = s.back();
-        int r = rand() % m+1;
+        int r = (rand() % m) + 1;
         auto it = lower_bound(s.begin(), s.end(), r);
         return it - s.begin();
     }

@@ -21,7 +21,9 @@ public:
 
 /*  Follow Up: If both the arrays already sorted & we've to include the elements as many times as they are present in both the arrays. 
     The intution is similar to merging two sorted arrays, here we'll not skip remaining equal elements when we found an equal pair unlike the problem 1 
-    2 Pointers approach, Worst case time complexity: O(m+n)    
+    2 Pointers approach, Worst case time complexity: O(m+n) 
+
+    Note: The final result will have duplicates.
 */
 class Solution {
 public:
@@ -50,7 +52,7 @@ public:
 };
 
 /* Follow Up: If one array is small and other one is super large then can we achieve better than O(m+n), yes we can achieve O(nlogm) in this case, n < m. 
-    for every element, we binary search it on the other array. One thing to note is that the question asks to include duplicates, therefore when we binary search, 
+    for every element in smaller array, we binary search it on the other array. One thing to note is that the question asks to include duplicates, therefore when we binary search, 
     we need to find the left-most matching number. Since the inputs are sorted, next time we perform a binary search, the low should start the previously found index+1.
 
     So this case is only useful only if one of the two is relaitevly too large, and other one is too small like. (nums1.size()=3 && nums2.size()=1000)

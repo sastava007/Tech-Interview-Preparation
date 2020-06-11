@@ -2,6 +2,8 @@
     PS: If asked to return the inner strings in lexogrphically sorted order, and no repition then use set, else use vector and later sort it accordingly
 
     TC: O(nlogn * W) where W is avg length of string
+    Note: For the return value, each inner list's elements must follow the lexicographic order.
+    
  */
 
 #include<bits/stdc++.h>
@@ -14,7 +16,7 @@ string getDiff(string s)
     for(int i=0; i<s.length(); i++)
     {
         int diff = s[i]-s[i-1];
-        if(diff<0)  //in case s[i] char is lexographically smaller
+        if(diff<0)  //in case s[i] char is lexographically smaller than s[i+1]
             diff += 26;
 
         shift += (diff+'a');    
