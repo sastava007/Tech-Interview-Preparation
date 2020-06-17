@@ -1,5 +1,5 @@
 /*  
-    Key: No. of missing elements in a range can be calculated by (nums[nums.size()-1]-nums[0]+1)-nums.size() 
+    Note: No. of missing elements in a range can be calculated by (nums[nums.size()-1]-nums[0]+1)-nums.size() 
     i.e total range of elements - length of range
 
     https://strstr.io/Leetcode1060-Missing-Element-in-Sorted-Array/

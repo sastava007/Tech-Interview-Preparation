@@ -4,12 +4,12 @@
             connect them if needed, to obatin the longest ending bold index      
             Form the result.
     
-    Example: 
+    Example:
         s = "aaabbcc"
         dict = ["aaa","aab","bc"]
-        Output:
+        Output: 
         "<b>aaabbc</b>c"
- */
+*/
 
 string addBoldTag(string &s, vector<string> &dict) 
 {
@@ -27,6 +27,7 @@ string addBoldTag(string &s, vector<string> &dict)
         }
         bold[i] = (end > i);    //we only need to mark the longest string under bold
     }
+
     string result = "";
     for (int i = 0; i < s.length(); i++) 
     {

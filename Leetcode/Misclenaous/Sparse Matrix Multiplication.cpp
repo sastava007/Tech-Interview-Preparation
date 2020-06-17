@@ -1,4 +1,5 @@
-/*  Naive solu is to simply multiply matrices as we do i.e res[i][j] += a[i][k]*b[k][j] 
+/*  
+    Naive solu is to simply multiply matrices as we do i.e res[i][j] += a[i][k]*b[k][j] 
     One thing to observe is that if we when a[i][k]=0, then res[i][j] will also be ultimately zero 0. So what we can do is to first check if A matrix is not zero then only
     perform the multiplication, and we can do this by swapping(switching) the (j,k) loops.
 

@@ -1,6 +1,7 @@
 /*  The idea is to recursively tarverse the grid using a DFS, and increase the counter when we encounter a grid[][]='1', and we basically reset 
     it so that we don't call its again & again. Basically we have to count the no. of connected components
-    TC: O(m*n)
+
+    TC: O(m*n) and Space: O(m*n) due to recursive call stack worst in case there are all lands[1]
 */
 
 class Solution {
@@ -42,7 +43,10 @@ public:
     }
 };
 
-/* Iterative BFS, similar intution & concept */
+/*  Iterative BFS, similar intution & concept 
+    TC: O(M*N) and Space: O(min(M,N))
+
+*/
 class Solution {
 public:
     int numIslands(vector<vector<char>>& grid) {

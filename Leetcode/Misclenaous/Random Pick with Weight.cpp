@@ -1,7 +1,7 @@
 /* 
     Intution: say we have the numbers 1, 5, 2 easiest solution is to construct the following array
     arr[] = {0,1,1,1,1,1,2,2}
-    then generate a random number between 0 and 7 and return the arr[rnd]. This is solution is not really good though due to the space requirements.
+    then generate a random number between 0 and 7 and return the arr[rnd]. This solution is not really good though due to the space requirements.
 
 
     The solution here is similar but instead we construct the following array (accumulated sum). We can generate random number in range [1, maxsum]
@@ -22,9 +22,10 @@ public:
         srand(time(NULL));
     }
     
-    int pickIndex() {
+    int pickIndex() 
+    {
         int m = s.back();
-        int r = (rand() % m) + 1;
+        int r = (rand() % m) + 1;   // this will generate random no. in between [1,8] inclusive, now all we need is to get the position for this value using binary_search(lower bound)
         auto it = lower_bound(s.begin(), s.end(), r);
         return it - s.begin();
     }

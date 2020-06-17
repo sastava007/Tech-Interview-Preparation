@@ -3,16 +3,18 @@
 
     Other way is to start from top right(0, m-1) and check if current value is zero, then move downwards(i++), else if current value is 1 then move towards left(j--)
     TC: O(m+n)
+
+    As we're given that matrix is sorted from left->right, so we'll have 0 at left and 1 at right. 
+
+    Note: This is an invalid matrix
+    
+    matrix2    =          {{0, 0, 0, 0},
+                          {0, 1, 0, 0},
+                          {0, 0, 0, 0},
+                          {0, 0, 0, 0}};
+
  */
 
- /**
- * // This is the BinaryMatrix's API interface.
- * // You should not implement it, or speculate about its implementation
- * interface BinaryMatrix {
- *     public int get(int row, int col) {}
- *     public List<Integer> dimensions {}
- * };
- */
 
 class Solution 
 {

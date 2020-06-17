@@ -4,6 +4,8 @@
     it's color and it's child color is same then return false.
 
     To avoid missing any vertex in case graph isn't connected we are iterating over vertices lineraly
+
+    TC: O(N) and Space: O(N)
 */
 
 class Solution {

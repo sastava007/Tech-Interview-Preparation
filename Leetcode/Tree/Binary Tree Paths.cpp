@@ -1,32 +1,33 @@
-/* Store all the paths from root to leaf node */
+/* Store all the paths from root to leaf node 
+    TC: O(N) and Space: O(H) in worst case(skewed) O(N)
+*/
 
 class Solution {
 public:
     
     vector<string> path;
-    
     vector<string> binaryTreePaths(TreeNode* root) 
     {
         if(root==NULL)
             return path;
-        
+
         util(root, "");
-        
+    
         return path;
     }
-    
+
     void util(TreeNode* root, string s)
     {
         if(root==NULL)
             return;
         
-        s = s + to_string(root->val);
-        
-        util(root->left, s+"->");   //note: Important thing is here We're calling with + "->", instead of adding to current node value.
-        util(root->right, s+"->");
+        s += to_string(root->val);
         
         if(!root->left  && !root->right)
             path.emplace_back(s);
+        
+        util(root->left, s + "->");
+        util(root->right, s + "->");   
     }
 };
 

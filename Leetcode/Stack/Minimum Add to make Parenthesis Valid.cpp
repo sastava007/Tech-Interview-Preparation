@@ -1,4 +1,4 @@
-/*  A string is valid, when it's counter of parenthesis is balanced =0 . And we represent balance of a string as (open_branckets-closing_brackets) and also for every prefix, the opening_brackets 
+/*  A string is valid, when it's counter of parenthesis is balanced = 0. And we represent balance of a string as (open_branckets-closing_brackets) and also for every prefix, the opening_brackets 
     should be non negative.
 
     Here 'open' represents number of extra opening brackets, that requires more closing brackets for getting balanced.

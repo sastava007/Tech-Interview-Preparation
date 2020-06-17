@@ -20,7 +20,7 @@ public:
             if(low<=high)
                 merged.emplace_back(vector<int> ({low, high}));
             
-            if(A[i][1] < B[j][1])
+            if(A[i][1] < B[j][1])   // if ending of the first one is smaller than the second one, then move forward 
                 i++;
             else
                 j++;

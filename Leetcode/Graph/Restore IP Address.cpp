@@ -1,7 +1,8 @@
-/* FOr ipv4 add we have to place 3 dots, such that each portion lies b/2 [0-255] and if a portion constains a 0 then 
+/*  
+    For IPV4 add. we have to place 3 dots, such that each portion lies b/2 [0-255] and if a portion constains a 0 then 
     it should contain only single 0.
 
-    TC: O(3^n) where n = length of string which is expected to be in b/w [4-12] so overall cimplexity is constant
+    TC: O(3^n) where n = length of string which is expected to be in b/w [4-12] so overall complexity is constant
     Space: O(n)
 */
 
@@ -32,13 +33,12 @@ class Solution
         for(int i = 1; i < 4; i++) 
         {
             int end = start + i;
-			//handle '001' case leading zeroes
-            if(end > str.size() || (i > 1 && str[start] == '0')) 
+            if(end > str.size() || (str[start] == '0' && i > 1 ))    //handle '001' case leading zeroes
                 continue;
             string segment = str.substr(start, i);
             int num = stoi(segment);
             if(num < 0 || num > 255) 
-            {   
+            {
                 continue;
             }
             dfs(prefix + segment + ".", step+1, end, res, str);

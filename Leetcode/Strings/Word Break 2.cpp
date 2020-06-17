@@ -1,6 +1,7 @@
-/*  Is to first pick a string and then recursively solve for all other substrings
-    "pineapplepenapple"
-    pine-> all other substrings
+/*  Idea is to first pick a string and then recursively solve for all other substrings
+    s= "pineapplepenapple" and wordDict = ["apple", "pen", "applepen", "pine", "pineapple"]
+    
+    pine -> all other substrings
     pine -> apple -> all other substrings
     pine -> apple -> pen -> all other substrings
     pine -> apple -> pen -> apple -> all other substrings "** nothing remaining"
@@ -11,7 +12,8 @@
 
     What I know is the first word sperated by a ' ', and then list of other substrings
 
-    'Backtracking with Memoization' TC: O(2^n)
+    Backtracking with Memoization' TC & Space: O(n*2^n)
+    Worst case scenario where all combinations of the string are correct (e,g, s=aaa, dict=[a, aa, aaa])
 
  */
 
@@ -20,7 +22,7 @@ private:
     unordered_map<string, vector<string>> m;
 
 public:
-    vector<string> wordBreak(string s,unordered_set<string>& dict) 
+    vector<string> wordBreak(string s, unordered_set<string>& dict) 
     {
         if(m.count(s))    //if current word exist in our hashatble that means starting with this one
             return m[s];
@@ -56,13 +58,44 @@ private:
     }
 };
 
+/* Another Approach: Backtracking with Memoization */
+class Solution {
+public:
+    vector<string> wordBreak(string s, vector<string>& wordDict) {
+        dict.insert(wordDict.cbegin(), wordDict.cend());
+        return wordBreak(s);
+    }
+private:
+    unordered_set<string> dict;
+    unordered_map<string,vector<string>> map;
+
+    vector<string> wordBreak(string s) 
+    {
+        if (map.find(s) != map.end()) 
+            return map[s];
+        vector<string> sentences;
+        for (int pos = s.size() - 1; pos >= 0; --pos) {
+            string word = s.substr(pos);
+            if (dict.find(word) != dict.end()) {
+                if (pos == 0) sentences.push_back(word);// base case of recursion
+                else {
+                    vector<string> subSentences = wordBreak(s.substr(0, pos));
+                    for (auto subSentence : subSentences)
+                        sentences.push_back(subSentence + " " + word);
+                }   
+            }
+        }
+        map[s] = sentences;
+        return sentences;
+    }
+};
+
 /* Using DP 
 
-    The basic idea is to use DP to create an array isBreakable[i] to indicate whether s[i..s.size()-1] is breakable. Then we can use such information to help us speed up the DFS path build process    (buildPath). Learned from other posts, I first calculated minlen and maxlen to speed up the process. 
+    The basic idea is to use DP to create an array isBreakable[i] to indicate whether s[i..s.size()-1] is breakable. Then we can use such information to help us speed up the DFS path build process  (buildPath). Learned from other posts, I first calculated minlen and maxlen to speed up the process. 
 
     So basically what we are doing is to preprocess the string using wordBreak 1 DP and determine whether to go or not. All this will just help to reduce the no. of recursive calls to(N2) but 
     TC remains the same. The worst case scenario where all combinations of the string are correct (e,g, s=aaa, dict=[a, aa, aaa]).
-
 
 */
 

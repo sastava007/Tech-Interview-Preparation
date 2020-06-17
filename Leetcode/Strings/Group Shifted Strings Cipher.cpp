@@ -13,7 +13,7 @@ string getDiff(string s)
 {
     string shift="";
 
-    for(int i=0; i<s.length(); i++)
+    for(int i=1; i<s.length(); i++)
     {
         int diff = s[i]-s[i-1];
         if(diff<0)  //in case s[i] char is lexographically smaller than s[i+1]

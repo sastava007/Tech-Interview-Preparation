@@ -5,7 +5,8 @@
     1. Our recursive dfs() function returns the length of the longest path of current node.
     2. In the process of traversing the child nodes of the current point, we find the maximum value and the second largest value of their recursive function return value plus 1.
 
- */
+    TC and Space: O(N) where N = length of edges[]
+*/  
 
 class Solution
 {
@@ -49,7 +50,6 @@ class Solution
             }
         }
         diameter = max(diameter, max1+max2);
-
         return max1+1;
     }
 };

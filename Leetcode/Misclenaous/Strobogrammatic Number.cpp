@@ -12,7 +12,7 @@ bool isStrobogrammatic(string nums)
     m['8']='8';
     m['9']='6';
 
-    int l=0,r=nums.length()-1;
+    int l=0,r=nums.length()-1;  // First clear from your interviewer, that whether 00 is a strobogrammatic number or not, then proceed
 
     while(l<=r && nums[l]=='0')  //case to handle leading zeroes: remove the leading zeroes
         l++;

@@ -2,6 +2,8 @@
     The idea is to run a BFS. We first enqueue all the cells that contains a Gate and then we'll explore all it's adjacent 4 cells, if they are valid and their current distance 
     is greater then we'll update them with correct distance i.e dist[i][j]+1. 
 
+    TC: O(M*N) and Space: P(M*N) if we include the output matrix else O(1)
+
 */
 
 #include<bits/stdc++.h>
@@ -30,7 +32,7 @@ void findDistance(int a[100][100], int n, int m)
                 q.push({i,j});
                 dist[i][j]=0;
             }
-            else if(a[i][j]==-1)    //if wall/or some other hindrance
+            else if(a[i][j]==-1)    //if wall/or some other obstacle
                 dist[i][j]=-1;
             else
                 dist[i][j]=INT_MAX;

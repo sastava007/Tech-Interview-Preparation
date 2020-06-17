@@ -63,7 +63,7 @@ private:
             res = static_cast<char>(temp+'0') + res;
             carry = sub<0?1:0;
         }
-        while(!res.empty() && *(res.begin())=='0')
+        while(!res.empty() && *(res.begin())=='0')      // remove the leading zeroes, consider the case 10 - 5 => 05 
           res.erase(res.begin());
         return res;
     }

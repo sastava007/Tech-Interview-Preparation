@@ -1,4 +1,4 @@
-/* sums[i+1][j+1] represents the sum of area from (0,0) to (i+1,j+1) 
+/*  sums[i+1][j+1] represents the sum of area from (0,0) to (i+1,j+1) 
     Preprocessing Time: O(mn), Space Complexity: O(mn)
     Query Time: O(1) per query
 */

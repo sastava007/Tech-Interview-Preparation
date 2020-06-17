@@ -1,10 +1,13 @@
-/* Recursive DFS solution TC: O(r*c) and O(r*c) for call stack and similary if we use a seen matrix[]  */
+/*  Recursive DFS solution TC: O(r*c) and O(r*c) for call stack and similary if we use a seen matrix[][] 
+    Here we're defining that island is a group of 1's (representing land) connected 4-directionally (horizontal or vertical). But it could be 8 directional too :/
+
+ */
 
 class Solution {
 public:
     int maxAreaOfIsland(vector<vector<int>>& grid) 
     {
-        int result=0;
+        int result=0;   
         for(int i=0; i<grid.size(); i++)
             for(int j=0; j<grid[i].size(); j++)
             {

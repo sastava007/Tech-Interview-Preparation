@@ -1,10 +1,10 @@
 /*  
     One solution is by using a hash table, but that requires O(N) space.
 
-    O(N) and O(1) solution 
+    O(N) and O(1) solution
     Idea: Create the copy of node 1 and insert it between node 1 & node 2 in original Linked List and similarly do it for all the remaining node.
     Now adjust the random pointers in newly created node, which can be set by 
-    original->next->random = original->random->next where original->next is our clone copy of original node
+    `original->next->random = original->random->next` where original->next is our clone copy of original node
 
     And now, once we have adjusted all random pointers, let's restore the original and clone copy.
     original->next = original->next->next & copy->next=copy->next->next i.e make jumps of 2 becs we've one duplicate copy.

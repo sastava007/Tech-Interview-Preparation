@@ -53,11 +53,11 @@ public:
     If we are able to, somehow, determine the number of idle slots, we can find out the time required to execute all the tasks as idle_slots + Total Number Of Tasks.
     The maximum number of idle slots will always be given by the product of the cooling time and the number of instances of the task with maximum count - 1
 
-    Maximum no. of idles lots will depend on the task which has maximum number of instanes
+    Maximum no. of idles slots will depend on the task which has maximum number of instanes
 
     Examples:
 
-    AAAABBBEEFFGG 3
+    AAAA BBB EE FF GG  & n = 3
 
     here X represents a space gap:
 
@@ -69,18 +69,26 @@ public:
 
 */
 
-public class Solution 
+int leastInterval(vector<char>& tasks, int n) 
 {
-    public int leastInterval(char[] tasks, int n) {
-        int[] map = new int[26];
-        for (char c: tasks)
-            map[c - 'A']++;
-        Arrays.sort(map);
-        int max_val = map[25] - 1, idle_slots = max_val * n;
-        for (int i = 24; i >= 0 && map[i] > 0; i--) 
-        {
-            idle_slots -= min(map[i], max_val);
-        }
-        return idle_slots > 0 ? (idle_slots + tasks.length) : tasks.length;
-    }
+    vector<int> map(26,0);
+    
+    for(char c: tasks)
+        map[c-'A']++;
+    
+    int max_val;
+    sort(map.begin(), map.end());
+    
+    max_val = map[25]-1;
+    
+    int idle_slots = max_val*n;
+    
+    for(int i=24; i>=0; i--)
+        idle_slots -= min(map[i], max_val);
+    
+    if(idle_slots>0)
+        return idle_slots+tasks.size();
+    else
+        return tasks.size();
+        
 }

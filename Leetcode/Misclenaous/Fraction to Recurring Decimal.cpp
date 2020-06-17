@@ -24,7 +24,7 @@ public:
         
         result += to_string(num/den);
         num %= den;
-        if(num==0)
+        if(num==0)  // if the numerator was perfectly divisible
             return result;
         
         result += '.';

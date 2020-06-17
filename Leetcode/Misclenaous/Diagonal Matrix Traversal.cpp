@@ -1,4 +1,4 @@
-/* Naive approach is to build a map of vector with indexex sum as key, and reverse vector of even key but this would require Space Complexiy O(mn) */
+/* Naive approach is to build a map of vector with indexex sum as key, and reverse vector of even key but this would require Space Complexiy O(mn) other than output */
 
 
 /* Important concept of moving heads from both direction 

@@ -1,5 +1,5 @@
 /* 
-    Let diff be count of left parenthesis minus count of right parenthesis.
+    Let diff be count of left parenthesis - count of right parenthesis. And Diff here should always be non-negative, becz we can't have more closing brackets than opening one
     When we meet:
 
     (, we increment diff.
@@ -41,9 +41,9 @@ public:
                 minDiff--;
             }
             
-            if(maxDiff<0)
+            if(maxDiff<0)   
                 return false;
-            minDiff=max(0, minDiff);
+            minDiff=max(0, minDiff);    // Whenever minDiff falls below 0, we should force it to be 0 because we never accept negative diff during the process.
         }
         
         return (minDiff==0);

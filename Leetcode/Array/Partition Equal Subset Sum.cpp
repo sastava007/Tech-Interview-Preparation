@@ -45,30 +45,27 @@ public boolean canPartition(int[] nums)
 }
 
 /* 1D DP */
-public boolean canPartition(int[] nums) 
-{
-    int sum = 0;    
-    for (int num : nums) {
-        sum += num;
-    }
-    
-    if ((sum & 1) == 1) {
-        return false;
-    }
-    sum /= 2;
-    
-    int n = nums.length;
-    boolean[] dp = new boolean[sum+1];
-    Arrays.fill(dp, false);
-    dp[0] = true;
-    
-    for (int num : nums) {
-        for (int i = sum; i > 0; i--) {
-            if (i >= num) {
-                dp[i] = dp[i] || dp[i-num];
-            }
+
+class Solution {
+public:
+    bool canPartition(vector<int>& nums) 
+    {
+        int sum = accumulate(nums.begin(), nums.end(), 0);
+        
+        if(sum&1)
+            return false;
+        
+        sum /= 2;
+        
+        vector<bool> dp(sum+1, false);
+        dp[0] = true;
+        
+        for(int i=0; i<nums.size(); i++)
+        {
+            for(int j =sum; j>=nums[i]; j--)
+                dp[j] = dp[j] || dp[j-nums[i]];
         }
+        
+        return dp[sum];
     }
-    
-    return dp[sum];
-}
+};

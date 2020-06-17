@@ -1,7 +1,7 @@
 /* https://leetcode.com/problems/find-all-anagrams-in-a-string/discuss/92007/Sliding-Window-algorithm-template-to-solve-all-the-Leetcode-substring-search-problem. 
 
     TC: O(M+N)
-
+    Space: O(1) because the map will be of constant size, we can deifine a limit of 26 if we're sure that there will be only upper/lower case characters
 */
 
 class Solution {

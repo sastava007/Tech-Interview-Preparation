@@ -23,7 +23,7 @@ int read(string &buff, int n)
     return total;
 }
 
-/*  In above solu, we've assumed that this mentod is called just single time. But if this method is called multiple times then we have to save the status of the internal buffer 
+/*  In above solu, we've assumed that this method is called just single time. But if this method is called multiple times then we have to save the status of the internal buffer 
     that indicates past character read.
  */
 

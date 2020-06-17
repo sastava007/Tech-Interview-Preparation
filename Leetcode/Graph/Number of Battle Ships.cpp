@@ -1,5 +1,5 @@
 /*  Similar to no. of islads, but given that here only we need to consider about horizontal & vertical shapes and not any irregular shapes like islands. So first write a recursive solution with 
-    TC: O(mn) and by modifyin the board.
+    TC: O(mn) and by modifying the board.
  */
 
 class Solution {

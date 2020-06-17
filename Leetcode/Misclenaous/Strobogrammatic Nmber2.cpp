@@ -1,4 +1,7 @@
-/* Time complexity: O(5^n) */
+/*  Time complexity: O(5^n) as we've 5 recursive calls  
+    Space: O(N/2) becz of recursive call stack. And N/2 becz we're moving from both front and back
+    where N = length of strobogrammatic number.
+*/
 
 #include<bits/stdc++.h>
 using namespace std;
@@ -7,7 +10,6 @@ class Solution {
 public:
 
      unordered_map<char, char> m;
-     
      void init()
      {
          m['0']='0';
@@ -15,7 +17,6 @@ public:
          m['6']='9';
          m['9']='6';
          m['8']='8';
-     
      }
     
     vector<string> findStrobogrammatic(int n) 

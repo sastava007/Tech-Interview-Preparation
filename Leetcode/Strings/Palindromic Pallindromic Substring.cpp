@@ -3,6 +3,7 @@
     character equals, move on, left pointer moves left, right pointer moves right, if not, break the loop.
     
     O(N^2 time) and O(1) space
+    Worst Case: "aaa" => ["a", "a", "a", "aa", "aa", "aaa"]
 
 */
 
@@ -19,8 +20,10 @@ public:
     }
     
 private:
-    void palindromic(string s, int left, int right, int& cnt) { //judge if a substring is palindromic
-        while(left >=0 && right < s.size() && s[left] == s[right]) {
+    void palindromic(string s, int left, int right, int& cnt) 
+    {   
+        while(left >=0 && right < s.size() && s[left] == s[right])   //judge if a substring is palindromic
+        {
             cnt++;
             left--;
             right++;

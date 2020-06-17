@@ -1,6 +1,8 @@
 /*  First find the middle of list using slow & fast pointers.
     Then reverse the second half, i.e after the slow->next
-    And then in last merge both of them.
+    And then in last, merge both of them.
+
+    TC: O(N) and O(1) Space
 */
 
 class Solution {
@@ -11,7 +13,7 @@ public:
             return;
 
         ListNode* slow = head;
-        ListNode* fast = head->next;
+        ListNode* fast = head->next;   
         // find the middle node, which will be slow
         while(fast && fast->next)
         {

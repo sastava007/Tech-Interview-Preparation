@@ -1,5 +1,5 @@
 /*  
-    This problem is similar to Minimum Remove to Make Valid Parenthesis where we've to remove any invalid bracket to get the anser. But here we've to find all such valid valid combination. 
+    This problem is similar to Minimum Remove to Make Valid Parenthesis where we've to remove any invalid bracket to get the answer. But here we've to find all such valid valid combination. 
     
     As we need to generate all possible output we will backtrack among all states by removing one opening or closing bracket and check if they are valid if invalid then add the removed bracket back and go for next state. We will use BFS for moving through states, use of BFS will assure removal of.
 

@@ -47,7 +47,7 @@ public:
                 hash[curr]->neighbors.push_back(hash[neighbor]);
             }
         }
-
+        
         return hash[node];
     }
 };

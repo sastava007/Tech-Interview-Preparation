@@ -9,7 +9,6 @@ public:
         int begin=0, end=0, n=s.length(), maxlen=0;
         int distinct=0;
         
-        
         while(end<n)
         {
             m[s[end]]++;

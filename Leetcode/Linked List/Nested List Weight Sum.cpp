@@ -16,7 +16,7 @@ private:
     int dfs(const vector<NestedInteger>& nestedList, int depth)
     {
         if(nestedList.size()==0)
-        return 0;
+            return 0;
         int sum =0;
         for(auto it: nestedList)
         {

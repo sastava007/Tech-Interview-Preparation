@@ -21,10 +21,10 @@ public:
     }
 };
 
-/*  Best to Buy & Sell Stock Prices 2: You can make as many transactions as you want. 
-    Here we can buy and sell on consecutive day, i.e we can check if the price at current day is greater than  what it was yesterday then we can sell the stock today and still can get the maximum profit. This can be proved by Peak Value exaplaination [1,2,3,4,5,6] => 5 Buy & Sell on each consecutive day
+/*  Best to Buy & Sell Stock Prices 2: You can make as many transactions(Buy & Sell) as you want. 
+    So here we can buy and sell on consecutive day, i.e we can check if the price at current day is greater than  what it was yesterday then we can sell the stock today and still can get the maximum profit. This can be proved by Peak Valley exaplaination [1,2,3,4,5,6] => 5 Buy & Sell on each consecutive day.
 
- */
+*/
 class Solution {
 public:
     int maxProfit(vector<int>& prices) 
@@ -40,8 +40,10 @@ public:
     }
 };
 
-/*  When we can make only 2/K transactions, then here we'll use DP becz there are lot of subprobelsm like what if I've made just 1 transaction or what if I have buy and sell on a prtiular day. 
-    
+/*  
+    Using Concept of DP + State Machine: 
+
+    When we can make only 2/K transactions, then here we'll use DP becz there are lot of subprobelsm like what if I've made just 1 transaction or what if I have buy and sell on a prtiular day. 
     Assume we are in state S
     If we buy, we are spending money but we can also choose to do nothing
     Doing nothing means going from S->S
@@ -52,6 +54,12 @@ public:
     S = max(S, X+prices[i])
 
     https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/discuss/149383/Easy-DP-solution-using-state-machine-O(n)-time-complexity-O(1)-space-complexity
+
+    To reach s1, we either stay in s1 or we buy stock for the first time.
+    To reach s2, we either stay in s2 or we sell from s1 and come to s2
+    Similarly for s3 and s4.
+
+    In the end, we return s4 or more accurately, max(0,s4) since we initialize s4 to INT_MIN.
 */
 
 class Solution {

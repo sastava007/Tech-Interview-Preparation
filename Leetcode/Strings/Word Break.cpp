@@ -1,4 +1,5 @@
 /* Using DP: dp[j] is true only when dp[i] is true and s.substr(i,j) is present in dictionary. In this case we tried every possible length, but we can do some optimization over this */
+
 class Solution {
 public:
     bool wordBreak(string s, vector<string>& wordDict) 
@@ -12,7 +13,6 @@ public:
         {
             if(dp[i]==false)
                 continue;
-            
             for(int j=i+1; j<=s.length(); j++)
             {
                 string temp = s.substr(i, j);
@@ -20,19 +20,20 @@ public:
                     dp[j] = true;
             }   
         }    
-
         return dp[s.length()];
     }
 };
 
 
-/*  As we seen in above approach that there will be many substraings that will be generated repeatedly, so we have to look for methods to memoize them. So instead of checking for each length,
+/*  As we seen in above approach that there will be many substrings that will be generated repeatedly, so we have to look for methods to memoize them. So instead of checking for each length,
     we can cleverly look for only those string length which are present in dictionary.
 
-    dp[i] represents whether subarray(0, i) can be segmented into words that are present into dictionary. dp[0] = subarray(0,0) which is empty string can be ofcourse
+    dp[i] represents whether subarray(0, i) can be segmented into words that are present in the dictionary. dp[0] = subarray(0,0) which is empty string can be ofcourse
     segmented so answer is yes.
 
     https://www.youtube.com/watch?v=6UcUFUCCpjY
+
+    TC: O(N*S)
 
 */
 
@@ -40,8 +41,8 @@ class Solution {
 public:
     bool wordBreak(string s, vector<string>& wordDict) 
     {
-        vector<bool> dp(s.length()+1, false);
-        dp[0]=true;
+        vector<bool> dp(s.length()+1, false);       // for better understanding, reanme dp[] to isBreakable[]
+        dp[0]=true;         // isBreakable[i] represents whether it's possible to segment/break the subarray [0,i] into substrings such that each of them is present inside dictionary
         
         int n = s.length();
 

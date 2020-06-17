@@ -14,7 +14,7 @@ public:
         while(i>=0 && nums[i]>=nums[i+1])   // find the first element from right which is not in descending order nums[i]<nums[i+1]
             i--;
         
-        if(i>=0)
+        if(i>=0)    // Note: that here if no. are sorted in descending order then it will get reversed. so [5,4,3,2,1] => [1,2,3,4,5]
         {
             int j = nums.size()-1;
             while(j>=0 && nums[j]<=nums[i])     //swap that value with smallest greater element that it

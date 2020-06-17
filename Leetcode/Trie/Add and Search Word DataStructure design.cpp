@@ -3,7 +3,7 @@
     For each '.' I would have to process all possible branches of the tree. For example a query like this "..." would mean, 
     I have to check all nodes and all vertices within the tree. That would be V (vertices) + E(edges)
     
-    O(M*N) Space and O(V + E) Time where N = no. of words & M = length of maximum word
+    Time: O(V + E) and Space O(M*N) where N = no. of words & M = length of maximum word
 
 */
 
@@ -26,7 +26,7 @@ public:
     {
         TrieNode* node = root;
         for(auto c: word){
-            if(!node->children[c - 'a'])
+            if(!node->children[c - 'a'])        // If current character is not present in our Trie tree, then create a new one & add.
                 node->children[c - 'a'] = new TrieNode();
             node = node->children[c - 'a'];
         }
@@ -50,7 +50,8 @@ private:
                     return false;
                 node = node->children[c - 'a'];
             }
-            else{
+            else
+            {
                 bool found = false;
                 int j = 0;
                 for(; j < 26; j++)
@@ -81,7 +82,6 @@ class TrieNode
     }
 };
 
-
 class WordDictionary {
 public:
     
@@ -90,7 +90,7 @@ public:
         root = new TrieNode();
     }
     
-    void addWord(string word) 
+    void addWord(string word)
     {
         TrieNode* node = root;
         for(char c: word)
@@ -114,7 +114,7 @@ public:
     
     bool searchUtil(string word, int index, TrieNode* node)
     {
-        if(index==word.length())
+        if(index==word.length())    // base case
             return node->isWord;
         
         char c = word[index];
