@@ -9,7 +9,7 @@ class Solution {
 public:
     bool isCompleteTree(TreeNode* root) 
     {
-        bool emptyBefore = false;
+        bool seenNull = false;
         queue<TreeNode*> q;
         q.push(root);
         while(!q.empty())
@@ -17,19 +17,19 @@ public:
             TreeNode* curr = q.front();
             q.pop();
             
-            if(emptyBefore && curr->left)
+            if(seenNull && curr->left)
                 return false;
             else if(curr->left)
                 q.push(curr->left);
             
-            emptyBefore = !curr->left?true:false;
+            seenNull = !curr->left?true:false;
             
-            if(emptyBefore && curr->right)
+            if(seenNull && curr->right)
                 return false;
             else if(curr->right)
                 q.push(curr->right);
             
-            emptyBefore = !curr->right?true:false;
+            seenNull = !curr->right?true:false;
         }
         
         return true;

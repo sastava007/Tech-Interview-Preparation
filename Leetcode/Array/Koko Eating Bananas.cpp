@@ -1,42 +1,42 @@
-/*  TC: O(NlogW) where N is no. of piles and W is size of piles 
-    If Koko can finish eating all the bananas (within H hours) with an eating speed of K, she can finish with a larger speed too.
+/*      
+    Discrete Binary Search
+    
+    TC: O(NlogW) where N is no. of piles and W is size of largest pile
+
+    If Koko can finish eating all the bananas (within H hours) with an eating speed of K, she can also finish with a larger speed too so we need to reduce it's speed so that she enjoy's the 
+    process.
 
     There is a limited range of K's to enable her to eat all the bananas within H hours.
-    We ought to reduce the searching space and to return the minimum valid K.
+    We need to reduce the searching space for the discrete values of K, and to return the minimum valid K.
     
 */
 
-public int minEatingSpeed(int[] piles, int H) {
-        int lo = 1, hi = getMaxPile(piles);
+class Solution {
+public:
+    int minEatingSpeed(vector<int>& piles, int H) 
+    {
+        int low = 1, high = *max_element(piles.begin(), piles.end());
         
-        // Binary search to find the smallest valid K.
-        while (lo <= hi) {
-            int K = lo + ((hi - lo) >> 1);
-            if (canEatAll(piles, K, H)) {
-                hi = K - 1;
-            } else {
-                lo = K + 1;
-            }
+        while(low<=high)
+        {
+            int k = low+(high-low)/2;
+            if(canEatAll(piles, H, k))
+                high = k-1;
+            else
+                low = k+1;
         }
-        
-        return lo;
+        return low;
     }
     
-    private boolean canEatAll(int[] piles, int K, int H) {
-        int countHour = 0; // Hours take to eat all bananas at speed K.
+private:
+    bool canEatAll(vector<int>& piles, int H, int k)
+    {
+        int totalHour = 0;
+        for(int pile: piles)
+        {
+            totalHour += ceil((float)pile/k);
+        }
         
-        for (int pile : piles) {
-            countHour += pile / K;
-            if (pile % K != 0)
-                countHour++;
-        }
-        return countHour <= H;
+        return (totalHour <= H);
     }
-    
-    private int getMaxPile(int[] piles) {
-        int maxPile = Integer.MIN_VALUE;
-        for (int pile : piles) {
-            maxPile = Math.max(pile, maxPile);
-        }
-        return maxPile;
-    }
+};

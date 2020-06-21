@@ -12,13 +12,17 @@ These interview questions are real, they are not pulled out of computer science 
 
  1.    Fundamentals of STL
  2.    Array
- 3.    Bit Manipulation 
- 4.    Binary Search
- 5.    Divide & Conquer
- 6.    Mathematics
- 7.    Number Theory
- 8.    Recursion & Backtracking
- 9.    Segment Trees
+ 3.    Stack/Queue
+ 3.    Linked List
+ 4.    Binary Tree & BST
+ 5.    Bit Manipulation 
+ 6.    Binary Search
+ 7.    Graph [DFS, BFS, Topological Sorting]
+ 8.    Divide & Conquer
+ 9.    Mathematics
+ 10.   Number Theory
+ 11.   Recursion & Backtracking
+ 12.   Segment Trees
 
  
 Till now I have covered all the above mentioned topics & looking forward to get more done by the mid of the year.

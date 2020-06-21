@@ -23,7 +23,7 @@ public:
 private:
     void util(vector<string> &result, string curr, int open, int close, int max)
     {
-        if(curr.length()==n*2)
+        if(curr.length()==max*2)
         {
             result.push_back(curr);
             return;

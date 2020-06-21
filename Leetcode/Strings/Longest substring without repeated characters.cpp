@@ -23,7 +23,6 @@ public:
             }
             maxlen=max(maxlen, end-begin);
         }
-        
         return maxlen;
     }
 };

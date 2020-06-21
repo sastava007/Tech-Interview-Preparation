@@ -44,7 +44,10 @@ public boolean canPartition(int[] nums)
     return dp[n][sum];
 }
 
-/* 1D DP */
+/*  1D DP: Bottom Up(tabulation)  
+    TC: O(N*S)
+    Space: O(S)
+*/
 
 class Solution {
 public:
@@ -52,7 +55,7 @@ public:
     {
         int sum = accumulate(nums.begin(), nums.end(), 0);
         
-        if(sum&1)
+        if(sum&1)           //not possible to divide sum into 2 equal parts, if they are odd
             return false;
         
         sum /= 2;

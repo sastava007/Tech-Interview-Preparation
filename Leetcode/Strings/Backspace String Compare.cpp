@@ -41,18 +41,14 @@ public:
                 else
                     break;
             }
-            
             if(i>=0 && j>=0 && s[i]!=t[j])  // if after skipping all characters we reach at a posistion, and there characters aren't equal then return false, becz they can't be skipped anymore
-                return false;
-            
+                return false;        
             if(i>=0 != j>=0)
                 return false;
-            
+    
             i--;
             j--;
-            
         }
-        
         return true;
     }
 };

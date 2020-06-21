@@ -27,7 +27,13 @@ public:
             else
                 merged.emplace_back(intervals[i]);
         }
-        
         return merged;
     }
 };
+
+/* Follow Up:   How do you add intervals and merge them for a large stream of intervals, basically you don't have access to all the intervals in beginning and they keep on coming with time
+                in form of the stream?
+*/
+
+Approach 1: We can use a priority queue here. As we have an incoming stream of intervals, we just need to keep them sorted and pop the smallest two intervals and check if we can merge them.
+            to keep them sorted, use a min-heap() build on starting value of interval

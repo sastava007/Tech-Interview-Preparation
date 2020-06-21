@@ -1,7 +1,9 @@
 /*  As each row is sorted, and first element of each row is greater than last element of previous row. So we can treat the given matrix as a 2D array and apply simple binary search 
     TC: O(logm+logn) or O(log(mn))
 
-    (n*m) matrix convert to an array => matrix[x][y] => a[x * m + y]. An array convert to n * m matrix => a[x] =>matrix[x / m][x % m];
+    So basically we've to find a way to scale our matrix into a linear form to apply binary_search.
+
+    (n*m) matrix convert to an array => matrix[x][y] => a[x * m + y]. When an array is converted to [n * m] matrix => a[x] => matrix[x / m][x % m];
 */
 
 class Solution {

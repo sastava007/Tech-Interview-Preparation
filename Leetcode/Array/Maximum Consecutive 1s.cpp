@@ -18,7 +18,7 @@ public:
 };
 
 /*  Sliding Approach: Find the length of the longest (contiguous) subarray that contains only 1s. We can convert atmost K 0s to 1s.
-    As the no. of 1s is fixed(we can't flip them) so the basically problem boils down to finding the subarray with atmost K zeroes. 
+    As the no. of 1s is fixed(we can't flip them) so the basically problem boils down to finding the longest subarray with atmost K zeroes. 
 */
 
 class Solution 

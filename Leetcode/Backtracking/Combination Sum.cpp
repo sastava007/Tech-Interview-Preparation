@@ -10,6 +10,7 @@ public:
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) 
     {
         vector<vector<int>> result;
+        // sort(candidates.begin(), candidates.end())  we can sort to optimize it for few cases, becz we reach to the target slowly slowly using this method rather than uneven jumps
         util(result, vector<int>{}, candidates, 0, target);
         
         return result;
@@ -64,7 +65,7 @@ vector<vector<int>> Solution::combinationSum_dp_increment(vector<int> &candidate
 }
 
 /*  Combination Sum 2: We can't use the same number again & again and there will be duplicates 
-    Time Complexity: There are (2^n) such elements and hence the time complexity is O(2^n)
+    Time Complexity: O(2^N) and Space: O(N)
 */
 class Solution {
 public:
