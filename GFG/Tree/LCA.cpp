@@ -82,6 +82,27 @@ Node* lca(Node* root ,int n1 ,int n2 )
     return NULL;
 }
 
+/* If we have access to Parent Pointer then */
+
+node* lca(node* root, node* n1, node* n2)
+{
+    unordered_set<node*> ancestors;
+    while (n!=NULL)
+    {
+        ancestors.insert(n1);
+        n=n1->parent;
+    }
+
+    while(n2!=NULL)
+    {
+        if(ancestors.find(n2) != ancestors.end())
+            return n2;
+        n2=n2->parent;
+    }
+
+    return NULL; //if we've reached till here means ancestor doesn't exits
+}
+
 /* Using Parent Pointers: If we have parent pointers for each node we can traverse back from p and q to get their ancestors. 
 The first common node we get during this traversal would be the LCA node */
 class Solution {
@@ -129,25 +150,4 @@ class Solution {
         return q;
     }
 
-}
-
-/* If we have access to parent pointer then */
-
-node* lca(node* root, node* n1, node* n2)
-{
-    unordered_set<node*> ancestors;
-    while (n!=NULL)
-    {
-        ancestors.insert(n1);
-        n=n1->parent;
-    }
-
-    while(n2!=NULL)
-    {
-        if(ancestors.find(n2) != ancestors.end())
-            return n2;
-        n2=n2->parent;
-    }
-
-    return NULL; //if we've reached till here means ancestor doesn't exits
 }

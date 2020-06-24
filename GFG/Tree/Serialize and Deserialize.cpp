@@ -34,12 +34,10 @@ private:
     }
 };
 
-/* Iterative Traversal */
+/* Iterative Preorder Traversal */
 
 class Codec {
 public:
-
-    // Iterative preorder encode
 
     string serialize(TreeNode* root) {
         stack<TreeNode*> s;
@@ -82,7 +80,71 @@ public:
     }
 };
 
-/* Using vector: O(N) space for storage */
+/* LevelOrder traversal using Queue */
+class Codec {
+public:
+
+    // Encodes a tree to a single string.
+    string serialize(TreeNode* root) {
+        queue<TreeNode *> q;
+        string s;
+        if (root) q.push(root);
+        while (!q.empty()) {
+            TreeNode *n = q.front();
+            q.pop();
+            if (n) {
+                q.push(n->left);
+                q.push(n->right);
+                s += to_string(n->val) + ",";
+            } else {
+                s += "n,";
+            }
+        }
+        if (s.length()) s.erase(s.find_last_not_of("n,")+1);
+        return s;
+    }
+
+    TreeNode* deserialize(string data) {
+        if (data.empty()) return NULL;
+        queue<string> qData;
+        int i = 0, j;
+        do {
+            j = data.find(',', i);
+            if (j != string::npos) qData.push(data.substr(i, j-i));
+            else qData.push(data.substr(i));
+            i = j+1;
+        } while (j != string::npos);
+        
+        queue<TreeNode *> qNodes;
+        TreeNode *root = new TreeNode(stoi(qData.front()));
+        TreeNode *curr = NULL;
+        qNodes.push(root);
+        qData.pop();
+        while (!qData.empty()) {
+            string val1 = "", val2 = "";
+            val1 = qData.front();
+            qData.pop();
+            if (!qData.empty()) {
+                val2 = qData.front();
+                qData.pop();
+            }
+            curr = qNodes.front();
+            qNodes.pop();
+            if (val1 != "" && val1 != "n") {
+                curr->left = new TreeNode(stoi(val1));
+                qNodes.push(curr->left);
+            }
+            if (val2 != "" && val2 != "n") {
+                curr->right = new TreeNode(stoi(val2));
+                qNodes.push(curr->right);
+            }
+        }
+        return root;
+    }
+};
+
+
+/* Preorder: Using vector: O(N) space for storage */
 
 void serialize(Node *root,vector<int> &A)
 {

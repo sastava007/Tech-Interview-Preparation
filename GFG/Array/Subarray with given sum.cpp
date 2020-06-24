@@ -4,7 +4,7 @@ We store the data in the form: (sum_i, no. of occurences of sum_i)
 
 We traverse over the array nums and keep on finding the cumulative sum. Every time we encounter a new sum, we make a new entry in the hashmap corresponding to that sum.
 If the same sum occurs again, we increment the count corresponding to that sum in the hashmap. Further, for every sum encountered, we also determine the number of times
-the sum (sum-k) has occured already, since it will determine the number of times a subarray with sum kk has occured upto the current index. We increment the countcount by the same amount.
+the sum (sum-k) has occured already, since it will determine the number of times a subarray with sum k has occured upto the current index. We increment the countcount by the same amount.
 
 */
 

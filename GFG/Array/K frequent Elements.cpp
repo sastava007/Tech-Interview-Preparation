@@ -38,7 +38,7 @@ private:
         int pivot = v[r];
         for(int i=l; i<r; i++)
         {
-            if(v[i]>pivot)
+            if(v[i]>pivot)      // Kth largest element in V<int>
             {
                 j++;
                 swap(v[i], v[j]);

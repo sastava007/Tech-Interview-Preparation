@@ -41,13 +41,19 @@ int main()
 
 
 //Kth largest element using minheap O(K+ (n-k)logK)
+// O(K) will be only used when we initially have all the elements which we've to convert it into a heap. But the way we're doing here will require (KlogK) time instead of O(K)
+
 class Solution {
 public:
     int findKthLargest(vector<int>& nums, int k) {
      
-        priority_queue<int, vector<int>, greater<int>> p;
+        priority_queue<int, vector<int>, greater<int>> p;    //min-heap
         for(auto it: nums)
         {
+            // p.push(it);
+            // if(p.size()>k)
+            //     p.pop();
+            
             if(p.size()<k)
                 p.push(it);
             else if(it>p.top())
@@ -59,6 +65,7 @@ public:
         return p.top();
     }
 };
+
 
 /* Using Quickselect Partion */
 int partition(int *a, int s, int e)

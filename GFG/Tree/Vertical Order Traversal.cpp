@@ -21,46 +21,8 @@ We should use BFS(level-order), not DFS here. Because order needs to be from top
 
 
 
-// PS: Here the sol. assumes that if two nodes have same position then output is printed from left->right
+// PS: The below approach assumes that if two nodes have same position then output is printed from left->right
 
-void verticalOrderUtil(Node* root, map<int, vector<int>> &m)
-{
-    if(root==NULL)
-        return;
-        
-    queue<pair<Node*, int>> q;
-    q.push({root, 0});
-    
-    while(!q.empty())
-    {
-        pair<Node*, int> temp = q.front();
-        q.pop();
-        
-        m[temp.second].emplace_back(temp.first->data);
-        
-        if(temp.first->left)
-            q.push({temp.first->left, temp.second-1});
-        if(temp.first->right)
-            q.push({temp.first->right, temp.second+1});
-    }
-}
-
-void verticalOrder(Node *root)
-{
-    if(root==NULL)
-        return;
-        
-    map<int, vector<int>> m;
-    verticalOrderUtil(root, m);
-    
-    for(auto it: m)
-        for(auto jt: it.second)
-        {
-            cout<<jt<<" ";
-        }
-}
-
-/* LC Version: Resulting the final output in a vector */
 class Solution {
 public:
     vector<vector<int>> verticalOrder(TreeNode * root) 
@@ -101,7 +63,7 @@ public:
 };
 
 /* Ps: If two nodes are in the same row and column, the order should be from small to large, which is diferent from above solution where we were simply printing from L->R 
-    Assuming no duplicates node value, in that case use vector instead o set and sort them later    
+    Assuming no duplicates node value, in that case use vector instead of set and sort them later.
 */
 class Solution {
 public:

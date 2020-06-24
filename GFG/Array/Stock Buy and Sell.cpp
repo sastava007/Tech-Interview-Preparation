@@ -2,7 +2,7 @@
     We sell the stock when prices are highest and buy when prices are lowest, and in order to find highest and lowest price
     I have used localMaxima & localMinima and I keep on updating them while iterating
     This problem assumes that you can not buy & sell stocks on the same day.
-    Consider this TC for better understanding: 
+    Consider this TC for better understanding:
     (100, 180, 260, 310), 120, (40, 595)
 */
 
@@ -15,7 +15,7 @@ int main()
     cin>>t;
     while(t--)
     {
-        int n,i,lmin,lmax;
+        int n,i,lmin,lmax;lmax
         cin>>n;
         int a[n];
         for(i=0;i<n;i++)

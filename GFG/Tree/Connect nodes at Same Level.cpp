@@ -28,7 +28,7 @@ void connect(Node *p)
 }               
 
 
-/* Without using map, doing level  order traversal*/
+/* Without using map, doing level order traversal*/
 void connect(Node *p)
 {
     if(p==NULL)
