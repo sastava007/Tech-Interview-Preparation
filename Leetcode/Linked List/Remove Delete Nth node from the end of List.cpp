@@ -9,14 +9,14 @@ public:
         if(head==NULL)
             return NULL;
         
-        ListNode* dummy = new ListNode(0);  // create a dummy node
+        ListNode* dummy = new ListNode(0);  // create a dummy node, to avoid the case when we've to delete our head node itself
         dummy->next = head;
         
         ListNode *slow = dummy, *fast = dummy;
         for(int i=0; i<n; i++)      // move the fast pointer N step ahead then slow pointer
             fast = fast->next;
         
-        while(fast->next)   // now move this equally at a time
+        while(fast->next)   // now, move this equally at a time
         {
             fast = fast->next;
             slow = slow->next;
@@ -25,7 +25,7 @@ public:
         ListNode *temp = slow->next;
         slow->next = slow->next->next;
         
-        delete temp;
+        delete temp;        // free the memory by deleting the node
         
         return dummy->next;
     }

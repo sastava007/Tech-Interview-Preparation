@@ -1,12 +1,12 @@
 /* 
     Idea:   is to use a hash-map to collect all the y coordinates for each x coordinate in a sorted order
-            Then pick pair of X coordniates, and find the intersection b/w their list of y coordinates, becz a rectangle will be formed only with the help of points which are common
+            Then pick pair of X coordniates, and find the intersection b/w their list of y coordinates, becz a rectangle will be formed only with the help of points which align
             for both pair of x coordinates.
 
             After finding their intersection, find the area by using the formula area = abs(x[i]-x[j]) * (y_cord[k]-y_cord[k-1]) 
             Since y coords are sorted, you only need to calculate the area for the y[k] - y[k - 1] pairs.
 
-            TC: O(N^2) and Space: O(N)
+            TC: O(N^2) and Space: O(N)   here N is the total number of points
 
             It's O(n ^ 2) becz fisrt of all (i & j) loops are running over x coordinates and not total points. Also the total number of steps in the second loop and set intersection is n. 
             Let's say: When all points have a different x, set will include only one element (n * n * 1). If we have 2 points per x, it is n/2 * n/2 * 2 and so on.

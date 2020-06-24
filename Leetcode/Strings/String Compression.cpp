@@ -2,6 +2,9 @@
     'i' to read characters from the string, and 'j' to write back to the character array.
 
     TC: O(N) and O(1) space
+
+    Input: ["a","a","b","b","c","c","c","a"]  Output: a2b2c3a
+    Edge Case: Input: ["a","b","x"]  Output: abx     here we didn't included no. otherwise length will become greater than original array, then there would be no point in compression
 */
 
 class Solution {
@@ -34,6 +37,6 @@ public:
             }
         }
         
-        return j;
+        return j;   // to et the resultant/modified vector<> just print all the characters till jth index 
     }
 };

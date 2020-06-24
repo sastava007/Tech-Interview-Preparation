@@ -1,5 +1,5 @@
 /* 
-    Given a BST with root node, and a target value V, split the tree into two subtrees where one subtree has nodes that are all smaller or equal to the target value, while the other subtree has all nodes that are greater than the target value.
+    Given a BST with root node, and a target value V, split the tree into two subtrees where one subtree has nodes that are all <= to the target value, while the other subtree has all nodes that are greater than the target value.
     We've to try to maintain the structure of the original tree, i.e a child C with parent P if both lies in same subtree then here also P should be parent of child C.
 
     Idea: Is to use a DFS, with condition that if target is greater than root->val then consider the right subtree else consider the left subtree.
@@ -7,6 +7,8 @@
     If root is null then return [null, null]
     If target < root->val then call for left subtree and attach the root->left with second element of returned array becz it will be larger than target but still lesser than root node value
     And similarly, if target >= root->val, then call for right subtree and attach the root->left with first element of returned array as it is lesser than target but sill greater than root node value. 
+
+    TC: O(H)
 
 */
 
@@ -18,7 +20,6 @@ vector<node*> splitBST(node* root, int target)
     {
         return temp;
     }
-
     if(target < root->val)
     {
         temp = splitBST(root->left, target);
@@ -31,8 +32,27 @@ vector<node*> splitBST(node* root, int target)
         root->right = temp[0];
         temp[0] = root;
     }
-
     return temp;
+}
+
+/* More intuitive and readable code */
+class Solution {
+    public TreeNode[] splitBST(TreeNode root, int V) {
+        TreeNode[] res = new TreeNode[]{null, null};
+        if (root == null) {
+            return res;
+        }
+        if (root.val <= V) {
+            res = splitBST(root.right, V);
+            root.right = res[0];
+            res[0] = root;
+        } else {
+            res = splitBST(root.left, V);
+            root.left = res[1];
+            res[1] = root;
+        }
+        return res;
+    }
 }
 
 /* Iterative method using stack<> to simulate the above recursion */

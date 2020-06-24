@@ -1,8 +1,8 @@
 /*  Idea is to do a pre-order traversal to convert the BST into linear string. And unlike typical serialize & deserialize BT, here we don't need to add "#" for NULL node,
     and we should use property of BST to generate the tree back.
 
-    The string obtained after serializing() should be as compressed as possible.
-
+    The string obtained after serializing() should be as compact as possible.
+    
  */
 
 class Codec {

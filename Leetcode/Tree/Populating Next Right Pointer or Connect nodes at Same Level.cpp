@@ -1,12 +1,12 @@
 /*  Populating next right pointers or Connect the nodes at same level 
     Clarifying Questions to ask?
-        1. If tree is a complete binary tree?
+        1. If tree is a complete binary tree or any regular tree?
         2. Can we use recursive/iterative approach?
         3. Required space complexity?
 */
 
 
-/* Modifying the level order traversal, by first pushing the right child and then left child. TC: O(N) and Space: O(width of binary tree) */
+/* Modifying the level order traversal, by first pushing the right child and then left child. TC: O(N) and Space: O(maximum_width_of_binary_tree) */
 
 class Solution {
 public:
@@ -52,7 +52,7 @@ public:
         while(level_start)
         {
             Node* curr = level_start;       // first node of that level
-            while(curr)     // keep going towards right using next pointer
+            while(curr)                    // keep traversing across that level
             {
                 if(curr->left)
                     curr->left->next = curr->right;

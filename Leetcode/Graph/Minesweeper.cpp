@@ -1,6 +1,6 @@
 /*  
     M represent unrevealed mine
-    E represent revealed empty square
+    E represent unrevealed empty square
     B represent revealed blank square which doesn't have any adjacent mines
     X represent revealed mine
 

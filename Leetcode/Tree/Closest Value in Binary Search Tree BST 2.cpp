@@ -44,7 +44,7 @@ public:
 };
 
 /* 
-    Use two stacks to implement predecessor<> and sucessor<>. The predecessor wil basically store the smaller node than target and sucessor will store the lager nodes than target.
+    Use two stacks to implement predecessor<> and sucessor<>. The predecessor wil basically store the node that are <= target and sucessor will store the lager nodes than target.
 
     TC: O(logN + K) and Space: O(logN+k)
     

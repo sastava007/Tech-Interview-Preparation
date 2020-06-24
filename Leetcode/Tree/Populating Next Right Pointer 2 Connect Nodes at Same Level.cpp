@@ -20,11 +20,11 @@ public:
             {
                 if(parent->left)
                 {
-                    if(childHead==NULL)
+                    if(childHead==NULL)                 // checking whether we've set the first node in that level or not
                         childHead = parent->left;
                     else
                         child->next = parent->left;
-                    child = parent->left;               // move to the next node in/across level
+                    child = parent->left;
                 }
                 if(parent->right)
                 {

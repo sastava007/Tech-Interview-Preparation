@@ -32,7 +32,8 @@ private:
     data util(TreeNode *root, int &ans) 
     {
         data curr;
-        if (root == nullptr) {
+        if (root == nullptr) 
+        {
             curr.isBST = true;
             return curr;
         }
@@ -40,18 +41,19 @@ private:
         data left = util(root->left, ans);
         data right = util(root->right, ans);
 
-        curr.minele = min(root->data, min(left->minele, right->minele));
-        curr.maxele = min(root->data, min(left->maxele, right->maxele));
+        curr.minele = min(root->data, left->minele);
+        curr.maxele = max(root->data, right->maxele);
 
-        if (left.isBST && right.isBST left->maxele < root->data && right->minele > root->data) 
+        if (left.isBST && right.isBST left->maxele < root->data && right->minele > root->data)      // we've assumed that BST is strict, without any duplicates else use (<= and >=)
         {
             curr.size = left->size + right->size + 1;
             cur.isBST = true;
             ans = max(ans, curr.size);
-        } 
+        }
         else 
         {
-            curr.size = 0;
+            curr.size = max(left.size, right.size);
+            curr.isBST = false;
         }
         return curr;
     }

@@ -19,10 +19,11 @@ for(int i=1; i<n-1; i++)
 
 /*  Find the 'length' of the longest repeating substring, here substrings can even overlap. 
     dp[i][j] represents the length of the matching substring ending with ith and jth characters
-
     So if str[i-1]==str[j-1] then dp[i][j] = dp[i-1][j-1]+1 and we have to keep on finding the maximum of these values
-
     TC & Space: O(N^2) 
+
+    Input = "aabcaabdaab" ans = 3(aab)
+    Edge Case = "aaaaa"  ans = 4(aaaa) , here we're also considering overlapping substrings also
 
 */
 

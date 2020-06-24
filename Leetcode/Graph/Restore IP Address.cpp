@@ -2,7 +2,9 @@
     For IPV4 add. we have to place 3 dots, such that each portion lies b/2 [0-255] and if a portion constains a 0 then 
     it should contain only single 0.
 
-    TC: O(3^n) where n = length of string which is expected to be in b/w [4-12] so overall complexity is constant
+    DFS Approach
+
+    TC: O(3^4) 
     Space: O(n)
 */
 
@@ -13,7 +15,7 @@ class Solution
     {
             if (s.empty()) return {};
             vector<string> res;
-            dfs("", 0, 0, res, s);
+            dfs("", 0, 0, res, s);      // we can use 2 variable, one to maintain the octet/group upto which we've processed and other to track character in string
             return res;
     }
     

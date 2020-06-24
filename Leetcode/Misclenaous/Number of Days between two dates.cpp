@@ -33,12 +33,14 @@ private:
         for(int i=1971;i<year;i++)
         {
             res=res+365;
-            if((i%4==0&&i%100!=0)||i%400==0)res++;
+            if((i%4==0 && i%100!=0) || i%400==0)    //leap year
+                res++;
         }
         for(int i=1;i<month;i++)
         {
             res=res+mon[i];
-            if(i==2&&((year%4==0&&year%100!=0)||year%400==0))res++;
+            if(i==2&&((year%4==0&&year%100!=0)||year%400==0))       //if leap year, then there will be 29 days in Feb
+                res++;
         }
         return res+day;
     }

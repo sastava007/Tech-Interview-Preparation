@@ -1,6 +1,7 @@
 /*  If an elememnt of matrix is 0, then set the entire row & column to 0 in O(1) space 
 
-    Brute Force: Is by storing all the [r,c] which is zero in a unordered_set and while doing the secnod pass set the cells of that row/column to zero.  Space: O(M+N)
+    Naive Approach: Is by storing all the [r,c] which are 0 into 2 different hash sets, and while doing the secnod pass set the cells of that row/column to zero.  Space: O(M+N)
+    by checking if (row.find(i)!=row.end() || col.find(j)!=col.end()) => matrix[i][j] = 0
 
     Optimized: We can rather use the first cell of every row and column as a flag. This flag would determine whether a row or column has been set to zero or not. If first cell of any 
     row/column is zero, then set the entire row & column to zero. We can treat the 1st row/column seperately

@@ -3,14 +3,12 @@
     The idea is to basically explore all permutations, with the following constraints:
     Only add elements to permutation vector (cur in my case) if:
 
-    The element is greater than the last element in cur.
-    The element has not been previously added (say I have nums = [1, 3, 5, 7, 7], if I have permutation vector cur = [1, 3, 5], I will only add the first 7 and permute, but not the second 7).
-    cur is empty.
+    The element is greater than the last element in sequence, also we should not push the same elements within the same  dfs level, that's why we're using hash set over here.
 
     The unordered_set is used to avoid [4,6,7(1)] and [4,6,7(2)] in a same level when we dfs. But it will not skip [4,6,7(1),7(2)], because 7(2) is added in the next dfs level of [4,6,7(1)]. Every time we start a "next level dfs", we will initialize a new unordered_set.
 
     TC: O(2^N) and Space: O(N) due to recursion stack space. We have total N numbers, and we can pick it or not so that's why O(2^N)
-    Worst case will occur when the numbers are in increasing order eg [3,4,7,9]
+    Worst case will occur when the numbers are in increasing order eg [3,4,7,9]  in this case there will be total 2^N - (N+1)
 
 */
 
@@ -28,7 +26,7 @@ private:
     {
         if(seq.size()>=2)
         {
-            result.emplace_back(seq);       //here I'm not resturning after this statement, becz there could be more elements in our subsequence that follow the above property
+            result.emplace_back(seq);       //here I'm not returning after this statement, becz there could be more elements in our subsequence that follow the above property
         }
         
         unordered_set<int> used;        // insetad of using hashset, we can also use visited[201]={0} and visited[nums[i]+100] = 1

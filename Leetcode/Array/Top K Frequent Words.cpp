@@ -7,7 +7,7 @@
 
 class Solution {
     
-    class compare{
+    class compare{      // custom comparator for min-heap
     public:
         bool operator()(pair<string,int> a, pair<string,int> b)
         {
@@ -22,11 +22,11 @@ public:
         for(string word: words)
             freq[word]++;
         
-        priority_queue<pair<string, int>, vector<pair<string, int>>, compare> q;
+        priority_queue<pair<string, int>, vector<pair<string, int>>, compare> q;    // here we're building min-heap
         
         for(auto it: freq)
         {
-            q.push({it.first, it.second});
+            q.push({it.first, it.second});      // here instead of directly pushing & popping, we can first check if our curr freq is > than that at the top of priority_queue
             if(q.size()>k)
                 q.pop();
         }
@@ -45,7 +45,8 @@ public:
     }
 };
 
-/*  We can also use threshold frequency i.e Kth most frequent element, and then filter all the words which have frquency >= threshold and later sort the result using additional O(KlogK) 
+/*  
+    We can also use threshold frequency i.e Kth most frequent element, and then filter all the words which have frquency >= threshold and later sort the result using additional O(KlogK) 
     TC: O(N + O(klogK)) Avg Case, but worst case O(N^2)
     Space: O(N)
 */

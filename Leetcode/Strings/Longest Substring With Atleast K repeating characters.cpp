@@ -9,7 +9,7 @@ public:
     int longestSubstring(string s, int k) 
     {
         int maxlen = 0;
-        for(int i=0; i<26; i++)
+        for(int i=1; i<=26; i++)
         {
             maxlen = max(maxlen, longestSubstringWithNUniqueChars(s,i,k));
         }
@@ -33,7 +33,7 @@ private:
             
             while(unique>totalUnique)
             {
-                if(m[s[begin]]==k)  //if current character is present K times then after slding the window, it wil not remain K times, so drecase 'numNoLessThanK'
+                if(m[s[begin]]==k)  //if current character is present exactly K times then after slding the window, it wil not remain K times, so drecase 'numNoLessThanK'
                     numNoLessThanK--;
                 
                 m[s[begin]]--;
@@ -42,7 +42,7 @@ private:
                 
                 begin++;
             }
-            if(unique==totalUnique && numNoLessThanK==unique)
+            if(unique==totalUnique && numNoLessThanK==unique)   // 2nd part means that, no. of unique characters in substring should be equal to the no. of characters which have freq>=k
                 maxlen = max(maxlen, end-begin);
         }
         return maxlen;
@@ -50,42 +50,45 @@ private:
 };
 
 /*  Using D&C
-    Idea is to recursively keep on decreasing the range of the string, by forming smaller substrings such that all the elemenets in that range occurs atleast K times. And we do this by picking an element to divide the string, then all the substrings in following recursive call doesn't have that character.
+    So idea is to use D&C based approach which will return the length of longest substring in which all the characters are occuring atleast K times.
+    So whenever we find a character which is having freq <K, we'll break the string into 2 smaller substrings. We'll recursively call for them and return the maximum of length returned by them.
+    TC: O(N) and Space: O(N) due to recursive (doubtful, maybe N^2)
 
-    TC: O(N) and Space: O(26/N) due to recursive (doubtful, maybe N^2)
+    We can observe here that, once we find a chars which is having freq < K, then it will be used to divide the string and all the substrings in the further recursive calls will not contain
+    that character. The level of D&C is at most 26, otherwise you run out of character to divide, and each level is O(n).
 */
-class Solution {
+
+class Solution 
+{
+
 public:
-    int longestSubstring(string s, int k) {
-        int n = s.size();
-        return helper(s, 0, n-1, k);
+
+    int longestSubstring(string& s, int k)
+    {
+        return util(s, k, 0, s.size());
     }
-private:
-    // looking for longest string within index range [l, r]
-    int helper(string& s, int l, int r, int k) {
-        vector<int> mp(26, 0);
-        for (int i = l; i <= r; i++)
-            mp[s[i]-'a']++;
 
-       // check if all the characters in this substring are present atleast K times
-        bool pass = true;
-        for (int i = 0; i < 26 && pass; i++) {
-            if (mp[i] && mp[i] < k)     // if that character is present but less than minimum requirement
-                pass = false;
-        }
-        if (pass) 
-            return r-l+1;
+    int util(string& s, int k, int start, int end)
+    {
+        vector<int> freq(26);
+        for (int i = start; i < end; i++)
+            freq[s[i]-'a']++;
 
-        // using all characters with occurrence > 0 && < k to divide the string
-        int i = l, ans = 0;
-        for (int j = l; j <= r; j++) 
+        int idx = start;
+        while (idx < end)
         {
-            if (mp[s[j]-'a'] && mp[s[j]-'a'] < k)   // divide around the character, which have freq < K
-            {
-                ans = max(ans, helper(s, i, j-1, k));
-                i = j+1;
-            }
+            if (freq[s[idx]-'a'] < k)
+                break;
+            ++idx;
         }
-        return max(ans, helper(s, i, r, k));
+
+        if(idx == end)          // if all the chars are having freq >=K
+            return idx - start;
+
+        int right_start = idx + 1;
+        while(right_start < end && freq[s[right_start]-'a'] < k)        // first part starts from beginning, and till the first index which has freq <K
+            right_start++;
+
+        return max(util(s, k, start, idx), util(s, k, right_start, end));   // second part starts from the first point which is having freq >=K and till the end 
     }
 };

@@ -1,4 +1,6 @@
-/* 2 Pointer approach, maintain a variable that stores position of lastNonZero value ocurred */
+/*  2 Pointer approach, maintain a variable that stores position of lastNonZero value ocurred 
+    Note: We've to do it in-place and while preserving the original ordering of elements
+*/
 class Solution {
 public:
     void moveZeroes(vector<int>& nums) 
