@@ -1,7 +1,9 @@
 /* Strobogrammatic Number is the number which is rotationally symmetric, i.e same when rotated 180deg */
+/*  Check if given number is Strobogrammatic or not
 
-//check if given number is Strobogrammatic or not
-//buggy code, fails for 00 which is not even a valid number because of leading zeroes, ask the interviewer about leading zeroes
+    Note: Confirm about the leading zeroes number, like whether 00 is a strobogrammatic or not.
+    Edge Cases: [000 => true, 080 => true, 060 => false, 0690 => true, 06690 => false]
+*/
 
 bool isStrobogrammatic(string nums)
 {
@@ -12,25 +14,28 @@ bool isStrobogrammatic(string nums)
     m['8']='8';
     m['9']='6';
 
-    int l=0,r=nums.length()-1;  // First clear from your interviewer, that whether 00 is a strobogrammatic number or not, then proceed
+    int l=0,r=nums.length()-1;
 
     while(l<=r && nums[l]=='0')  //case to handle leading zeroes: remove the leading zeroes
         l++;
-
     if(l==r)
         return (nums.length()==1);
 
-    while (l<r)
+    while (l<=r)
     {
         if(m.find(nums[l])==m.end() || m.find(nums[r])==m.end() || m[nums[l]] != m[r])
             return false;
-    
+        l++;
+        r--;
     }
 
     return true;
 }
 
-/* Return all Strobogrammatic Number of length n: Backtracking Solution*/
+/*  Return all Strobogrammatic Number of length n: Backtracking Solution
+    TC: O(5^N)
+*/
+
 class Solution
 {
     public:
@@ -56,7 +61,7 @@ class Solution
     {
         if(low>high)    //base case: push the no. formed so far into the result array
         {
-            if(s.length()==1 || s[0]!='0')
+            if(s.length()==1 || s[0]!='0')  // to avoid leading zeroes, like incase of 00
                 res.push_back(s);
             return;
         }

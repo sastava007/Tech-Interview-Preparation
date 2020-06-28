@@ -1,5 +1,7 @@
 /*  Given a dictionary of words, check whether it's possible to find a word in dictionary after modifying exactly 1 character.
     The main disadvantage of tries is that they need a lot of memory for storing the strings. For each node we have too many node pointers(equal to number of characters of the alphabet)
+
+    Trie is preferred when we've to search for more complex patterns, rather than simple searches
 */
 
 /*  Using hash-set 

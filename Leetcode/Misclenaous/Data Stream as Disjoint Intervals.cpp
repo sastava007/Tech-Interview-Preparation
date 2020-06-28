@@ -1,4 +1,7 @@
-/* TC: for addNUM O(logN) and that for getIntervals O(N) as we have to explicitly copy from map to resultant vector */
+/* 
+    We are getting stream of intervals, and we've to summarise them into set of disjoint intervals.
+    TC: for addNUM O(logN) and that for getIntervals O(N) as we have to explicitly copy from map to resultant vector 
+*/
 
 class SummaryRanges {
 public:

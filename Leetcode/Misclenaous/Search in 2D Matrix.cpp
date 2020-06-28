@@ -28,7 +28,6 @@ public:
             else
                 low = mid+1;
         }
-        
         return false;
     }
 };
@@ -37,7 +36,8 @@ public:
     Given a matrix, in which rows are sorted from left to right and also column are sorted from top to bottom. And we have to search an element, this problem is similar to 
     left most column with  atleast a one. 
     O(m+n) : start from (o,m-1) and keep traversing accordingly.
- */
+*/
+
 class Solution {
 public:
     bool searchMatrix(vector<vector<int>>& matrix, int target) 

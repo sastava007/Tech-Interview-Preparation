@@ -29,7 +29,7 @@ public:
     }
 };
 
-/*  Find the Maximum perimeter of any island. Here perimeter is defined in a different i.e the "1 that is adjacent to a 0 OR grid boundary to the left, right, up, or down" 
+/*  Find the Maximum perimeter of any island. Here perimeter is defined in a different i.e the "number of land(1) cells that is adjacent to a 0 OR grid boundary to the left, right, up, or down" 
     TC: O(R*C) and here we're modifying the grid itself, but we can maintain a seen[][] that requires additional O(r*c) space and also the space required for recursion call stack.
 
     The condition is to not count the 1 in the middle if it's surrounded by other 1's in up, down, left and right.

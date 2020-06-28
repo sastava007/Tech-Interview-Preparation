@@ -2,6 +2,8 @@
     Then reverse the second half, i.e after the slow->next
     And then in last, merge both of them.
 
+    Given 1->2->3->4->5, reorder it to 1->5->2->4->3.
+
     TC: O(N) and O(1) Space
 */
 

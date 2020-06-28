@@ -5,8 +5,6 @@
     TC & Space: O(N*2^N) where 2^N to generate all subsets as we can either pick/drop each element and N to copy them into output set
 */
 
-
-
 class Solution {
 public:
     vector<vector<int>> subsets(vector<int>& nums) 
@@ -38,7 +36,8 @@ public List<List<Integer>> subsetsWithDup(int[] nums) {
 
 private void backtrack(List<List<Integer>> list, List<Integer> tempList, int [] nums, int start){
     list.add(new ArrayList<>(tempList));
-    for(int i = start; i < nums.length; i++){
+    for(int i = start; i < nums.length; i++)
+    {
         if(i > start && nums[i] == nums[i-1]) continue; // skip duplicates
         tempList.add(nums[i]);
         backtrack(list, tempList, nums, i + 1);

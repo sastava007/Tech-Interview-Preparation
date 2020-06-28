@@ -1,9 +1,10 @@
 /*  Reverse the nodes in group of K, and if number of nodes to reverse is less than K then leave it as it is.
-
     Idea is to reverse the entire group by swapping or reversing the direction of individual arrows b/w adjacent nodes.
     We'll use 3 pointers, [prev, curr, nex]  nex will always be one node ahead of curr, and we'll be reversing the direction of arraw b/w these 2 nodes
 
     TC: O(N) and Space: O(1)
+
+    Input: 1->2->3->4->5 for K = 3, Output = 3->2->1->4->5
 */
 
 class Solution {
@@ -28,7 +29,7 @@ public:
         while(n>=k)
         {
             curr = prev->next;
-            nex = curr->next;
+            nex = curr->next;       // one node ahead of current node
             
             for(int i=1; i<k; i++)
             {

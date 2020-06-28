@@ -45,7 +45,7 @@ private:
 
 /*  Find the length of the longest consecutive (monotonic)increasing/decreasing path, and this path can be of child-parent-child order not necesseraily parent-child unlike above problem. 
 
-    Idea is to perform a postorder traversal while maintaining 2 variables, one which stores the length of longest consecutive increasing sequence path and other one stores the length of the longest consecutive decreasing path.
+    Idea is to perform a postorder traversal while maintaining 2 variables, one which stores the length of longest consecutive increasing sequence path and other one stores the length of the longest consecutive decreasing path.s
     And then for each node upadte the maximum path length as max(max_length_so_far, incr+decr-1)
 
     TC: O(N) and Space: O(H) ~~ O(N) worst case

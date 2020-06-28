@@ -5,9 +5,11 @@
     
     1. Sort balloons in increasing order of the start position.
     2. Scan the sorted pairs, and maintain a pointer for the minimum end position for current "active balloons", whose diameters are overlapping.
-    3. 
+    3. When the next balloon starts after all active balloons, shoot an arrow to burst all active balloons, and start to record next active balloons.
 
     https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/discuss/93735/A-Concise-Template-for-%22Overlapping-Interval-Problem%22
+
+    TC: O(NlogN) and O(1) Space
  */
 
 class Solution {
@@ -26,7 +28,7 @@ public:
         
         for(auto &point: points)
         {
-            if(point[0]>minEnd)     // when non overlapping interval is found, then increment the arrow counter
+            if(point[0]>minEnd)     // when non overlapping interval is found, then shoot a new arrow to burst all active balloons and record it as next active balloon
             {
                 arrows++;
                 minEnd = point[1];
@@ -34,8 +36,6 @@ public:
             else
                 minEnd = min(minEnd, point[1]);
         }
-        
         return arrows + !points.empty();
-        
     }
 };

@@ -20,7 +20,7 @@ public:
     {
         priority_queue<pair<int,pair<int,int>>, vector<pair<int,pair<int,int>>>, compare> q;    // min-heap
         
-        int n=matrix.size(), m=matrix[0].size();
+        int n = matrix.size(), m = matrix[0].size();
         
         for(int i=0; i<m; i++)
             q.push({matrix[0][i], {0,i}});
@@ -69,7 +69,7 @@ private:
     int countLessThanEqual(vector<vector<int>>& matrix, int mid)   // find the no. of elements which are less than or equal to mid 
     {
         int n = matrix.size();
-        int i = n-1, j = 0, count=0;
+        int i = n-1, j = 0, count = 0;
         while(i>=0 && j<n)
         {
             if(matrix[i][j] > mid)

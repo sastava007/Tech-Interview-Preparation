@@ -4,7 +4,7 @@
     From some source, we can visit every connected node to it with a simple DFS. As is the case with DFS's, seen will keep track of nodes that have been visited.
     For every node, we can visit every node connected to it with this DFS, and increment our answer as that represents one friend circle (connected component)
 
-    TC: O(N*N) and Space: O(N) maximum depth of recursion
+    TC: O(N*N) and Space: O(N) maximum depth of recursion, as there are total N*M nodes in matrix and we'll visit each node only once.
 */
 
 class Solution {
@@ -20,7 +20,6 @@ public:
                 friendCircles++;
                 dfs(M, visited, person);
             }
-            
         return friendCircles;
     }
     
@@ -29,7 +28,7 @@ private:
     {
         for(int other=0; other<M.size(); other++)
         {
-            if(M[person][other]==1 && !visited[other])      //We found an unvisited person in the current friend cycle 
+            if(M[person][other]==1 && !visited[other])      //We found an unvisited person in the current friend circle
             {
                 visited[other] = true;
                 dfs(M, visited, other);     //Start DFS on this new found person
@@ -38,7 +37,43 @@ private:
     }
 };
 
+/* BFS: using Queue */
+class Solution {
+public:
+    int findCircleNum(vector<vector<int>>& M) 
+    {
+        int n=M.size();
+        if(n==0)return n;
+        int circles=0;
+        vector<bool> visited(n,false); 
 
+        for(int i=0;i<n;i++)
+        {
+            if(visited[i])
+                continue;
+            queue<int> q1;
+            q1.push(i);
+            circles++;
+
+           while(!q1.empty())
+           {               
+            int cur=q1.front();
+            q1.pop();
+            visited[cur]=true;
+                for(int j=0;j<M[cur].size();j++)
+                {
+                    if(visited[j]==false&&M[cur][j]==1)
+                    {
+                        q1.push(j);
+                        visited[j]=true;
+                    }
+                }
+                    
+            }
+        }
+        return circles;
+    }
+};
 
 /* A more clear & understandable code using O(N^2) space but not efficient */
 
@@ -77,25 +112,3 @@ private:
         }
     }
 };
-
-/* Using Queue */
-public int findCircleNum(int[][] M) {
-    int count = 0;
-    for (int i=0; i<M.length; i++)
-        if (M[i][i] == 1) { count++; BFS(i, M); }
-    return count;
-}
-
-public void BFS(int student, int[][] M) {
-    Queue<Integer> queue = new LinkedList<>();
-    queue.add(student);
-    while (queue.size() > 0) {
-        int queueSize = queue.size();
-        for (int i=0;i<queueSize;i++) {
-            int j = queue.poll();
-            M[j][j] = 2; // marks as visited
-            for (int k=0;k<M[0].length;k++) 
-                if (M[j][k] == 1 && M[k][k] == 1) queue.add(k);
-        }
-    }
-}

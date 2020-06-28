@@ -55,8 +55,10 @@ public:
             pts.insert({p[0], p[1]});
         }
         int area = INT_MAX;
-        for(auto p : pts){
-            for(auto q : pts){
+        for(auto p : pts)
+        {
+            for(auto q : pts)
+            {
                 if(p.first == q.first || p.second == q.second) continue;
                 if(pts.count({p.first, q.second}) && pts.count({q.first, p.second})){
                     area = min(area, abs((p.first - q.first) * (p.second - q.second)));

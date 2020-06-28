@@ -1,27 +1,23 @@
-/* TC: O(N) and Space: O(width_of_BT) */
+/* TC: O(N) and Space: O(maximum_width_of_BT) */
 
 class Solution {
 public:
     vector<int> largestValues(TreeNode* root) 
     {
         vector<int> result;
-        
         if(root==NULL)
             return result;
-        
         queue<TreeNode*> q;
         q.push(root);
-        
+
         while(!q.empty())
         {
             int size = q.size(), max_ele = INT_MIN;
             while(size--)
             {
                 TreeNode* temp = q.front();
-                q.pop();
-                
+                q.pop();        
                 max_ele = max(max_ele, temp->val);
-                
                 if(temp->left)
                     q.push(temp->left);
                 
@@ -30,31 +26,37 @@ public:
             }
             result.emplace_back(max_ele);
         }
-        
         return result;
     }
 };
 
 /* Using recusive DFS */
-public class Solution {
-    public List<Integer> largestValues(TreeNode root) {
-        List<Integer> res = new ArrayList<Integer>();
-        helper(root, res, 0);
-        return res;
-    }
-    private void helper(TreeNode root, List<Integer> res, int d){
-        if(root == null){
+class Solution 
+{
+    vector<int> solution;
+public:
+    void helper(TreeNode* node, int cl)
+    {
+        if (node == NULL) {
             return;
         }
-       //expand list size
-        if(d == res.size()){
-            res.add(root.val);
+        if (solution.size() < cl + 1) {
+            solution.push_back(node->val);
+        } else {
+            if (solution[cl] < node->val) {
+                solution[cl] = node->val;
+            }
         }
-        else{
-        //or set value
-            res.set(d, Math.max(res.get(d), root.val));
-        }
-        helper(root.left, res, d+1);
-        helper(root.right, res, d+1);
+        helper(node->left, cl+1);
+        helper(node->right, cl+1);
     }
-}
+    vector<int> largestValues(TreeNode* root)
+    {
+        if(root == NULL) {
+            return solution;
+        }
+        
+        helper(root, 0);
+        return solution;
+    }
+};

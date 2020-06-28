@@ -5,7 +5,7 @@
     Input = {}
     String = [1[3[5][6]][2][4]]
 
- */
+*/
 
 class Solution {
 public:
@@ -23,7 +23,7 @@ public:
         if(data.length() == 0)
             return NULL;
             
-        int pos = 1;
+        int pos = 1;  // 1 becz 0th position contains '[' opening brackets
         return solve(data,pos);
     }
 
@@ -33,9 +33,9 @@ public:
             return ;
         ans += "[";
         ans += to_string(root->label);
-        for(int i = 0; i < root->neighbors.size() ; i++) {
+        for(int i = 0; i < root->neighbors.size() ; i++)
                 dfs(root->neighbors[i],ans);
-        }
+                
         ans += "]";
     }
     TreeNode * solve(string& data,int &pos)
@@ -59,4 +59,51 @@ public:
             }
         }
     }
+};
+
+/* Another approach */
+class Codec {
+public:
+    string serialize(Node* root) {
+      ostringstream os;
+      serialHelper(root, os);
+      return os.str();
+    }
+   
+    Node* deserialize(string data) {
+      istringstream iss(data);
+      return deserialHelper(iss);
+    }
+ 
+private:
+  void serialHelper(Node* root, ostringstream &oss){
+    if(root == nullptr){
+      oss << "$";
+      return;
+    }
+   
+    oss << to_string(root->val) << " ";
+    oss << to_string(root->children.size()) << " "; //Encode the number of children of this node
+    for(auto child: root->children){
+      serialHelper(child, oss);
+    }
+  }
+ 
+  Node* deserialHelper(istringstream &iss){
+    string token;
+    iss >>token ;
+    if(token == "$"){
+      return nullptr;
+    }
+   
+    Node* root = new Node(stoi(token));
+
+    iss >> token;
+    int numOfChildren  = stoi(token) ;
+   
+    for(int i = 0; i < numOfChildren; i++){
+      root->children.push_back(deserialHelper(iss));
+    }
+    return root;
+  }
 };

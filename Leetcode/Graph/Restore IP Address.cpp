@@ -1,11 +1,11 @@
 /*  
-    For IPV4 add. we have to place 3 dots, such that each portion lies b/2 [0-255] and if a portion constains a 0 then 
-    it should contain only single 0.
+    For IPV4 add. we have to place 3 dots, such that each portion lies b/2 [0-255] and no portion should have a leading zero
+    What we are trying to do here is to partition the input string into 4 parts with 3 cuts. There are C(n, 3) ways to cut the string into 4 parts. In that sense, the time complexity is O(n^3). On second thought, however, because we are doing backtracking and removing lots of unnecessary checking, we are only checking three possibilities for each part (it has to be [0,255]), it becomes 3^4, which is just a constant, so it becomes O(1)
 
     DFS Approach
-
-    TC: O(3^4) 
-    Space: O(n)
+    TC: O(3^4) & Space: O(n) for output return oterwise O(1) depth of recursion tree is 4
+    
+    Input: "25525511135"  Output: ["255.255.11.135", "255.255.111.35"]
 */
 
 class Solution
@@ -15,7 +15,7 @@ class Solution
     {
             if (s.empty()) return {};
             vector<string> res;
-            dfs("", 0, 0, res, s);      // we can use 2 variable, one to maintain the octet/group upto which we've processed and other to track character in string
+            dfs("", 0, 0, res, s);      // we can use 2 variable, one to maintain the group upto which we've processed and other to track character in string
             return res;
     }
     

@@ -49,49 +49,8 @@ int minKnightMoves(int x, int y)
         }
         steps++;
     }
-
     return -1;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /*  Idea is to use a BFS for finding the shortest distance b/w source and destination.

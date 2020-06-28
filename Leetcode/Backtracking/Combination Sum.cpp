@@ -1,8 +1,13 @@
 /* Given a set of candidate numbers (candidates) (without duplicates) and a target number (target), find all unique combinations in candidates where the candidate numbers sums to target. */
-/* TC:  Every time you have N choice (since you can use number repeatedly), and you can choose at most target times (actually it's smaller than target), so we can assume the worst-case time       complexity is O(N^target) Space:O(target)
+/* 
+    TC:  Every time you have N choice (since you can use number repeatedly), and you can choose at most target times (actually it's smaller than target), 
+    so we can assume the worst-case time complexity is O(N^target) Space:O(target)
 
-    Backtracking Solution
+    Clarifying questions to ask:
+        - all positive number ?
+        - will the set contains duplicates ?
 
+    Backtracking Approach
 */
 
 class Solution {

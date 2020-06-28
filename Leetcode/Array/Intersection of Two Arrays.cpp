@@ -13,15 +13,14 @@ public:
             if(hash.find(it) != hash.end())
             {
                 ans.emplace_back(it);
-                hash.erase(it);
+                hash.erase(it);     // remove it so that, we don't need to add it next time
             }
         }
-        
         return ans;
     }
 };
 
-/* Follow Up: Given two sorted arrays, and you have to find intersection of them in O(n) time and O(1) space complexity, you can ignore the array for output 
+/*  Follow Up: Given two sorted arrays, and you have to find intersection of them in O(n) time and O(1) space complexity, you can ignore the array for output 
     the idea is to use something similar to merge() algo of merge sort.
 */
 
@@ -39,7 +38,7 @@ vector<int> intersection(vector<int>& nums1, vector<int>& nums2)
             {
                 ans.push_back(nums1[i]);
                 cur=nums1[i];
-                while(nums1[i]==cur)
+                while(nums1[i]==cur)        // skip all the duplicate/same elements
                     i++;
                 while(nums2[j]==cur)
                     j++;

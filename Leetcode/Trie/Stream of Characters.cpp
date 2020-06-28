@@ -1,5 +1,5 @@
 /* 	As we've to check the last K characters including this word to be present in dictinoary then we should build our prefix tree in reverse order. 
-	And keep on adding the letters to an empt string and check from it's ending whethere there exists some word or not.
+	And keep on adding the letters to an empty string and check from it's ending whethere there exists some word or not.
 
 	TC: O(N*W) time to buld the tree, where N = total words in dictionary and W = maximum word length and O(no_of_letters_that_has_been_quered) for query
 	Space: O(N*W*26)
@@ -19,7 +19,7 @@ struct TrieNode
 
 class StreamChecker {
 public:
-    StreamChecker(vector<string>& words) 
+    StreamChecker(vector<string>& words)
     {
         root = new TrieNode();
         for(string word: words)

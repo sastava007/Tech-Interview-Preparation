@@ -46,6 +46,7 @@ public:
 
     TC: O(N^2) and Space: O(1)
 */
+
 bool isKPallindrome(string s, int k)
 {
     int n = s.length();
@@ -54,7 +55,6 @@ bool isKPallindrome(string s, int k)
 
     int maxlenPallindrome = longestPallindromeLength(s);
     return (n-maxlenPallindrome <= k)
-
 }
 
 int longestPallindromeLength(string s)

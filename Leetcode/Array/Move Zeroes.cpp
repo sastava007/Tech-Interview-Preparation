@@ -28,6 +28,27 @@ public:
             if(nums[i] != 0)
                 swap(nums[lastNonZeroAt++],nums[i]);
  
-    }
-    
+    }  
 };
+
+/*  If the relative ordering of elements doesn't matter, and we want to reduce the total write operation. Then idea is to use 2 pointers, left & right such that it gurantees that there will be
+    no zero element in the left of left pointer, and there exits no non-zero element to the right of right pointer 
+*/
+void moveZeroes(int[] nums) 
+{
+    int left = 0;
+    int right = nums.length - 1;
+    while(left < right) {
+        while(nums[left] != 0 && left < right) {
+            left++;
+        }
+        while(nums[right] == 0 && left < right) {
+            right--;
+        }
+        int tmp = nums[left];
+        nums[left] = nums[right];
+        nums[right] = tmp;
+        left++;
+        right--;
+    }
+}

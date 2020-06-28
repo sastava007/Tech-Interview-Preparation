@@ -2,8 +2,9 @@
     palindromic string length is odd or even. For example aaa, aa. The fucntion palindrom checks from the 'center' to end. If the two
     character equals, move on, left pointer moves left, right pointer moves right, if not, break the loop.
     
-    O(N^2 time) and O(1) space
-    Worst Case: "aaa" => ["a", "a", "a", "aa", "aa", "aaa"]
+    1. Expand Around Centre
+        O(N^2 time) and O(1) space
+        Worst Case: "aaa" => ["a", "a", "a", "aa", "aa", "aaa"]
 
 */
 
@@ -30,5 +31,49 @@ private:
         }
     }
 };
+
+/* Using DP:   Time & Space O(N^2)  */
+
+int countSubstrings(String s) 
+{
+    if (s.isEmpty())
+        return 0;
+
+    int n = s.length();
+
+    boolean[][] dp = new boolean[n][n];
+
+    int count = 0;
+
+    // All substrings of length 1 are palindromes
+    for (int i = 0; i < n; i++) {
+        dp[i][i] = true;
+        count++;
+    }
+
+    int i, k, j;
+
+    // check for sub-string of length 2
+    for (i = 0; i < n - 1; i++) {
+        if (s.charAt(i) == s.charAt(i + 1)) {
+            dp[i][i + 1] = true;
+            count++;
+        }
+    }
+
+    for (k = 3; k <= n; k++) {
+        // i is the starting index
+        for (i = 0; i < n - k + 1; i++) {
+            // j is ending index of substring from starting index i and length k
+            j = i + k - 1;
+            if (dp[i + 1][j - 1] && s.charAt(i) == s.charAt(j)) {
+                dp[i][j] = true;
+                count++;
+            }
+        }
+    }
+    return count;
+}
+
 
 /* Can be further optimized to solve in O(N) time using Manacher's algorithm */

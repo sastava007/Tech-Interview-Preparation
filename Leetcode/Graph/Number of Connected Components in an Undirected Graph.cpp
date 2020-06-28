@@ -1,4 +1,8 @@
-/*  */
+/* 
+    Here we're given that there are N vertices from [0 - N-1]
+    TC: O(V+E) as we're doing simply DFS 
+
+*/
 #include<iostream> 
 #include <list> 
 using namespace std; 
@@ -39,7 +43,7 @@ void Graph::connectedComponents()
             DFSUtil(v, visited); 
   
             cout << "\n"; 
-        } 
+        }
     } 
     delete[] visited; 
 } 

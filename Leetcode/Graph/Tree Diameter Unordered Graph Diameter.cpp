@@ -13,7 +13,7 @@ class Solution
     public:
     int treeDiameter(vector<vector<int>> & edges)
     {
-        int n = edges.size()+1;
+        int n = edges.size()+1;     // If an undirected graph is tree, then #nodes = #edges + 1
         graph.resize(n);
 
         for(auto &it: edges)
@@ -32,12 +32,12 @@ class Solution
     vector<vector<int>> graph;
     int diameter;
 
-    int dfs(int curr, int parent) 
+    int dfs(int curr, int parent)
     {
         int max1=0, max2=0;
         for(int v: graph[curr])
         {
-            if(v != parent)
+            if(v != parent)     //explore all the neighbors of current node, untill it's not their parent
             {
                 int temp = dfs(v, curr);
                 if(temp>max1)
@@ -49,7 +49,7 @@ class Solution
                     max2=temp;
             }
         }
-        diameter = max(diameter, max1+max2);
+        diameter = max(diameter, max1+max2);       // as here diameter is described in terms of edges & not nodes, so that's why not adding +1
         return max1+1;
     }
 };

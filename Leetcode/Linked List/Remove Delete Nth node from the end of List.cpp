@@ -9,7 +9,7 @@ public:
         if(head==NULL)
             return NULL;
         
-        ListNode* dummy = new ListNode(0);  // create a dummy node, to avoid the case when we've to delete our head node itself
+        ListNode* dummy = new ListNode(0);      // create a dummy node, to avoid the case when we've to delete our head node itself
         dummy->next = head;
         
         ListNode *slow = dummy, *fast = dummy;

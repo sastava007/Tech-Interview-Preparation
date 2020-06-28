@@ -1,7 +1,7 @@
 /*  Idea is to build a hash map containing the freq of each character of T, and as we've to sort the string T based on ordering of S. Then we can just start over S, and add all elements
     which are also presnt in T. And later add all the reamining characters, that are still pedning to be added which were not present in string S.
 
-    Note: S has no no repitions, but not sure about T. (confirm from interviewer)
+    Note: S has no no repetitions, but not sure about T. (confirm from interviewer)
     TC: O(N+M) and O(1) Space
 
     Edge Cases: 

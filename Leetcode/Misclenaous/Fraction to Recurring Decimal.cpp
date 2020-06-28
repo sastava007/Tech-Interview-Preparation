@@ -2,7 +2,7 @@
     and store the current numerator in a hash table, next time when doing the same multiply the numerator by 10 as it is already <0 and check whether we have already seen this numerator before or not
     if yes then simply add () and return result. Else keep on doing the same.
 
-    TC: O(N) & Space: O(N) where N is the number of unique remainders.
+    TC: O(N) & Space: O(N) where N is the number of distinct remainders we get during the fractional division
 
     PS: We can make use of Floyd's Cycle Detection algorithm, for finding TC: O(N) and space complexity in O(1)
 */

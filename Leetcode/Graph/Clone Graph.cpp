@@ -1,18 +1,30 @@
 /*  We've to make a deep copy of given graph, so basic idea is to traverse the graph using BFS/DFS and map the visiting nodes to it's new copy. 
-    Here, I'm using map<> to store visited nodes as well as build the connection while traversing.
+    Here, I'm using hash-map<> to store visited nodes as well as build the connection while traversing.
 
-    The first value in map is the original node, and we'are mapping it's copy to it.
+    The first value in hash-map is the original node, and we'are mapping it's copy to it.
 
     There are 2 methods to perform copy, the first one is Deep Copy & Shallow Copy.
 */
 
-//Iterative BFS solution, replace queue to stack to implement DFS.
+//Iterative BFS solution, TC: O(N+M) Space: O(N or n+m)
 
-class Node 
-{
+class Node {
+public:
     int val;
-    vector<Node> neighbors;
-}
+    vector<Node*> neighbors;
+    Node() {
+        val = 0;
+        neighbors = vector<Node*>();
+    }
+    Node(int _val) {
+        val = _val;
+        neighbors = vector<Node*>();
+    }
+    Node(int _val, vector<Node*> _neighbors) {
+        val = _val;
+        neighbors = _neighbors;
+    }
+};
 
 class Solution
 {
@@ -53,15 +65,19 @@ public:
 };
 
 /* Recursive, DFS Solution */
+
 class Solution {
 public:
-    Node* cloneGraph(Node* node) {
+    Node* cloneGraph(Node* node) 
+    {
         if (!node) {
             return NULL;
         }
-        if (copies.find(node) == copies.end()) {
+        if (copies.find(node) == copies.end()) 
+        {
             copies[node] = new Node(node -> val, {});
-            for (Node* neighbor : node -> neighbors) {
+            for (Node* neighbor : node -> neighbors) 
+            {
                 copies[node] -> neighbors.push_back(cloneGraph(neighbor));
             }
         }

@@ -1,90 +1,102 @@
-/*  One way is to merge 2 at a time, and then merge the 3rd one with obatined result from the pevious merge. This requires O(m+n+o) time and O(m+n) extra space to hold the result obtained by first 2 
-    merge methods. 
+/*  
+    One way is to merge 2 at a time, and then merge the 3rd one with obatined result from the pevious merge. This requires O(m+n+o) time and O(m+n) extra space to hold the result obtained by first    2 merge methods. 
 
     We can do something better, if we somehow able to merge 3 at a time, O(m+n+o) time and O(1) space becz we don't need to maintain any temporary vector to store result of first two merge
+
+    Example: [1,2,2,3,5] [4,6,6] [1,2,3,4,5,6,8,9,9,9,10] => [1,2,3,4,5,6,8,9,10]
 */
 
-Vector mergeThree(Vector& A, Vector& B, Vector& C) 
+#include<bits/stdc++.h>
+using namespace std;
+
+vector<int> mergeThree(vector<int>& A, vector<int>& B, vector<int>& C) 
 { 
-    int m, n, o, i, j, k; 
+    int m, n, o, i=0, j=0, k=0; 
     m = A.size(); 
     n = B.size(); 
     o = C.size(); 
 
-    Vector D; 
-    D.reserve(m + n + o); 
-  
-    i = j = k = 0; 
-  
-    while (i < m && j < n && k < o) { 
-  
+    vector<int> D; 
+    while (i < m && j < n && k < o) 
+    { 
         // Get minimum of a, b, c 
-        int m = min(min(A[i], B[j]), C[k]); 
-  
-        // Put m in D 
-        D.push_back(m); 
-  
-        if (m == A[i])      // to remove duplicates replace if with while
+        int curr = min(min(A[i], B[j]), C[k]); 
+        D.push_back(curr); 
+        while(curr == A[i])
             i++; 
-        else if (m == B[j]) 
+        while(curr == B[j]) 
             j++; 
-        else
-            k++; 
+        while(curr == C[k])
+            k++;
     }
-  
     // C has exhausted 
     while (i < m && j < n)  // similarly do it for other 2 parts as well : while to remove the duplicates
     {
-        if(A[i]==B[j])
-        {
-            D.push_back(A[i]);
-            cur=A[i];
-            while(A[i]==cur)
-                i++;
-            while(B[j]==cur)
-                j++;
-        }
-        else if(A[i]<B[j])
-            i++;
-        else
-            j++;
-    } 
-  
-    // B has exhausted 
-    while (i < m && k < 0) { 
-        if (A[i] <= C[j]) { 
-            D.push_back(A[i]); 
+        int curr = min(A[i], B[j]); 
+        D.push_back(curr); 
+
+        while(curr == A[i])
             i++; 
-        } 
-        else { 
-            D.push_back(C[j]); 
-            k++; 
-        } 
-    } 
-  
-    // A has exhausted 
-    while (j < n && k < 0) { 
-        if (B[j] <= C[k]) { 
-            D.push_back(B[j]); 
+        while(curr == B[j])     // we can also do bound check over here i.e whether j<n, oterwise it may access out of bound memory
             j++; 
-        } 
-        else { 
-            D.push_back(C[j]); 
+    }
+    // B has exhausted 
+    while (i < m && k < o) 
+    {
+        int curr = min(A[i], C[k]);
+        D.push_back(curr); 
+
+        while(curr == A[i]) 
+            i++; 
+        while(curr == C[k]) 
             k++; 
-        } 
+    }
+    // A has exhausted 
+    while (j < n && k < o) 
+    { 
+        int curr = min(B[j], C[k]);
+        D.push_back(curr); 
+
+        while(curr == B[j])     // we can also do bound check over here i.e whether j<n, oterwise it may access out of bound memory
+            j++; 
+        while(curr == C[k]) 
+            k++; 
     } 
-  
     // A and B have exhausted 
     while (k < o) 
-        D.push_back(C[k++]); 
-  
+    {
+        int curr = C[k];
+        D.push_back(curr);
+        while(k<o && curr == C[k])
+            k++;
+    }
     // B and C have exhausted 
     while (i < m) 
-        D.push_back(A[i++]); 
-  
+    {
+        int curr = A[i];
+        D.push_back(curr);
+        while(i<m && curr == A[i])
+            i++;
+    }
     // A and C have exhausted 
-    while (j < n) 
-        D.push_back(B[j++]); 
-  
+    while (j < n)
+    {
+        int curr = B[j];
+        D.push_back(curr);
+        while(j<n && curr == B[j])
+            j++;
+    }
     return D; 
-} 
+}
+
+int main()
+{
+    vector<int> a ={1,2,2,3,5}, b = {3,4,4,5,6,6,8,8,9}, c = {1,2,3,4,5,6,8,9,9,9,10};
+
+    vector<int> result = mergeThree(a,b,c);
+
+    for(int i: result)
+        cout<<i<<" ";
+
+    return 0;
+}

@@ -5,6 +5,8 @@
     So each time we check, if our mid isn't even then made it even by decrementing one place back. And now we can check if out nums[mid] != nums[mid+1] then the lone number must exists before
     mid, so we change our high acordingly. Else if nums[mid] == nums[mid+1] then change mid = mid+2
 
+    Input: [3,3,7,7,10,11,11] ; Output = 10
+
 */
 
 class Solution {
@@ -19,10 +21,10 @@ public:
             if (mid % 2 == 1)   // if current position isn't even, then new digit always start from even position, so change it too even
                 mid--;
 
-            if (nums[mid] != nums[mid + 1])
+            if (nums[mid] != nums[mid + 1])     //if nums[mid]!=nums[mid+1] this means, that the bad point has already ocuured before it
                 high = mid;
             else 
-                low = mid + 2;
+                low = mid + 2;      // if our property is valid till yet, then it means it will occur furher in future so increment 
         }
         return nums[low];
     }

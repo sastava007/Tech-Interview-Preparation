@@ -1,5 +1,6 @@
 /* 
     We've to setup a new building on an empty land, such that the distance from this new building to all other buildings should remain shortest.
+    
     Idea is to traverse the matrix, and for every building use BFS to compute the shortest distance from every land(0) to this building. And after we done doing the same for all buildings
     we'll be having a dist matrix of shortest distance from land(0) to all the reachable buildings.
 
@@ -8,7 +9,6 @@
     The shortest distance from an empty land to a bulding can be calculate in O(MN) time by starting the BFS from building, therefore
     we can calculate the distance from all buildings to empty land in by running BFS from every building, so total TC = (#building * MN) => O(M^2 N^2)
     
-
 */
 
 int shortestDistance(vector<vector<int>> &grid)

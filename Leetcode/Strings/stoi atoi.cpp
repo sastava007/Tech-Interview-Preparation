@@ -1,4 +1,4 @@
-/*  */
+/* TC O(N) */
 
 class Solution {
 public:
@@ -24,13 +24,12 @@ public:
         while(i<str.length() && isdigit(str[i]))
         {
             result = result*10+(str[i++]-'0');
+
             if(result*sign>INT_MAX)
                 return INT_MAX;
             if(result*sign<INT_MIN)
                 return INT_MIN;
-            
         }
-        
         return sign*result;
     }
 };

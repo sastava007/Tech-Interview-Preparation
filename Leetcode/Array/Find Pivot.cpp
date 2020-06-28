@@ -1,5 +1,7 @@
 /*  Given an array of integer, find the pivot index such that the sum of the elements to it's left is equal to the sum of the elements to it's right. Here we're assuming that
-    sum beyond the boundaries are zero. 
+    sum beyond the boundaries are zero.
+
+    Input = [1,7,3,6,5,6]  Output = 3
 */
 
 class Solution {

@@ -1,4 +1,4 @@
-/*  One way is to recursively call isValiddBST() for each node, but this would require O(NlogN) time complexity.
+/*  One way is to recursively call isValiddBST() for each node, but this would require O(N^2) worst case in case of Skewed Tree.
     We can do it in O(N) using following property: 
 
     A Tree is BST if following is true for every node x.
@@ -44,7 +44,7 @@ private:
         curr.minele = min(root->data, left->minele);
         curr.maxele = max(root->data, right->maxele);
 
-        if (left.isBST && right.isBST left->maxele < root->data && right->minele > root->data)      // we've assumed that BST is strict, without any duplicates else use (<= and >=)
+        if (left.isBST && right.isBST && left->maxele < root->data && right->minele > root->data)      // we've assumed that BST is strict, without any duplicates else use (<= and >=)
         {
             curr.size = left->size + right->size + 1;
             cur.isBST = true;

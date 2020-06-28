@@ -1,4 +1,5 @@
 /*  Circular queue is used to avoid the wastage of space in a regular queue implementation using arrays
+
     Idea is to maintain 2 pointers, rear & front which will initially point to -1 and when we've to perform enqueue operation we increment the rear circularly i.e if we're at the end
     then we'll move to beginnning. PS: when we're inserting the first element we should also update our front to point 0, along with incrementing rear.
 

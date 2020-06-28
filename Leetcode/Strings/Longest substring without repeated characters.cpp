@@ -1,4 +1,8 @@
-/* Inspired from ssubstring search leetcode template */
+/*  Inspired from ssubstring search leetcode template 
+
+    Ex: "abcabcbb" O/P = abc(3)
+        "bbbbb"  O/P = b(1)
+*/
 
 class Solution {
 public:

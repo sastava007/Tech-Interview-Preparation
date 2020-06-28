@@ -27,7 +27,7 @@ void convertToDll(node *root, node **head)
     convertToDll(root->right, head);
 }
 
-/* Leetcode: Convert BST to circular DLL TC: O(N) ; space O(height) */
+/* Leetcode: Convert BST to circular DLL TC: O(N) ; Space O(height) */
 
 class Solution {
 public:

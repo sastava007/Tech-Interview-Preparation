@@ -1,7 +1,9 @@
 /*  The idea is to recursively tarverse the grid using a DFS, and increase the counter when we encounter a grid[][]='1', and we basically reset 
     it so that we don't call its again & again. Basically we have to count the no. of connected components
 
-    TC: O(m*n) and Space: O(m*n) due to recursive call stack worst in case there are all lands[1]
+    TC: O(M*N) and Space: O(M*N) worst case space complexity when grid is all full of land(1) then recursion will go m*n levels deep
+    
+    visited[][] can also be used, instead of directly modifying the grid, OR we can update the visited island to 2 and later dp %=2 this way we don't need extra space
 */
 
 class Solution {
@@ -34,7 +36,7 @@ public:
         if(x<0 || y<0 || x>=n || y>=m || grid[x][y]=='0')
             return;
         
-        grid[x][y]='0';     //mark the cell as visited
+        grid[x][y]='0';     //  Rather than changing it to 0. You can change it to 2 and then do a %2 at the end for all matrix elements. (NO EXTRA SPACE)
         
         dfs(grid, x-1, y, n, m);
         dfs(grid, x, y+1, n, m);
@@ -44,7 +46,7 @@ public:
 };
 
 /*  Iterative BFS, similar intution & concept 
-    TC: O(M*N) and Space: O(min(M,N))
+    TC: O(M*N) and Space: O(N)
 
 */
 class Solution {
@@ -59,6 +61,7 @@ public:
                 {
                     islands++;
                     grid[i][j] = '0';
+
                     queue<pair<int, int>> todo;
                     todo.push({i, j});
                     while (!todo.empty()) 
@@ -82,7 +85,9 @@ public:
     }
 };
 
-/* Follow Up: If the matrix is super large and sparse means most of positions are 0 just keep the positions of the ones as a set of tuples. The DFS algorithm will work the same, 
-instead querying the matrix for the next position you query the set of tuples, if the position exist you continue the traversal. 
-We can use a hash_map<pair<int x, int y>>
+/* 
+    Follow Up: If the matrix is super large and sparse means most of positions are 0 just keep the positions of the ones as a set of tuples. The DFS algorithm will work the same, 
+    instead querying the matrix for the next position you query the set of tuples, if the position exist you continue the traversal. 
+    We can use a hash_map<pair<int x, int y>>
+    
 */

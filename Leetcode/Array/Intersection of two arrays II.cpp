@@ -11,7 +11,7 @@ public:
         
         for(auto it: nums2)
         {
-            if(m.find(it)!=m.end() && --m[it]>=0)
+            if(m.find(it)!=m.end() && --m[it]>=0)      //add it as many times as present in both the arrays
                 ans.emplace_back(it);
         }
         
@@ -21,9 +21,11 @@ public:
 
 /*  Follow Up: If both the arrays already sorted & we've to include the elements as many times as they are present in both the arrays. 
     The intution is similar to merging two sorted arrays, here we'll not skip remaining equal elements when we found an equal pair unlike the problem 1 
-    2 Pointers approach, Worst case time complexity: O(m+n) 
+    2 Pointers approach.
 
     Note: The final result will have duplicates.
+    
+    TC: O(M+N)
 */
 class Solution {
 public:

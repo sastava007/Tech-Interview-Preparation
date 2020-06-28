@@ -4,6 +4,8 @@
     Here 'open' represents number of extra opening brackets, that requires more closing brackets for getting balanced.
     Similarly 'close' represents number of extra closing brackets, that requires addition of more opening brackets.  
 
+    Ex: "()))(("  O/P = 4
+    
   */
 
 class Solution {

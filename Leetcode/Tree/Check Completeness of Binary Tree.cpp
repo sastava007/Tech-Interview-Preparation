@@ -1,9 +1,11 @@
 /*  
+    A BT is said to be complete, whose all levels except possibly the last level are completely filled and all the leaf in last level are as left as possible.
+    
     One way is to use BFS to do a level order traversal, and whenever we encounter a NULL node then mark it and make sure that we don't encounter any non NULL node after that neither in it's own 
     level nor in it's down level.
 
-    O(N) time and O(N) space
- */
+    TC: O(N) and Space: O(maximum_width_of_binary_tree) which is equal to O(N) in case of balanced tree O(2^H) H = log2(N)
+*/
 
 class Solution {
 public:

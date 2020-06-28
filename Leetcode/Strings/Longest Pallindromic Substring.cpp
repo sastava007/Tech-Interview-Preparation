@@ -49,19 +49,19 @@ int longestPalSubstr(string str)
 { 
     int n = str.size(); 
 
-    bool table[n][n];
+    bool table[n][n];       // table[i][j] represents whether substring b/w ith & jth indexes are pallindrome or not
     memset(table, false, sizeof(table)); 
   
     // All substrings of length 1 are palindromes 
     int maxLength = 1; 
   
     for (int i = 0; i < n; ++i)     // fill around the diagonal
-        table[i][i] = true; 
+        table[i][i] = true;
   
     // check for sub-string of length 2. 
-    int start = 0; 
-    for (int i = 0; i < n - 1; ++i) { 
-        if (str[i] == str[i + 1]) { 
+    int start = 0;
+    for (int i = 0; i < n - 1; ++i) {
+        if (str[i] == str[i + 1]) {
             table[i][i + 1] = true; 
             start = i; 
             maxLength = 2; 

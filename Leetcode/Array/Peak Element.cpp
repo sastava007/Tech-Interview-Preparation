@@ -1,7 +1,6 @@
-/* Peak element: which is greater than it's both the neighbours
-    Intution: can be derived from finding bitonic point in an array.
- */
+/*  Peak element: which is greater than it's both the neighbours */
 
+// TC: O(logN) and Space: O(logN) due to call recursion stack
 class Solution {
 public:
     int findPeakElement(vector<int>& nums) 
@@ -10,7 +9,6 @@ public:
     }
     
 private:
-    
     int binarySearch(vector<int> &nums, int low, int high)
     {
         if(low==high)
@@ -26,7 +24,7 @@ private:
     }
 };
 
-/* Iterative solution */
+/* Iterative Version  TC: O(logN) & Spcae: O(1) */
 class Solution {
 public:
     int findPeakElement(vector<int>& nums) 

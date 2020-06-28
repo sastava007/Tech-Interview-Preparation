@@ -1,7 +1,7 @@
 /*  Given an integer array, find all the different possible increasing subsequences of the given array, and the length of an increasing subsequence should be at least 2.
     
     The idea is to basically explore all permutations, with the following constraints:
-    Only add elements to permutation vector (cur in my case) if:
+       - Only add elements to permutation vector (cur in my case) if:
 
     The element is greater than the last element in sequence, also we should not push the same elements within the same  dfs level, that's why we're using hash set over here.
 

@@ -25,11 +25,29 @@ int read(string &buff, int n)
 
 /*  In above solu, we've assumed that this method is called just single time. But if this method is called multiple times then we have to save the status of the internal buffer 
     that indicates past character read.
- */
+
+        Input: "filetestbuffer"
+        read(6)
+        read(5)
+        read(4)
+        read(3)
+        read(2)
+        read(1)
+        read(10)
+        
+        Output:
+        6, buf = "filete"
+        5, buf = "stbuf"
+        3, buf = "fer"
+        0, buf = ""
+        0, buf = ""
+        0, buf = ""
+        0, buf = ""
+*/
 
 int read(string &buff, int n)
 {
-    static int charactersInBuffer = 0;
+    static int charactersInBuffer = 0;  // instead of making these variables as static, we can make a class and declare these variables as private data members
     static int offset = 0;
     static char temp[4];
 

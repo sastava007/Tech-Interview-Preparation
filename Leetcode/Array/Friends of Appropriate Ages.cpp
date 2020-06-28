@@ -1,5 +1,9 @@
 /*  Instead of processing all 20000 people, we can process pairs of (age, count) representing how many people are that age.
-    Since there are only 120 possible ages, this is a much faster loop. */
+    Since there are only 120 possible ages, this is a much faster loop. 
+
+    Ex: [16,17,18]   O/P: 17 -> 16, 18 -> 17.
+        [20,30,100,110,120]    O/P: 110 -> 100, 120 -> 110, 120 -> 100   
+*/
 
 class Solution {
 public:

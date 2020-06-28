@@ -37,6 +37,6 @@ public:
             }
         }
         
-        return j;   // to et the resultant/modified vector<> just print all the characters till jth index 
+        return j;   // to get the resultant/modified vector<> just print all the characters till jth index 
     }
 };

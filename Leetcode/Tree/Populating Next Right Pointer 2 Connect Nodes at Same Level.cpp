@@ -23,7 +23,7 @@ public:
                     if(childHead==NULL)                 // checking whether we've set the first node in that level or not
                         childHead = parent->left;
                     else
-                        child->next = parent->left;
+                        child->next = parent->left;     // if this isn't the first element of level, then it means we're in the right subtree so connect it's left child 
                     child = parent->left;
                 }
                 if(parent->right)

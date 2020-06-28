@@ -1,4 +1,7 @@
-/* The idea is to store start and end times in an auxiliary array with an additional marker to indicate whether the time is starting or ending. Now sort the array. Process the sorted array, for every starting increment rooms. And for every ending, decrement. Keep track of maximum active rooms 
+/* 
+    Idea: The idea is to group those non-overlapping meetings in the same room and then count how many rooms we need.
+
+    Approach: Store start and end times in an auxiliary array with an additional marker to indicate whether the time is starting or ending. Now sort the array. Process the sorted array, for every starting increment rooms. And for every ending, decrement. Keep track of maximum active rooms 
 
     TC: O(nlogn) and Space: O(N)
 */
@@ -33,9 +36,8 @@ public:
 class Solution {
 public:
     int minMeetingRooms(vector<Interval>& intervals) {
-        if (intervals.size() == 0) {
+        if (intervals.size() == 0)
             return 0;
-        }
         
         sort(intervals.begin(), intervals.end(), [](const Interval& i1, const Interval& i2) -> bool {       // lmbda function sorts based on starting time of 2 intervals 
             return i1.start < i2.start;
