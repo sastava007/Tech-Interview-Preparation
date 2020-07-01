@@ -1,4 +1,9 @@
-/* Using set, idea is to delay insertion of presum by using pre variable to ensure that length is >1 */
+/* 
+    Check if the array has a continuous subarray of size at least 2 that sums up to a multiple of k, that is, sums up to n*k
+    Using set, idea is to delay insertion of presum by using pre variable to ensure that length is >1 
+
+    [23, 2, 4, 6, 7],  k=6  returns: True
+*/
 
 class Solution {
 public:
@@ -20,7 +25,6 @@ public:
             s.insert(pre);
             pre = sum;
         }
-        
         return false;
     }
 };

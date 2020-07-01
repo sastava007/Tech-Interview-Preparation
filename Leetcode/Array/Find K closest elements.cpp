@@ -9,10 +9,11 @@
     Two Pointers: O(n)
     Binary Search + Two Pointers: O(logn + k)
 
-    The idea is to find the first number which is equal to or greater than x in arr. Then, we determine the indices of the start and the end of a subarray in arr, where the subarray is our result. The time complexity is O(logn + k).
+    The idea is to find the first number which is equal to or greater than x in arr. Then, we determine the indices of the start and the end of a subarray in arr, where the subarray is our result. 
+     
+    TC: O(logn + k).
 
     Note: Here the array is alaready given sorted
-
 */
 
 class Solution {
@@ -50,6 +51,7 @@ private:
         return low;
     }
 };
+
 
 /* 2 Pointers: O(N) */
 class Solution 

@@ -1,4 +1,4 @@
-/* Simple one pass solution */
+/* Simple one pass solution to check monotonically increasing or decreasing array */
 
 class Solution 
 {

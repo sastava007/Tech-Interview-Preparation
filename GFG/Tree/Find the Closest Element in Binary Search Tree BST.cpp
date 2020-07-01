@@ -24,7 +24,7 @@ void util(Node* root, int k, int &minDiff, int &minDiffKey)
         minDiffKey=root->data;
     }
     
-    if(k<root->data)
+    if(k<root->data)    // to get the minimum difference or closest value to element we need to go as close to it as posssible
         util(root->left, k, minDiff, minDiffKey);
     else
         util(root->right, k, minDiff, minDiffKey);

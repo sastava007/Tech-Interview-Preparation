@@ -6,7 +6,7 @@ class Solution {
 public:
     int divide(int dividend, int divisor) 
     {
-        if(divisor == 0)
+        if(divisor == 0)        //safety checking
             return INT_MAX;
         if(divisor == INT_MIN)
             return (dividend==INT_MIN ? 1:0);

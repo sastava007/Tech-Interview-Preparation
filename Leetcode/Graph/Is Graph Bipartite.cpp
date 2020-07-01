@@ -5,7 +5,7 @@
 
     To avoid missing any vertex in case graph isn't connected we are iterating over vertices lineraly
 
-    TC: O(N) and Space: O(N)
+    TC: O(N) and Space: O(N)     where N is number of vertices
 */
 
 class Solution {
@@ -19,7 +19,7 @@ public:
         {
             if(colors[i] == -1)
             {
-                if(!isBipartiteUtil(graph, i, 0))
+                if(!isPossibleToColor(graph, i, 0))
                     return false;
             }
         }
@@ -29,7 +29,7 @@ public:
     
     private:
     vector<int> colors;
-    bool isBipartiteUtil(vector<vector<int>> &graph, int v, int c)
+    bool isPossibleToColor(vector<vector<int>> &graph, int v, int c)
     {
         colors[v] = c;
         
@@ -37,11 +37,11 @@ public:
         {
             if(colors[child] == -1)     //vertex is not yet visited
             {
-                if(isBipartiteUtil(graph, child, !c) == false)
+                if(isPossibleToColor(graph, child, !c) == false)
                     return false;
             }
             else
-                if(colors[v] == colors[child])
+                if(colors[v] == colors[child])  //if adjacent nodes are of same color
                     return false;
         }
         return true;

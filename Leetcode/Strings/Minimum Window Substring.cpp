@@ -1,7 +1,11 @@
 /* https://leetcode.com/problems/find-all-anagrams-in-a-string/discuss/92007/Sliding-Window-algorithm-template-to-solve-all-the-Leetcode-substring-search-problem. 
 
-    TC: O(M+N)
-    Space: O(1) because the map will be of constant size, we can deifine a limit of 26 if we're sure that there will be only upper/lower case characters
+    We are supposed to find the minimum window in S which contains all the characters of string T
+
+    TC: O(M+N) & Space: O(1)
+    
+    Input: S = "ADOBECODEBANC", T = "ABC"
+    Output: "BANC"
 */
 
 class Solution {
@@ -27,7 +31,7 @@ public:
             }
             end++;
             
-            while(remaining == 0)   //keep removing the characters from current window by shiting begin, untill they become invalid, the again look for in next window.
+            while(remaining == 0)   //keep removing the characters from current window by shiting begin, untill they become invalid, then again look for in next window.
             {
                 if(end-start<minlen)
                 {

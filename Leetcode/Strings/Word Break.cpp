@@ -1,4 +1,43 @@
-/* Using DP: dp[j] is true only when dp[i] is true and s.substr(i,j) is present in dictionary. In this case we tried every possible length, but we can do some optimization over this */
+/*  As we seen in above approach that there will be many substrings that will be generated repeatedly, so we have to look for methods to memoize them. So instead of checking for each length,
+    we can cleverly look for only those string length which are present in dictionary.
+
+    dp[i] represents whether subarray(0, i) can be segmented into words that are present in the dictionary. dp[0] = subarray(0,0) which is empty string can be ofcourse
+    segmented so answer is yes.
+
+    TC: O(N*M) where N is length of string, and M is size of dictionary
+*/
+
+class Solution {
+public:
+    bool wordBreak(string s, vector<string>& wordDict) 
+    {
+        vector<bool> dp(s.length()+1, false);       // for better understanding, reanme dp[] to isBreakable[]
+        dp[0]=true;         // isBreakable[i] represents whether it's possible to segment/break the subarray [0,i] into substrings such that each of them is present inside dictionary
+        
+        int n = s.length();
+
+        for(int i=0; i<n; i++)
+        {
+            if(dp[i]==false)      // [pine]i[apple]j for checking for j, first till i should be breakable
+                continue;
+            for(string word: wordDict)
+            {
+                int len = word.length();    //there is no need to try for all length, just try for i+word.length which is in dictionary
+                int j = i+len;
+                if(j<=n && s.substr(i,len) == word)
+                    dp[j] = true;
+            }
+        }
+        return dp[n];
+    }
+};
+
+
+/*  Using DP: dp[j] is true only when dp[i] is true and s.substr(i,j) is present in dictionary. In this case we tried every possible length, but we can do some optimization over this 
+    TC: O(N^3), as there are O(N^2) substrings and O(N) time for operation on each substrin like substr() and equals()
+
+    Note: In practice m = big set of english words, and n is some small block of to search. So (N^3) will be faster than N*M. Good question to ask interviewer.
+*/
 
 class Solution {
 public:
@@ -21,44 +60,6 @@ public:
             }   
         }    
         return dp[s.length()];
-    }
-};
-
-
-/*  As we seen in above approach that there will be many substrings that will be generated repeatedly, so we have to look for methods to memoize them. So instead of checking for each length,
-    we can cleverly look for only those string length which are present in dictionary.
-
-    dp[i] represents whether subarray(0, i) can be segmented into words that are present in the dictionary. dp[0] = subarray(0,0) which is empty string can be ofcourse
-    segmented so answer is yes.
-
-    https://www.youtube.com/watch?v=6UcUFUCCpjY
-
-    TC: O(N*S)
-
-*/
-
-class Solution {
-public:
-    bool wordBreak(string s, vector<string>& wordDict) 
-    {
-        vector<bool> dp(s.length()+1, false);       // for better understanding, reanme dp[] to isBreakable[]
-        dp[0]=true;         // isBreakable[i] represents whether it's possible to segment/break the subarray [0,i] into substrings such that each of them is present inside dictionary
-        
-        int n = s.length();
-
-        for(int i=0; i<n; i++)
-        {
-            if(dp[i]==false)
-                continue;
-            for(string word: wordDict)
-            {
-                int len = word.length();    //there is no need to try for all length, just try for i+word.length which is in dictionary
-                int j = i+len;
-                if(j<=n && s.substr(i,len) == word)
-                    dp[j] = true;
-            }
-        }
-        return dp[n];
     }
 };
 

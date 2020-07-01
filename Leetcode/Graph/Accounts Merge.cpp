@@ -31,7 +31,7 @@ public:
         
         for(auto it: graph)     //iterate through all the nodes, and check for conneced components
         {
-            if(visited.find(it.first) == visited.end())
+            if(visited.find(it.first) == visited.end())     // for each connected component
             {
                 vector<string> temp;
                 temp.emplace_back(emailToName[it.first]);
@@ -56,10 +56,8 @@ public:
                             todo.push(edge);
                         }
                 }
-                
                 sort(temp.begin()+1, temp.end());
                 ans.emplace_back(temp);
-                
             }
         }
         

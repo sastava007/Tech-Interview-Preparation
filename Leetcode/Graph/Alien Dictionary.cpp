@@ -1,10 +1,10 @@
-/*  TC of topological sorting is O(V+E) here O(N+alphabets) 
+/*  
+    TC & Space: O(N*M) where N is no. of words & M is average length of each word
+
     1. First, build a degree map for each character in all the words:
     2. Then build the hashmap by comparing the adjacent words, the first character that is different between two adjacent words reflect the lexicographical order.
     3. Then in last call a topological sorting() to get the required ordering of alphabets in dictionary
-
 */
-
 
 #include<bits/stdc++.h> 
 using namespace std; 
@@ -34,7 +34,7 @@ private:
             int j;
             for(j=0; j<min(word1.length(), word2.length()); j++)
             {
-                if(word1[j] != word2[j])
+                if(word1[j] != word2[j])    // add an edge from u->v if u comes before v in 2 adjacent words
                 {
                     char out = word1[j], in=word2[j];
                     graph[out].insert(in);
@@ -43,7 +43,6 @@ private:
                     break;
                 }
             }
-
             if(j==min(word1.length(), word2.length()) && word1.length()>word2.length())     //consider case [apple, app] i.e when ordering isn't valid
             {
                 graph.clear();
@@ -84,7 +83,6 @@ private:
                 }
             }
         }
-        
         return (res.length()==totalCharacters?res:"");
     }
 };
@@ -93,7 +91,8 @@ int main()
 {
     Solution obj;
 
-    vector<string> words={"w", "r", "w"};
+    vector<string> words={"wrt","wrf","er","ett","rftt"};
+    string output = "wertf"
 
     cout<<obj.alienOrder(words);
 

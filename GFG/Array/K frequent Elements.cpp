@@ -1,7 +1,10 @@
 /*  One way is to map the frq of elements and then find the K most frquent elements using a min_heap this requires a TC of O(NlogK) 
     But we can do something better than this, by finding the frquency of Kth most occuring element using a quick_select() algorithm which runs in O(N) average and O(N2) worst case
+
+    Note: We're gurantted here that the set of top K elements will be unique. This would never occur [2,3,2,3] and K = 1
     
     So total TC: O(N) and O(N) space 
+    Worst Case TC: O(N^2)
 
 */
 
@@ -44,7 +47,7 @@ private:
                 swap(v[i], v[j]);
             }
         }
-        swap(v[r], v[j+1]);
+        swap(v[r], v[j+1]);     //move pivot to it's correct position
         
         return (j+1);
     }

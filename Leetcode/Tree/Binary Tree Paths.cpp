@@ -1,4 +1,4 @@
-/* Store all the paths from root to leaf node 
+/*  Store all the paths from root to leaf node 
     TC: O(N) and Space: O(H) in worst case(skewed) O(N)
 */
 

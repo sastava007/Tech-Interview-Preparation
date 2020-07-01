@@ -1,4 +1,7 @@
-/* Inspired from substring search using sliding window and hashMap LC template */
+/*  Idea: to use sliding-window and hash-map for faster lookups
+    s = “eceba” and k = 2,   O/P = ece(3)
+    TC: O(N) and Space: O(1)
+*/
 
 class Solution {
 public:

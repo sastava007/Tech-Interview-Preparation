@@ -1,5 +1,9 @@
-/* As vectors are sparse, which means they contain a lot of zeroes and their is no point in multiplying the no by 0 becz the result is going to be zero. So we skip them
+/*  As vectors are sparse, which means they contain a lot of zeroes and their is no point in multiplying the no by 0 becz the result is going to be zero. So we skip them
     an store the remaing in a hash table as {key, value} where key = index and value = actual value of element. We build hash table for bot the vectors and then multiply them
+
+    How Dot Product actually works?
+    [a1,b1,c1] . [a2,b2,c2] => [a1*a2,b1*b2,c1*c2] 
+    i.e multiply with same position element of other vector 
 
     O(N) time
 */

@@ -21,7 +21,8 @@ vector<int> productExceptSelf(vector<int>& nums)
     return res;
 }
 
-/* Without using extra space */
+/* 2 Pass Solution: Without using extra space */
+
     int n=nums.size();
     int fromBegin=1;
     int fromLast=1;
@@ -48,7 +49,8 @@ public:
         int fromLast=1;
         vector<int> res(n,1);
         
-        for(int i=0;i<n;i++){
+        for(int i=0;i<n;i++)
+        {
             res[i]*=fromBegin;
             fromBegin*=nums[i];
             res[n-1-i]*=fromLast;

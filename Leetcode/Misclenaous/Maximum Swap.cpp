@@ -8,6 +8,8 @@
 
     Note: To understand why we are using last index, and not the first one. try considering this example [4,9,9] if we consider first index then max_no_obtained = [9,4,9] but with last index we get [9,9,4]
 
+    Input: 2736 Output: 7236 ; Input: 9973 Output: 9973 
+
 */
 
 class Solution {
@@ -15,31 +17,22 @@ public:
     int maximumSwap(int num) 
     {
         string s = to_string(num);
-        
-        vector<int> hash(10, -1);
+        vector<int> lastIndex(10, -1);
         
         for(int i=0; i<s.length(); i++)
-        {
-            hash[s[i]-'0']=i;    
-        }
-        
+            lastIndex[s[i]-'0']=i;    
         
         for(int i=0; i<s.length(); i++)
         {
             for(int j=9; j>s[i]-'0'; j--)   // j should be greater than current element, then only there is point to swap the element, otherwise if we swap then no. become smaller
             {
-                if(hash[j]>i)   // and this number(j) should lie after the current(i) element, otherwise the number will become smaller than current number even.
+                if(lastIndex[j]>i)   // and this number(j) should lie after the current(i) element, otherwise the number will become smaller than current number even.
                 {
-                    char temp=s[i];
-                    s[i]=s[hash[j]];
-                    s[hash[j]]=temp;
-                    
+                    swap(s[i], s[lastIndex[j]]);
                     return stoi(s);
                 }
             }
         }
-        
         return num;
-        
     }
 };

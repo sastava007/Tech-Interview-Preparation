@@ -26,8 +26,7 @@ public:
                 i=i+interval*2;
             }
             interval *= 2;
-        }
-        
+        }   
         return lists[0];
     }
     
@@ -39,7 +38,7 @@ private:
         if(b==NULL)
             return a;
         
-        ListNode* output  = NULL;
+        ListNode* output  = NULL;   //create a dummy node
         
         if(a->val < b->val)
         {
@@ -52,7 +51,7 @@ private:
             b=b->next;
         }
         
-        ListNode* curr = output;
+        ListNode* curr = output;    // a pointer to iterate over the LL
         while(a!=NULL && b!=NULL)
         {
             if(a->val<b->val)
@@ -68,7 +67,7 @@ private:
             curr=curr->next;
         }
             
-        if(a!=NULL)
+        if(a!=NULL)     //If one of them get exhausted first, then add the remaining one
             curr->next=a;
         if(b!=NULL)
             curr->next=b;

@@ -3,8 +3,10 @@
     indicates toward max_heap.
     Similar to Schedule Task problem 
 
-    TC: O(NLogN) where N is n. of unique characters in string
-    Space: O(N)
+    TC: O(NLogA) where N is length of string, and A is size of alphabet set. If A is fixed like for lower/upper case then TC = O(N)
+    Space: O(A) or O(1)
+
+    Ex: "aabbcc" O/P = "cbacba" or "abcabc" or any possible valid
  */
 
 class Solution 

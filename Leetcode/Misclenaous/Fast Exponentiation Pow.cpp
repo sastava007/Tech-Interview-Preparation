@@ -1,10 +1,12 @@
-/* Recursive solution: fast exponentiation */
+/*  Divide & Conquer: fast exponentiation 
+    TC: O(logN) and Space: O(logN) due to recursive call stack
+*/
 
 class Solution {
 public:
     double myPow(double x, int n) 
     {
-        if(n==0)
+        if(n==0)    //base case
             return 1;
         
         double temp = myPow(x,n/2);
@@ -27,16 +29,17 @@ class Solution {
 public:
     double myPow(double x, int n) 
     {
-        long p = labs(n);
+        n = abs(n);
         double pow = 1;
-        while (p) 
+        while (n) 
         {
-            if (p % 2) 
+            if (n&1) 
             {
                 pow *= x;
             }
+            
             x *= x;
-            p /= 2;
+            n /= 2;
         }
         return n > 0 ? pow : 1 / pow;
     }

@@ -1,9 +1,16 @@
-/* Find a common shifting pattern, and all strings which has a common shifting pattern should add them to that bucket.
+/*  Find a common shifting pattern, and all strings which has a common shifting pattern should add them to that bucket.
     PS: If asked to return the inner strings in lexogrphically sorted order, and no repition then use set, else use vector and later sort it accordingly
 
-    TC: O(nlogn * W) where W is avg length of string
+    TC: O(nlogn * W) where W is maximum string length, becz we've to return in lexograpically order else O(N*W)
     Note: For the return value, each inner list's elements must follow the lexicographic order.
-    
+
+    Input: ["abc", "bcd", "acef", "xyz", "az", "ba", "a", "z"]
+    Output: [
+                ["abc","bcd","xyz"],
+                ["az","ba"],
+                ["acef"],
+                ["a","z"]
+            ]
  */
 
 #include<bits/stdc++.h>
@@ -21,14 +28,12 @@ string getDiff(string s)
 
         shift += (diff+'a');    
     }
-
     return shift;
 }
 
 vector<vector<string>> groupShiftedString(vector<string> arr)
 {
     unordered_map<string, set<string>> m;
-
     for(string s: arr)
     {
         string shift = getDiff(s);
@@ -36,7 +41,6 @@ vector<vector<string>> groupShiftedString(vector<string> arr)
     }
 
     vector<vector<string>> result;
-
     for(auto it: m)
     {
         vector<string> group;
@@ -46,6 +50,5 @@ vector<vector<string>> groupShiftedString(vector<string> arr)
         }
         result.push_back(group);
     }
-
     return result;
 }

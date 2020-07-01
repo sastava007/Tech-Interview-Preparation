@@ -5,7 +5,7 @@
 
 class Codec {
 public:
-    string serialize(TreeNode* root) 
+    string serialize(TreeNode* root)
     {
         if(root==NULL)
             return "#";
@@ -39,17 +39,20 @@ private:
 class Codec {
 public:
 
-    string serialize(TreeNode* root) {
+    string serialize(TreeNode* root) 
+    {
         stack<TreeNode*> s;
         string output;
 
         s.push(root);
-        while(s.size()) {
+        while(s.size())
+        {
             TreeNode *node = s.top();
             s.pop();
             if (output.size()) output += ",";
-            output += node ? to_string(node->val) : "#";
-            if (node) {
+                output += node ? to_string(node->val) : "#";    // if null node, then add "#" else add node->val
+            if (node) 
+            {
                 s.push(node->right);
                 s.push(node->left);
             }
@@ -59,19 +62,22 @@ public:
 
     // Iterative preorder decode
 
-    TreeNode* deserialize(string data) {
+    TreeNode* deserialize(string data)
+    {
         stringstream datastream(data);
         TreeNode *root = NULL;
         stack<TreeNode**> s;
         string token;
         
         s.push(&root);
-        while (s.size()) {
+        while (s.size())
+        {
             TreeNode **node = s.top();
             s.pop();
             getline(datastream, token,',');
             *node = token == "#" ? NULL : new TreeNode(stoi(token));
-            if (*node) {
+            if (*node) 
+            {
                 s.push(&((*node)->right));
                 s.push(&((*node)->left));
             }

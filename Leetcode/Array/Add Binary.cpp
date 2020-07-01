@@ -12,8 +12,10 @@ class Solution
         {
             adigit = bdigit = 0;
 
-            if (apos >= 0) adigit = a[apos--] == '1';
-            if (bpos >= 0) bdigit = b[bpos--] == '1';
+            if (apos >= 0) 
+                adigit = a[apos--] == '1';
+            if (bpos >= 0) 
+                bdigit = b[bpos--] == '1';
 
             // Another way: the digit is 1 if adigit + bdigit + carry == 1 or == 3, but I noticed
             // XOR is more concise:

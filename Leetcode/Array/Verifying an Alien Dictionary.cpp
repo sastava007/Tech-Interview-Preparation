@@ -1,5 +1,8 @@
 /*  The words are sorted lexicographically if and only if adjacent words are. This is because order is transitive: a <= b and b <= c implies a <= c. 
     Time Complexity: O(NS) where N is total number of word in words[] and S is maximum length size of word
+
+    Edge Case: words = ["apple","app"], order = "abcdefghijklmnopqrstuvwxyz"
+    O/P: false
 */
 
 class Solution {
@@ -26,10 +29,13 @@ public:
                
     bool isSmaller(string word1, string word2, vector<int> &hash)
     {
-            for(int i=0; i<min(word1.length(), word2.length()); i++)    //for two words two be lexogriphacally sorted, only check for first not equal charcter and leave other. ex: (azyx < b)  
-                if(word1[i] != word2[i])
-                    return (hash[word1[i]-'a'] < hash[word2[i]-'a']);
-    
-            return (word1.length()<word2.length()); //if we havn't find any different character, like (app & apple)
+        for(int i=0; i<min(word1.length(), word2.length()); i++)    //for two words two be lexogriphacally sorted, only check for first not equal charcter and leave other. ex: (azyx < b)  
+            if(word1[i] != word2[i])
+                return (hash[word1[i]-'a'] < hash[word2[i]-'a']);
+
+        if(word1.length() > word2.length())     //if we havn't find any different character, like (app & apple)
+            return false;
+        else
+            return true;    //if same length then return true
     }
 };

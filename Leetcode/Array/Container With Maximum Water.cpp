@@ -10,8 +10,9 @@ public:
         while(left<right)
         {
             maxWater = max(maxWater, min(height[left], height[right])* (right-left));
-            if(height[left]<height[right])
-                left++;
+
+            if(height[left]<height[right])   //we're here moving the shorter line, becz the amt. of water is responsible on minimum or smaller which will basically compesate
+                left++;                     // for the decrease in width 
             else
                 right--;
             

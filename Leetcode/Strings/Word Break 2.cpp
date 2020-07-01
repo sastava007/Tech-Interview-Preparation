@@ -13,55 +13,18 @@
     What I know is the first word sperated by a ' ', and then list of other substrings
 
     Backtracking with Memoization' TC & Space: O(n*2^n)
-    Worst case scenario where all combinations of the string are correct (e,g, s=aaa, dict=[a, aa, aaa])
+    Worst case scenario where all combinations of the string are correct (e,g, s=aaa, dict=[a, aa, aaa])  O/P: ["a a a","aa a","a aa","aaa"]
+
+    s = "pineapplepenapple"  wordDict = ["apple", "pen", "applepen", "pine", "pineapple"]
+    O/P:  ["pine apple pen apple", "pineapple pen apple", "pine applepen apple"]
 
  */
 
-class Solution {
-private:
-    unordered_map<string, vector<string>> m;
-
-public:
-    vector<string> wordBreak(string s, unordered_set<string>& dict) 
-    {
-        if(m.count(s))    //if current word exist in our hashatble that means starting with this one
-            return m[s];
-
-        vector<string> result;
-        if(dict.count(s))   // when the whole string is a word in dictinary
-        {
-            return result.push_back(s);
-        }
-
-        for(int i=1; i<s.size(); i++)
-        {
-            string word = s.substr(i);
-            if(dict.count(word))    // if this word is present in dictionary
-            {
-                string rem = s.substr(0, i);
-                vector<string> prev = combine(word, wordBreak(rem, dict));     // recursively generate and combine
-                result.insert(result.end(), prev.begin(), prev.end());
-            }
-        }
-
-        m[s] = result;  //memorize the result
-        return result;
-    }
-private: 
-    vector<string> combine(string word, vector<string> prev)
-    {
-        for(int i=0; i<prev.size(); i++)
-        {
-            prev[i] += " " + word;
-        }
-        return prev;
-    }
-};
-
-/* Another Approach: Backtracking with Memoization */
+// Top down approach: Backtracking + Meoization
 class Solution {
 public:
-    vector<string> wordBreak(string s, vector<string>& wordDict) {
+    vector<string> wordBreak(string s, vector<string>& wordDict) 
+    {
         dict.insert(wordDict.cbegin(), wordDict.cend());
         return wordBreak(s);
     }
@@ -71,14 +34,18 @@ private:
 
     vector<string> wordBreak(string s) 
     {
-        if (map.find(s) != map.end()) 
+        if (map.find(s) != map.end()) //if the sentence starting from current word already present in hash-map, then simply return it
             return map[s];
         vector<string> sentences;
-        for (int pos = s.size() - 1; pos >= 0; --pos) {
+        for (int pos = s.size() - 1; pos >= 0; --pos) 
+        {
             string word = s.substr(pos);
-            if (dict.find(word) != dict.end()) {
-                if (pos == 0) sentences.push_back(word);// base case of recursion
-                else {
+            if (dict.find(word) != dict.end()) 
+            {
+                if (pos == 0)
+                    sentences.push_back(word); // base case of recursion
+                else 
+                {
                     vector<string> subSentences = wordBreak(s.substr(0, pos));
                     for (auto subSentence : subSentences)
                         sentences.push_back(subSentence + " " + word);
@@ -89,6 +56,7 @@ private:
         return sentences;
     }
 };
+
 
 /* Using DP 
 
@@ -106,8 +74,10 @@ private: //DFS path build function
         int i, len = s.size();
         for(i =minlen; i<= min(maxlen, len - pos); ++i)
             if( isBreakable[pos+i] && wordDict.count(s.substr(pos,i)) ) 
-                if(pos+i == len) res.push_back(curP + s.substr(pos,i));
-                else buildPath(isBreakable, s, pos+i, res, curP + s.substr(pos,i) + " ", wordDict, minlen, maxlen);
+                if(pos+i == len) 
+                    res.push_back(curP + s.substr(pos,i));
+                else 
+                    buildPath(isBreakable, s, pos+i, res, curP + s.substr(pos,i) + " ", wordDict, minlen, maxlen);
     }
     
 public:
@@ -117,7 +87,8 @@ public:
         bool isBreakable[sSize+1];
         fill_n(isBreakable, sSize+1, false);
             
-        for (string word : wordDict) { // find the minimum and maximum word length 
+        for (string word : wordDict)    // find the minimum and maximum word length 
+        { 
             minlen = min(minlen, (int)word.length());
             maxlen = max(maxlen, (int)word.length()); 
         }        
@@ -125,10 +96,15 @@ public:
         for(i=sSize-minlen, isBreakable[sSize]= true; i>=0; --i)
             for(len=minlen; len<=min(maxlen, sSize-i); ++len)
             {
-                if(isBreakable[i+len] && wordDict.count(s.substr(i,len)) ) {isBreakable[i] = true; break;}
+                if(isBreakable[i+len] && wordDict.count(s.substr(i,len)) ) 
+                {
+                    isBreakable[i] = true;
+                    break;
+                }
             }
         //if breakable, do DFS path building
-        if(isBreakable[0]) buildPath(isBreakable, s, 0, res, "", wordDict, minlen, maxlen);
+        if(isBreakable[0]) 
+            buildPath(isBreakable, s, 0, res, "", wordDict, minlen, maxlen);
         return res;
     }
 };

@@ -1,5 +1,8 @@
 /*  Remove atmost 1 element and check if palindrome. 
     A string is pallindrome if left==right(odd) or left>right(even) , or after removing left element or after removing right element.
+    Give example of odd & even word length, like aba or abccba
+
+    EX: abca , return true
 */
 
 class Solution {

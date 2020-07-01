@@ -1,6 +1,9 @@
 /*  
     We've to find intersection of two vectors containing closed intervals. Here given that individual list are pairwise disjoint and sorted, so that's why we don't need to compare the 
     interval after merging as we were doing in merge intervals problem.
+
+    Input: A = [[0,2],[5,10],[13,23],[24,25]], B = [[1,5],[8,12],[15,24],[25,26]]
+    Output: [[1,2],[5,5],[8,10],[15,23],[24,24],[25,25]]
     
     TC: O(m+n)
     Space: O(m+n) if output space is considered else O(1)

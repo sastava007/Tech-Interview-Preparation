@@ -1,4 +1,11 @@
-/* TC: O(M+N) because the begin and end points will move from left to right only once. */
+/* 
+    Find the starting point all of P's anagram in S
+    TC: O(M+N) because the begin and end points will move from left to right only once 
+
+    s: "cbaebabacd" p: "abc"  =>  [0,6]
+    s: "abab" p: "ab"  =>  [0, 1, 2]
+    
+*/
 
 class Solution {
 public:

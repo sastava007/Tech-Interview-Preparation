@@ -54,7 +54,12 @@ private:
     }
 };
 
-/* Nested List Weight Sum 2: Here weight is defined from bottom to up. The leaf level integers have weight 1 and root level have largest weight  */
+/*  Nested List Weight Sum 2: Here weight is defined from bottom to up. The leaf level integers have weight 1 and root level have largest weight  
+    
+    [[1,1],2,[1,1]], return 8. (four 1's at depth 1, one 2 at depth 2)
+    [1,[4,[6]]], return 17 it has a mximum-depth = 3
+
+*/
 
 class Solution {
 public:
@@ -66,10 +71,14 @@ public:
 private:
     int getDepth(vector<NestedInteger>& nestedList) {   //this will give the maximum depth of list
         int depth = 0;
-        for (auto& nestedInt : nestedList) {
-            if (nestedInt.isInteger()) {
+        for (auto& nestedInt : nestedList) 
+        {
+            if (nestedInt.isInteger()) 
+            {
                 depth = max(depth, 1);
-            } else {
+            } 
+            else 
+            {
                 depth = max(depth, 1 + getDepth(nestedInt.getList()));
             }
         }
@@ -77,12 +86,17 @@ private:
         return depth;
     }
 
-    int helper(vector<NestedInteger>& nestedList, int depth) {
+    int helper(vector<NestedInteger>& nestedList, int depth) 
+    {
         int sum = 0;
-        for (auto& nestedInt : nestedList) {
-            if (nestedInt.isInteger()) {
+        for (auto& nestedInt : nestedList)
+        {
+            if (nestedInt.isInteger())
+            {
                 sum += depth * nestedInt.getInteger();
-            } else {
+            } 
+            else
+            {
                 sum += helper(nestedInt.getList(), depth - 1);
             }
         }

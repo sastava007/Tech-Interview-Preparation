@@ -2,6 +2,10 @@
     1. / means root
     2. .. means going upward in directry, so remove the top most element from stack. And if already present at top then stay there
     3. /.dir is valid directry name, becz folders can contain '.'
+    
+    TC: O(N)
+    Input: "/a/./b/../../c/"   Output: "/c"
+    Input: "/a//b////c/d//././/.."   Output: "/a/b/c"
 */
 
 class Solution {

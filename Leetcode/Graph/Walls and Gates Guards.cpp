@@ -1,93 +1,83 @@
-/*  So basically we are interested in knowing how far away is any cell from the gate and we've to find the shortest distance of Gate from open area without going through any wall. 
+/*  
+    So basically we are interested in knowing how far away is any cell from the gate and we've to find the shortest distance of Gate from open area without going through any wall. 
     The idea is to run a BFS. We first enqueue all the cells that contains a Gate and then we'll explore all it's adjacent 4 cells, if they are valid and their current distance 
     is greater then we'll update them with correct distance i.e dist[i][j]+1. 
 
-    TC: O(M*N) and Space: P(M*N) if we include the output matrix else O(1)
+    TC: O(M*N) and Space: O(M*N)
 
+    Here empty spaces are initially initialized value of INT_MAX, it also may be the case that it's not possible to reach to a gate then in that case dist persists it's maximum value
 */
 
-#include<bits/stdc++.h>
-using namespace std;
-
-bool isValid(int a[100][100], int n, int m, int x, int y)
-{
-    return (x>=0 && x<=n && y>=0 && y<=m && a[x][y]!=-1);
-}
-
-
-void findDistance(int a[100][100], int n, int m)
-{
-    int dist[n][m];
-    queue<pair<int,int>> q;
-
-    int X[4]={-1, 0, 1, 0};
-    int Y[4]={0, 1, 0, -1};
-
-    for(int i=0; i<n; i++)
+class Solution {
+public:
+    void wallsAndGates(vector<vector<int>>& rooms) 
     {
-        for(int j=0; j<m; j++)
-        {
-            if(a[i][j] == 0)    //if guard: then push it into queue
+        if (rooms.empty()) return;
+        int m = rooms.size(), n = rooms[0].size();
+        queue<pair<int, int>> q;
+        for (int i = 0; i < m; i++)
+            for (int j = 0; j < n; j++) 
             {
-                q.push({i,j});
-                dist[i][j]=0;
+                if (rooms[i][j] == 0)   // first enque all the gates/guards whatever we have
+                    q.push({i, j});
             }
-            else if(a[i][j]==-1)    //if wall/or some other obstacle
-                dist[i][j]=-1;
-            else
-                dist[i][j]=INT_MAX;
-        }
-    }
-
-    while(!q.empty())
-    {
-        int x = q.front().first, y = q.front().second;
-        q.pop();
-        for(int i =0; i<4; i++) //explore the neighbouring nodes around the cell
-        {
-            int x1 = x+X[i];
-            int y1 = y+Y[i];
-
-            if(isValid(a, n, m, x1, y1) && dist[x1][y1] > dist[x][y]+1)
-            {
-                dist[x1][y1]=dist[x][y]+1;
-                q.push({x1, y1});
-            }
-        }
-    }
-
-    for(int i=0; i<n; i++)
-    {
-        for(int j=0; j<m; j++)
-            cout<<dist[i][j]<<" ";
         
-        cout<<"\n";
-    }       
+        int dist = 0;
+        int X[4]={-1, 0, 1, 0};
+        int Y[4]={0, 1, 0, -1};
+        
+        while(!q.empty())
+        {
+            dist++;
+            int size = q.size();
+            while(size--)       // explore all the neighbouring nodes, and once we're done with all neighboring nodes increase the distance as we've to move to next level
+            {
+                auto it = q.front();
+                q.pop();
+                for(int i=0; i<4; i++)
+                {
+                    int xx = it.first+X[i], yy = it.second+Y[i];
+                    if(xx>=0 && yy>=0 && xx<m && yy<n && dist < rooms[xx][yy])
+                    {
+                        q.push({xx, yy});
+                        rooms[xx][yy] = dist;
+                    }
+                }
+            }
+        }
+    }
+};
+
+/* DFS:  */
+
+public void wallsAndGates(int[][] rooms) {
+    if(rooms==null || rooms.length==0||rooms[0].length==0)
+        return;
+ 
+    int m = rooms.length;
+    int n = rooms[0].length;
+ 
+    for(int i=0; i<m; i++){
+        for(int j=0; j<n; j++){
+            if(rooms[i][j]==0){
+                fill(rooms, i, j, 0);
+            }
+        }
+    }
 }
-
-int main()
-{
-
-    int t;
-	cin>>t;
-	while(t--)
-	{
-		int n,m;
-		cin>>n>>m;
-		int arr[100][100];
-		for(int i=0;i<n;i++)
-			for(int j=0;j<m;j++)
-			{
-				char ch;
-				cin>>ch;
-				if(ch=='G') // If Guard/Gate
-				arr[i][j]=0;
-				else if(ch=='W')    // If Wall or some other hindrance
-				arr[i][j]=-1;
-				else if(ch=='O')    // If Open Area
-				arr[i][j]=1;
-			}
-			findDistance(arr,n,m);
-	}  
-
+ 
+public void fill(int[][] rooms, int i, int j, int distance){
+    int m=rooms.length;
+    int n=rooms[0].length;
+ 
+    if(i<0||i>=m||j<0||j>=n||rooms[i][j]<distance){
+        return;
+    }
+ 
+    rooms[i][j] = distance;
+ 
+    fill(rooms, i-1, j, distance+1);
+    fill(rooms, i, j+1, distance+1);
+    fill(rooms, i+1, j, distance+1);
+    fill(rooms, i, j-1, distance+1);
 }

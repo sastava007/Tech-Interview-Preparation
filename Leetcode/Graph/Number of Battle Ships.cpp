@@ -1,5 +1,14 @@
 /*  Similar to no. of islads, but given that here only we need to consider about horizontal & vertical shapes and not any irregular shapes like islands. So first write a recursive solution with 
     TC: O(mn) and by modifying the board.
+
+    - Battleships can only be placed horizontally or vertically. In other words, they can only be made of the shape 1xN (1 row, N columns) or Nx1 (N rows, 1 column)
+    - At least one horizontal or vertical cell separates between two battleships - there are no adjacent battleships.
+
+    Invalid Board
+    
+            ...X
+            XXXX
+            ...X
  */
 
 class Solution {
@@ -54,7 +63,7 @@ public:
         {
             for(int j=0; j<board[i].size(); j++)
             {
-                if(board[i][j]=='.')
+                if(board[i][j]=='.')    // if water, then ignore it
                     continue;
                 if(j>0 && board[i][j-1]=='X')   //this means we're still counting the same battle ships, so we don't to increment our conter for this one.
                     continue;

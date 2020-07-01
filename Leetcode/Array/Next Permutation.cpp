@@ -1,5 +1,5 @@
 /*  As we have to find the next largest number so idea is to iterate from the back, and once we find a no. which is not in descending order then it will be the required point. 
-    So we have to find the largest no. from the right side which is just gretaer than it(point) & swap both values, 
+    So we have to find the largest no. from the right side which is just gretaer than this(point) & swap both values, 
     Now our point is at correct position and all we have to do it fix the remaining portion.
 
     Consider example: [1,2,4,5,3] => here 4 is that reqired point/no. So start finding the no which is greter than it from right [1,2][5][4,3] => reverse/sort the remaing portion => [1,2,5,3,4]

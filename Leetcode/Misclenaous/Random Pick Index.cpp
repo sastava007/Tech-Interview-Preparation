@@ -23,7 +23,6 @@ public:
         num=nums;
         srand(time(NULL));
     }
-    
     int pick(int target) 
     {
         int index, counter=0;   //counter stores the number of times target has occurred
@@ -36,7 +35,6 @@ public:
                     index=i;
             }
         }
-        
         return index;
     }
 };

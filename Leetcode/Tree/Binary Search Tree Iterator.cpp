@@ -16,7 +16,6 @@ public:
     {
         left_inorder(root);
     }
-    
     int next() 
     {
         TreeNode* node = s.top();
@@ -27,14 +26,11 @@ public:
         
         return node->val;
     }
-    
     bool hasNext() 
     {
         return (!s.empty()); 
     }
-    
 private:
-    
     void left_inorder(TreeNode* root)
     {
         TreeNode* node = root;
@@ -44,5 +40,4 @@ private:
             node=node->left;
         }
     }
-  
 };

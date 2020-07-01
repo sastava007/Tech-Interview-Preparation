@@ -3,7 +3,8 @@
     and amount of water will be bounded by minimum of two heights - height of building(elevantion).
 
     But this would require two extra arrays when solved using DP, but can be optimized further using 2 pointers that doesn't require any auxillary space.
-    https://leetcode.com/articles/trapping-rain-water/ 
+    
+    Input: [0,1,0,2,1,0,1,3,2,1,2,1]  Output: 6
 */
 
 
@@ -33,7 +34,7 @@ int trap(vector<int>& height)
     return ans;
 }
 
-/* O(N) time, constant space solution. Intution similar to DP solution to find min(leftmax, rightmax)-height[i] */
+/* 2 Pointer Approach:  O(N) time, constant space solution. Intution similar to DP solution to find min(leftmax, rightmax)-height[i] */
 
 class Solution {
 public:

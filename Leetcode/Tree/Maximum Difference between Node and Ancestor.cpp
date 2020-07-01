@@ -1,4 +1,6 @@
-/*  Intution: For each subtree, find the minimum value and maximum value of its descendants. 
+/*  
+    Intution: To make sure min/max values belong to an ancestor, we track min/max from the root till the leaf, and pick the biggest difference among all leaves.
+
     and check if the difference between the (max_value - min_value) is greater than the current difference in such a case update the diff 
 */
 
@@ -19,7 +21,7 @@ private:
         if(root==NULL)
            return;
         
-        mn=min(mn, root->val);
+        mn=min(mn, root->val);      //preorder traversal
         mx=max(mx, root->val);
         
         diff=max(diff, mx-mn);

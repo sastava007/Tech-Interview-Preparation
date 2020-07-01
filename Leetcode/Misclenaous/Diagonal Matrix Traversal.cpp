@@ -1,8 +1,15 @@
 /* Naive approach is to build a map of vector with indexex sum as key, and reverse vector of even key but this would require Space Complexiy O(mn) other than output */
 
-
-/* Important concept of moving heads from both direction 
+/*  Important concept of moving heads from both direction 
     TC: O(mn) : Space: O(1)
+    
+    Input:
+
+        [ 1, 2, 3 ]
+        [ 4, 5, 6 ]
+        [ 7, 8, 9 ]
+
+    Output:  [1,2,4,7,5,3,6,8,9]
 */
 
 class Solution {
@@ -16,7 +23,7 @@ public:
         
         vector<int> result(n*m);
         
-        int row=0, col=0, k=0, direction=1;
+        int row=0, col=0, k=0, direction=1; //direction 1 means moving up, 0 means moving down
         while(row<n && col<m)
         {
             result[k++] = matrix[row][col];
@@ -45,8 +52,6 @@ public:
                 col = new_col;
             }
         }
-        
         return result;
-        
     }
 };

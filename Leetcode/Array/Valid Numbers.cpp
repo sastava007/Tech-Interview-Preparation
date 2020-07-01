@@ -3,7 +3,20 @@
     2. Amd there must exist some numbers before & after finding exponent
     3. There couldn't be more that 1 dots(.) and exponent(e) in a number
 
-    https://www.youtube.com/watch?v=5gmtCtAooZE  
+        "0" => true
+        " 0.1 " => true
+        "abc" => false
+        "1 a" => false
+        "2e10" => true
+        " -90e3   " => true
+        " 1e" => false
+        "e3" => false
+        " 6e-1" => true
+        " 99e2.5 " => false
+        "53.5e93" => true
+        " --6 " => false
+        "-+3" => false
+        "95a54e53" => false
 */
 
 class Solution {

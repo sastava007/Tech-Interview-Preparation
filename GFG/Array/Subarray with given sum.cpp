@@ -31,6 +31,26 @@ public:
     }
 };
 
+/* Using hashing to store the current sum, works for both +ve/-ve numbers, It requires extra O(n) space */
+
+int sum = 0;
+unordered_map<int, int> m;
+
+for(i=0; i<n; i++)
+{
+    sum += a[i];
+    if(sum == k)
+    {
+        cout<<"Sum found between indexes "<< 0 << " to " << i << endl;
+        return;
+    }
+    if(m.find(sum-k) != m.end())
+    {
+        cout<<"Sum found between indexes "<<m[sum-k] + 1<< " to " <<i<< endl; 
+        return;
+    }
+    m[sum] = i;
+}
 
 /* Sliding window approach, only works for non-negative numbers
     Intution: The idea is to keep adding elements to a temporary variable untill it's sum is <= than given sum and checking if it's values is equal is equal to sum. 
@@ -77,51 +97,6 @@ int main()
        
     }
     return 0;
-}
-
-/* Using hashing to store the current sum, works for both +ve/-ve numbers, It requires extra O(n) space */
-#include <bits/stdc++.h>
-using namespace std;
-
-int main() 
-{   
-    int t;
-    cin>>t;
-    while(t--)
-    {
-        int n, i, j, k;
-        cin>>n;
-        int a[n];
-        for(i=0; i<n; i++)
-            cin>>a[i];
-        
-        cin>>k;
-        
-        int sum = 0;
-        unordered_map<int, int> m;
-        
-        for(i=0; i<n; i++)
-        {
-            sum += a[i];
-            
-            if(sum == k)
-            {
-                cout<<"Sum found between indexes "<< 0 << " to " << i << endl;
-                return;
-            }
-    
-            if(m.find(sum-k) != m.end())
-            {
-                cout<<"Sum found between indexes "<<m[sum-k] + 1<< " to " <<i<< endl; 
-                return;
-            }
-
-            m[sum] = i;
-        }
-        
-    }
-    
-	return 0;
 }
 
 /* For constant space, modify the array to contain only +ve elements by adding smallest -ve element, this way our target sum is also get modified
