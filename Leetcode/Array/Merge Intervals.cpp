@@ -1,6 +1,7 @@
 /*  
     We are given a collection of intervals, merge all overlapping intervals.
     Using sorting: O(nlogn) complexity
+    Input: [[1,3],[2,6],[8,10],[15,18]]  Output: [[1,6],[8,10],[15,18]]
 */
 
 class Solution
@@ -37,9 +38,9 @@ public:
                 in form of the stream?
 */
 
-Approach 1 : We can use a priority queue here.As we have an incoming stream of intervals, we just need to keep them sorted and pop the smallest two intervals and check if we can merge them.to keep them sorted, use a min - heap() build on starting value of interval
+Approach 1 : We can use a priority queue here. As we have an incoming stream of intervals, we just need to keep them sorted and pop the smallest two intervals and check if we can merge them.to keep them sorted, use a min - heap() build on starting value of interval
 
-                                                                                                                                                                                                                      vector<vector<int>> merge(vector<vector<int>> &intervals)
+                                                                                                                                                                  vector<vector<int>> merge(vector<vector<int>> &intervals)
 {
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
     for (int i = 0; i < intervals.size(); i++)
@@ -48,18 +49,15 @@ Approach 1 : We can use a priority queue here.As we have an incoming stream of i
     vector<vector<int>> ans;
     pair<int, int> p, q;
 
-    while (pq.empty() != true)
+    while (!pq.empty())
     {
         p = pq.top();
         pq.pop();
-        while (pq.empty() != true && pq.top().first <= p.second)
+        while (!pq.empty() && pq.top().first <= p.second)
         {
             q = pq.top();
             pq.pop();
-            if (q.second > p.second)
-            {
-                p.second = q.second;
-            }
+            p.second = max(p.second, q.second);
         }
         ans.push_back({p.first, p.second});
     }
@@ -96,8 +94,8 @@ void InsertInterval(IntervalTree *node, Interval currentInterval)
         }
     }
 
-    if (currentInterval.start > node->middle)
-    { // add it to right subtree
+    if (currentInterval.start > node->middle)   // add it to right subtree
+    { 
         if (node->right)
             return InsertInterval(node->right, currentInterval);
         else

@@ -4,6 +4,25 @@
 
     TC: O(N) & O(1) space Morris Traversal
 
+
+             1
+            / \
+           2   5
+          / \   \
+         3   4   6
+
+           1
+            \
+             2
+              \
+               3
+                \
+                 4
+                  \
+                   5
+                    \
+                     6
+
 */
 
 class Solution {

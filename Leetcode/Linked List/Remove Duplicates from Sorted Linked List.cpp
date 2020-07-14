@@ -31,7 +31,10 @@ public:
     }
 };
 
-/* Remove all the duplicate nodes, such that it only has distinct nodes remaining */
+/*  Remove all the duplicate nodes, such that it only has distinct nodes remaining 
+    Input: 1->2->3->3->4->4->5
+    Output: 1->2->5
+*/
 
 class Solution {
 public:

@@ -44,7 +44,7 @@ void printLinkedListInReverse(Node* head)
 void printNodes(Node* head, int count)
 {
     vector<Node*> nodes;
-    while(head && node.size()!=count)
+    while(head && node.size()!=count)   // if we've lesser nodes than bucket_size, specially in case if it;s last node
     {
         node.emplace_back(head);
         head = head.size();

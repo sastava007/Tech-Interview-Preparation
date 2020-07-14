@@ -17,7 +17,7 @@ public:
         
         while(l1 || l2 || carry)
         {
-            int a=0, b=0;   
+            int a=0, b=0;
             if(l1)
             {
                 a=l1->val;

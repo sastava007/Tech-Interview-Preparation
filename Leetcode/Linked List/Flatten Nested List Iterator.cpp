@@ -79,11 +79,10 @@ public:
 
     bool hasNext() 
     {
-        if (current ==  last)
+        if (current ==  last)   //represent we've reached end of list
         {
             return false;
         }
-        
         while(current != last)
         {
             if (current->isInteger())
