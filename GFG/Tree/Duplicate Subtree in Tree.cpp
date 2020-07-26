@@ -1,9 +1,11 @@
-/* We have to find whether the binary tree contains a duplicate sub-tree of size two or more. We don't need to consider leaf nodes, because they are of 
+/*  We have to find whether the binary tree contains a duplicate sub-tree of size two or more. We don't need to consider leaf nodes, because they are of 
     size 1. Here size means height.
+
+    Approach: Tree Serialization + Hashing
 
     We can traverse the tree, and keep storing the subtrees that we encounter so far in form of string in a hashset and once we get a string which is 
     already present then it means we have duplicate subtrees in our tree.
- */
+*/
 
 string dupSubUtil(Node* root, unordered_set<string> &m, bool &flag)
 {
