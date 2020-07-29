@@ -92,7 +92,7 @@ public:
                         if(dict.find(s) != dict.end())
                         {
                             temp.insert(s);
-                            dict.erase(s);
+                            dict.erase(s);  //to mark as visited
                         }
                     }
                     s[i]=old;

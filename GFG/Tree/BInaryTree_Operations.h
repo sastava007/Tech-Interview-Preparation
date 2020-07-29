@@ -174,7 +174,7 @@ int countNonLeafNodes(Node* root)
     
 }
 
-//convert a binary tree to it's mirror trees
+//convert a binary tree to it's mirror tree or Invert the binary tree
 void mirror(Node* node) 
 {
     if(node==NULL)

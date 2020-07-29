@@ -1,3 +1,74 @@
+/*     
+    Idea is to perform search from both the sides, untll we reach a common goal.
+    Here we can maintain two hash sets and whenever we reach a node which is present in hash set of parallel search, then it means we've reached in the middle where they meet.
+
+    If dist b/w source & dest is K, and branching factor is B(every vertex has B edges) then
+        - BFS will traverse 1 + B + B^2 + ... + B^k vertices.
+        - Bi-directional BFS will traverse 2 + 2B^2 + ... + 2B^(k/2) vertices.
+*/
+
+struct myHash   //custom hash function
+{
+	size_t operator () (pair<int, int> const &pair) const
+	{
+		size_t h1 = std::hash<int>()(pair.first);
+		size_t h2 = std::hash<int>()(pair.second);
+
+		return h1 ^ h2;
+	}
+};
+
+int x[]={2, 2, -2, -2, 1, 1, -1, -1};
+int y[]={-1, 1, 1, -1, 2, -2, 2, -2};
+
+int minKnightMoves(int x, int y)
+{
+    unordered_set<pair<int, int>,myHash> head, tail, visited;
+
+    x = abs(x);
+    y = abs(y);
+
+    head.insert({0,0});
+    visited.insert({0,0});
+
+    tail.insert({x,y});
+    visited.insert({x,y});
+
+    int steps = 0;
+    while(!head.empty() && !tail.empty())
+    {
+        if(head.size()>tail.size())     // becz we always wanna explore the set which contains smaller number of vertices
+            head.swap(tail);
+
+        unordered_set<pair<int, int>, myHash> temp;
+        for(auto it: head)
+        {
+            auto p = it;
+            if(tail.find(p) != tail.end())  // if we find a node which is already been explored 
+                return steps;
+
+            for(int i=0; i<8; i++)
+            {
+                int x1 = p.first + x[i];
+                int y1 = p.second + y[i];
+
+                if(x1<0 || x1>=MAXN || y1<0 || y1>=MAXN)
+                    continue;
+                else if(visited.find({x1,y1}) != visited.end())
+                {
+                    visited.insert({x1,y1});
+                    temp.insert({x1,y1});
+                }
+            }
+        }
+        head.swap(temp);
+        steps++;
+    }
+    return steps;
+}
+
+
+
 /*  
     Given an ininite size grid, find minimum steps required to move the kinght to destination 
     TC & Space: O(maxN*maxN)

@@ -1,4 +1,7 @@
-/*  Kth Larges using QuickSelect 
+/*  Kth Largest using QuickSelect
+
+    The algorithm is similar to QuickSort. The difference is, instead of recurring for both sides (after finding pivot), it recurs only for the part that contains the K-th smallest element. The logic is simple, if index of partitioned element is more than k, then we recur for left part. If index is same as k, we have found the k-th smallest element and we return. If index is less than k, then we recur for right part.
+
     TC: O(N)
 */
 

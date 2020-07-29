@@ -1,5 +1,5 @@
 /* LC Version: Number of subarrays with given sum K 
-The cumulative sum upto two indices, say i and j is at a difference of k i.e. if sum[i] - sum[j] = k, the sum of elements lying between indices i and j is K.
+The cumulative sum upto two indices, say i and j is at a difference of k i.e. if sum[i] - sum[j] = k, the sum of elements lying between indices i+1 and j is K.
 We store the data in the form: (sum_i, no. of occurences of sum_i)
 
 We traverse over the array nums and keep on finding the cumulative sum. Every time we encounter a new sum, we make a new entry in the hashmap corresponding to that sum.
