@@ -3,7 +3,7 @@
 
     TC: O(M*N) and Space: O(M*N) worst case space complexity when grid is all full of land(1) then recursion will go m*n levels deep
     
-    visited[][] can also be used, instead of directly modifying the grid, OR we can update the visited island to 2 and later dp %=2 this way we don't need extra space
+    visited[][] can also be used, instead of directly modifying the grid, OR we can update the visited island to 2 and later do %=2 this way we don't need extra space
 */
 
 class Solution {

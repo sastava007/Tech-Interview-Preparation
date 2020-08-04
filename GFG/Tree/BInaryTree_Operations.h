@@ -125,7 +125,7 @@ void postOrder(Node* root)
 }
 
 
-//level order traversal
+//BFS: level order traversal
 void levelOrder(Node* node)
 {
     if(node==NULL)
@@ -145,6 +145,30 @@ void levelOrder(Node* node)
             q.push(temp->right);
     }
 }
+
+// DFS: Level order traversal
+class Solution {
+public:
+    vector<vector<int>> levelOrder(TreeNode* root) 
+    {
+        vector<vector<int>> res;
+        util(res, root, 0);
+        return res;
+    }
+    
+    void util(vector<vector<int>> &res, TreeNode* root, int depth)
+    {
+        if(root==NULL)
+            return;
+        if(res.size() == depth)
+            res.push_back(vector<int>());
+        
+        res[depth].push_back(root->val);
+        util(res, root->left, depth+1);
+        util(res, root->right, depth+1);
+        
+    }
+};
 
 //A leaf node has it's both, left & right children NULL so when we encounter any such position return 1, else keep on exploring it's left & right subtree.
 int countLeaves(Node* root)

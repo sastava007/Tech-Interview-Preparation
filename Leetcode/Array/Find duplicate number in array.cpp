@@ -54,7 +54,7 @@ int findDuplicate(int[] nums)
     return -1;
 }
 
-/* Using sorting:
+/*  Using sorting:
     TC: O(NlogN)  &  O(N) Space(if we can't modify the array, otheriwse constant)
 */
 
