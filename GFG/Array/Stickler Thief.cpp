@@ -38,3 +38,28 @@ int main()
 	}
 	return 0;
 }
+
+/* 
+	O(1) Space 
+	Similar to fibonacci sequence
+*/
+int rob(vector<int>& nums) 
+{
+	int ans = 0, n = nums.size();
+	if(n == 0)
+		return 0;
+	else if(n < 2)
+		return nums[0];
+	
+	int prev = nums[0], curr = max(nums[0], nums[1]);
+	
+	for(int i=2; i<n; i++)
+	{
+		int temp = curr;
+		curr = max(prev+nums[i], curr);
+		
+		prev = temp;
+	}
+	
+	return curr;
+}

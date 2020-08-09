@@ -51,7 +51,6 @@ class Solution
                 curr=curr->right;    //going right
             }
         }
-
         return true;
     }
 }

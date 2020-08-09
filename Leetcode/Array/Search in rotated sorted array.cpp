@@ -46,7 +46,7 @@ private:
 
 /* Follow Up: handling duplicates Worst case O(n) time */
 
-boolean search(int[] nums, int target) 
+bool search(int[] nums, int target) 
 {
     int left= 0;
     int right= nums.length - 1;

@@ -1,4 +1,31 @@
-/*  As we seen in above approach that there will be many substrings that will be generated repeatedly, so we have to look for methods to memoize them. So instead of checking for each length,
+/*  
+    Bruteforce Recursive Approach:
+
+    So idea is to basically try to obatin substrings of the given word and check if that's present in the disctionary or not. 
+    So a brute force approach would be to recursively generate & check all possible substrings of string and check if that's present in the dictionary or not O(2^n)
+
+*/
+
+class Solution {
+    public boolean wordBreak(String s, List<String> wordDict) {
+        Set<String> set = new HashSet<>(wordDict);
+        return wb(s, set);
+    }
+    private boolean wb(String s, Set<String> set) {
+        int len = s.length();
+        if (len == 0) {
+            return true;
+        }
+        for (int i = 1; i <= len; ++i) {
+            if (set.contains(s.substring(0, i)) && wb(s.substring(i), set)) {
+                return true;
+            }
+        }
+        return false;
+    }
+};
+
+/*  As we seen in above approach that there will be many substrings that will be generated repeatedly, so we have to look for methods to memoize them. And instead of checking for each length,
     we can cleverly look for only those string length which are present in dictionary.
 
     dp[i] represents whether subarray(0, i) can be segmented into words that are present in the dictionary. dp[0] = subarray(0,0) which is empty string can be ofcourse
@@ -60,31 +87,5 @@ public:
             }   
         }    
         return dp[s.length()];
-    }
-};
-
-/*  
-    So idea is to basically try to obatin substrings of the given word and check if that's present in the disctionary or not. 
-    So a brute force approach would be to recursively generate & check all possible substrings of string and check if that's present in the dictionary or not O(2^n)
-
-*/
-
-class Solution {
-    public boolean wordBreak(String s, List<String> wordDict) {
-        // put all words into a hashset
-        Set<String> set = new HashSet<>(wordDict);
-        return wb(s, set);
-    }
-    private boolean wb(String s, Set<String> set) {
-        int len = s.length();
-        if (len == 0) {
-            return true;
-        }
-        for (int i = 1; i <= len; ++i) {
-            if (set.contains(s.substring(0, i)) && wb(s.substring(i), set)) {
-                return true;
-            }
-        }
-        return false;
     }
 };

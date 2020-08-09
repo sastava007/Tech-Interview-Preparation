@@ -88,10 +88,10 @@ Node* lca(Node* root ,int n1 ,int n2 )
 node* lca(node* root, node* n1, node* n2)
 {
     unordered_set<node*> ancestors;
-    while (n!=NULL)
+    while (n1!=NULL)
     {
         ancestors.insert(n1);
-        n=n1->parent;
+        n1=n1->parent;
     }
 
     while(n2!=NULL)

@@ -38,9 +38,10 @@ public:
                 in form of the stream?
 */
 
-Approach 1 : We can use a priority queue here. As we have an incoming stream of intervals, we just need to keep them sorted and pop the smallest two intervals and check if we can merge them.to keep them sorted, use a min - heap() build on starting value of interval
+// Approach 1 : We can use a priority queue here. As we have an incoming stream of intervals, we just need to keep them sorted and pop the smallest two intervals and check 
+// if we can merge them.to keep them sorted, use a min - heap() build on starting value of interval.
 
-                                                                                                                                                                  vector<vector<int>> merge(vector<vector<int>> &intervals)
+vector<vector<int>> merge(vector<vector<int>> &intervals)
 {
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
     for (int i = 0; i < intervals.size(); i++)

@@ -18,7 +18,7 @@ public:
                 counter++;
             end++;
             
-            while(counter>0)    //We've to remove them till there are dupliacte characters in window
+            while(counter>0)    //We've to remove them till there are no dupliacte characters in window
             {
                 if(m[s[begin]] > 1)
                     counter--;

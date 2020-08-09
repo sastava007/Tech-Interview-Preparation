@@ -6,7 +6,7 @@
     sum(P) - sum(N) = target
     sum(P) + sum(N) = sum of array
     sum(P) = (sum(array) + target)/2
-    So problem boild down to finding number of subset with given sum, and we can do this using method discussed in `Partition Equal Subset Sum`
+    So problem boils down to finding number of subset with given sum, and we can do this using method discussed in `Partition Equal Subset Sum`
 
     dp[nums.length][s + 1] where, dp[i][j] means number of ways to get sum j with first i elements
     dp[i][j] = dp[i-1][j] + dp[i][j-nums[i]], we can get the sum j either by just repeating all the ways to get sum j by using first (i-1) elements, or add nums[i] on top of each way to get sum j-nums[i] using first i elements

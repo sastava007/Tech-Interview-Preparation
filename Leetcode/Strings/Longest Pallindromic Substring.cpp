@@ -6,42 +6,41 @@
     TC: O(N^2) and O(1) Space without using DP
 */
 
-class Solution {
-public:
-    string longestPalindrome(string s) 
+string longestPalindrome(string s) 
+{
+    if(s.length()==0)
+        return "";
+    
+    int n = s.length(), maxlen = 1, low, high, start=0;
+    for(int i=0; i<n; i++)      // point around which to center
     {
-        if(s.length()==0)
-            return "";
-        
-        int n = s.length(), maxlen = 1, low, high, start=0;
-        for(int i=1; i<n; i++)      // point around which to center
+        low = i-1, high = i-1;        //check for odd length substring, centered around i
+        while(low>=0 && high<n && s[low]==s[high])
         {
-            low = i-1, high = i;        //check for even length substring, centered around i
-            while(low>=0 && high<n && s[low]==s[high])
+            if(high-low+1 > maxlen)
             {
-                if(high-low+1 > maxlen)
-                {
-                    start = low;
-                    maxlen = high-low+1;
-                }
-                high++;
-                low--;
+                start = low;
+                maxlen = high-low+1;
             }
-            low = i-1, high = i+1;      //check for odd length substring, centered around i
-            while(low>=0 && high<n && s[low]==s[high])
-            {
-                if(high-low+1 > maxlen)
-                {
-                    start = low;
-                    maxlen = high-low+1;
-                }
-                high++;
-                low--;
-            }
+            high++;
+            low--;
         }
-        return s.substr(start, maxlen);
+
+        low = i-1, high = i;      //check for even length substring, centered around i
+        while(low>=0 && high<n && s[low] == s[high])
+        {
+            if(high-low+1 > maxlen)
+            {
+                start = low;
+                maxlen = high-low+1;
+            }
+            high++;
+            low--;
+        }
     }
-};
+    
+    return s.substr(start, maxlen);
+}
 
 /* We can also solve this using a DP approach, but that requires an O(N^2) extra space */
 
