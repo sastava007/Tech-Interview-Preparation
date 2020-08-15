@@ -1,7 +1,8 @@
 /*
-    Very useful concept, and this is the base problem for all the further variations.
-    So basically, idea is to maintain a deque that stores all the useful elements, a element is useful if it lies in current winodw and is is greater than all all elements on its left
+    So basically, idea is to maintain a monotonous queue that stores all the useful elements, a element is useful if it lies in current winodw and is is greater than all all elements on its left
     In this way, we end up with maximum element of each window at front of queue.
+
+    TC: O(N) & Space: O(K)
 */
 
 /* 
@@ -12,54 +13,36 @@
     If the question asks about min/max element -> use monotonous queue
  */
 
-
-#include<bits/stdc++.h>
-using namespace std;
-#define ll long long
-#define mod 1000000007
-#define mp make_pair
-#define pb push_back
-#define IOS ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(0);
-
-int main()
-{
-    // IOS;    
-    int t,i;
-    cin>>t;
-    while (t--)
+class Solution {
+public:
+    vector<int> maxSlidingWindow(vector<int>& nums, int k) 
     {
-        int n,k;
-        cin>>n>>k;
-        ll a[n];
-        for(i=0;i<n;i++)
-            cin>>a[i];
-        deque<ll> q;
+        if(k==1 || nums.empty())
+            return nums;
         
-        for(i=0;i<k;i++)    
+        deque<int> q;
+        vector<int> ans;
+        int i;
+        for(i=0;i<k;i++)
         {
-            while(!q.empty() && a[i]>=a[q.back()])
+            while((!q.empty()) && nums[q.back()]<=nums[i])
                 q.pop_back();
-
             q.push_back(i);
         }
-        
-        for(i=k;i<n;i++)
-        {
-            cout<<a[q.front()]<<" ";
 
-            //remove elements outside of this window
-            while (!q.empty() && q.front()<(i-k+1))
+        for(;i<nums.size();i++)
+        {
+            ans.push_back(nums[q.front()]);
+
+            while((!q.empty()) && q.front()<=i-k)      // remove elements outside of this window
                 q.pop_front();
-
-            //remove element which are not useful, i.e elements which are less than current element
-            while (!q.empty() && (a[i]>=a[q.back()]))
+    
+            while((!q.empty()) && nums[q.back()]<=nums[i])      // remove element which are not useful, i.e elements which are less than current element
                 q.pop_back();
 
             q.push_back(i);
         }
-        cout<<a[q.front()]<<"\n";
-        
+        ans.push_back(nums[q.front()]);
+        return ans;
     }
-
-    return 0;
-}
+};
