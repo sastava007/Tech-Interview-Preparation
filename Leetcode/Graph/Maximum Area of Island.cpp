@@ -1,7 +1,8 @@
 /*  
     Recursive DFS solution TC: O(r*c) and O(r*c) for call stack and similary if we use a seen matrix[][] 
     Here we're defining that island is a group of 1's (representing land) connected 4-directionally (horizontal or vertical). But it could be 8 directional too :/
-
+    
+    TC & Space: O(M*N)
 */
 
 class Solution {
@@ -27,7 +28,7 @@ private:
         
         grid[r][c]=0;   // mark the land
         
-        return (1 + maxArea(grid, r-1, c) + maxArea(grid, r, c+1) + maxArea(grid, r+1, c) + maxArea(grid, r, c-1));     //explore all the four directions
+        return (1 + maxArea(grid, r-1, c) + maxArea(grid, r, c+1) + maxArea(grid, r+1, c) + maxArea(grid, r, c-1));     // explore all the four directions
     }
 };
 

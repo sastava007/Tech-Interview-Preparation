@@ -2,6 +2,8 @@
     We know that first element of preorder[] is root node, so let's say if position of this element in inorder[] is "i" then all the elements before "i" will be 
     part of left subtree and all the elements after "i" will be part of right subtree.
 
+    preorder = [3,9,20,15,7]    inorder = [9,3,15,20,7]
+
     PS: We've assumed here that there's no duplicate value
 */
 
@@ -15,10 +17,8 @@ public:
         
         return util(0, 0, iorder.size()-1, preorder, inorder); 
     }
-    
     TreeNode* util(int pstart, int istart, int iend, vector<int> &preorder, unordered_map<int,int> &inorder)
     {
-        
         if(pstart >= preorder.size() || istart > iend)
             return NULL;
         

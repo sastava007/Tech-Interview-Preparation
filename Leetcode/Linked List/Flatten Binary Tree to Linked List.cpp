@@ -38,7 +38,7 @@ public:
         {
             if(node->left)
             {
-                TreeNode* pre = node->left;
+                TreeNode* pre = node->left;     // find the predecessor of node->left and link that to node->right
                 while(pre->right)
                 {
                     pre=pre->right;

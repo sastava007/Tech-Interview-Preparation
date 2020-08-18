@@ -18,7 +18,7 @@ int shortestDistance(vector<vector<int>> &grid)
 
     int n = grid.size(), m = grid[0].size();
 
-    vector<vector<int>> dist(n, vector<int> (n,0)), reach(n, vector<int> (n,0));
+    vector<vector<int>> dist(n, vector<int> (n,0)), reach(n, vector<int> (n,0));    // We've to make sure that empty land should be reachable from all buildings, so maintain a reach[][]
 
     int buildings = 0;
 

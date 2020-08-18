@@ -20,7 +20,7 @@ private:
             return;
         
         if(level>maxLevel)
-            ans.emplace_back(root->val);
+            ans.emplace_back(root->val);    // doing a preorder traversal
         
         maxLevel = max(maxLevel, level);
         

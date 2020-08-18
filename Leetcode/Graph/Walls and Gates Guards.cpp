@@ -50,34 +50,29 @@ public:
 
 /* DFS:  */
 
-public void wallsAndGates(int[][] rooms) {
-    if(rooms==null || rooms.length==0||rooms[0].length==0)
-        return;
- 
-    int m = rooms.length;
-    int n = rooms[0].length;
- 
-    for(int i=0; i<m; i++){
-        for(int j=0; j<n; j++){
-            if(rooms[i][j]==0){
-                fill(rooms, i, j, 0);
+class Solution {
+public:
+    void wallsAndGates(vector<vector<int>>& rooms) 
+    {
+        if(rooms.size()==0 || rooms[0].size()==0)
+            return;
+        
+        for(int i=0; i<rooms.size(); i++)
+            for(int j=0; j<rooms[0].size(); j++)
+            {
+                if(rooms[i][j] == 0)
+                    dfs(rooms, i, j, 0);
             }
-        }
     }
-}
- 
-public void fill(int[][] rooms, int i, int j, int distance){
-    int m=rooms.length;
-    int n=rooms[0].length;
- 
-    if(i<0||i>=m||j<0||j>=n||rooms[i][j]<distance){
-        return;
+    void dfs(vector<vector<int>>& rooms, int x, int y, int dist)
+    {
+        if(x<0 || x>=rooms.size() || y<0 || y>=rooms[0].size() || rooms[x][y]<dist)
+            return;
+        
+        rooms[x][y] = dist;
+        dfs(rooms, x-1, y, dist+1);
+        dfs(rooms, x, y+1, dist+1);
+        dfs(rooms, x+1, y, dist+1);
+        dfs(rooms, x, y-1, dist+1);
     }
- 
-    rooms[i][j] = distance;
- 
-    fill(rooms, i-1, j, distance+1);
-    fill(rooms, i, j+1, distance+1);
-    fill(rooms, i+1, j, distance+1);
-    fill(rooms, i, j-1, distance+1);
-}
+};

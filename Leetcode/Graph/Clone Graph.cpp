@@ -47,7 +47,7 @@ public:
         {
             Node *curr = todo.front();
             todo.pop();
-
+            
             for (Node *neighbor : curr->neighbors)
             {
                 if (hash.find(neighbor) == hash.end())
@@ -55,11 +55,9 @@ public:
                     hash[neighbor] = new Node(neighbor->val, {});
                     todo.push(neighbor);
                 }
-
                 hash[curr]->neighbors.push_back(hash[neighbor]);
             }
         }
-        
         return hash[node];
     }
 };

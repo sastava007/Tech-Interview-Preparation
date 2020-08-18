@@ -9,13 +9,16 @@
     Here also the worst case TC will be when "(((((((" here left_rem = len(S), so we've to remove all of the brackets (2^N)
     Space: O(N) becz we'll go to maximum recursion depth of N before we hit the base case
 
+    Input: "(a)())()"
+    Output: ["(a)()()", "(a())()"]
+
 */
 class Solution { 
 public:
     vector<string> removeInvalidParentheses(string s) 
     {   
         vector<string> result;
-        int left = 0, right = 0;
+        int left = 0, right = 0;    // count number of unbalanced opening & closing brackets
         for(char c: s)
         {
             if(c=='(')
@@ -44,7 +47,7 @@ private:
         }
         else
         {
-            if(s[index]=='(' && leftRem>0 || s[index]==')' && rightRem>0)   //if we've some remaing extra set of brackets to delete
+            if(s[index]=='(' && leftRem>0 || s[index]==')' && rightRem>0)   // if we've some remaing extra set of brackets to delete
                 recurse(s, index+1, leftCount, rightCount, leftRem - (s[index]=='('?1:0), rightRem - (s[index]==')'?1:0), exp, res);
             
             exp += s[index];
@@ -60,9 +63,8 @@ private:
 };
 
 
-
 /*  
-    As we need to generate all possible output we will backtrack among all states by removing one opening or closing bracket and check if they are valid. If found valid on the current level, we add it to the final result and we're done. If invalid then add the removed bracket back and go for next state. We will use BFS for moving through states, use of BFS will assure removal of minimum brackets.
+    As we need to generate all possible output we will backtrack among all states by removing one opening or closing bracket and check if they are valid. If found valid on the current level, we add it to the result and we're done. If invalid then add the removed bracket back and go for next state. We will use BFS for moving through states, use of BFS will assure removal of minimum brackets.
 
     The idea is straightforward, with the input string s, we generate all possible states by removing one ( or ), check if they are valid, if found valid ones on the current level, put them to the final result list and we are done, otherwise, add them to a queue and carry on to the next level.
 
@@ -93,7 +95,6 @@ bool isBalanced(string s)
     }
     return (open==0);
 }
-    
 public:
     vector<string> removeInvalidParentheses(string s) 
     {

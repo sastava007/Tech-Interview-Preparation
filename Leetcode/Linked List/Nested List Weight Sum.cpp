@@ -82,12 +82,10 @@ private:
                 depth = max(depth, 1 + getDepth(nestedInt.getList()));
             }
         }
-
         return depth;
     }
-
     int helper(vector<NestedInteger>& nestedList, int depth) 
-    {
+    {       
         int sum = 0;
         for (auto& nestedInt : nestedList)
         {
@@ -100,7 +98,6 @@ private:
                 sum += helper(nestedInt.getList(), depth - 1);
             }
         }
-
         return sum;
     }
 };

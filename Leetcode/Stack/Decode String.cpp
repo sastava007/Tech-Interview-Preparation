@@ -1,10 +1,9 @@
 /* 
     Decode the k[encoded_string], where encoded_string inside the bracket is being repeated exactly K times.
     Ex: "3[a]2[bc]"  Output: "aaabcbc"
+    These are invalid input: 3a or 2[4]
 
     TC & Space: O(N)
-
-    These are invalid input: 3a or 2[4]
 */
 
 string decodeString(string a) 
@@ -60,7 +59,7 @@ string decodeString(string s)
     int pos = 0;
     return helper(pos, s);
 }
-string helper(int& pos, string s)
+string helper(int &pos, string s)
 {
     int num=0;
     string word = "";
@@ -72,7 +71,7 @@ string helper(int& pos, string s)
             string curStr = helper(++pos, s);
             while(num--)
                 word += curStr;
-        } else if (cur >= '0' && cur <='9')
+        } else if (cur >= '0' && cur <='9')     // if digits
         {
             num = num*10 + cur - '0';
         }
@@ -80,8 +79,8 @@ string helper(int& pos, string s)
         {
             return word;
         }
-        else
-        {    // Normal characters
+        else    // Normal characters
+        {    
             word += cur;
         }
     }

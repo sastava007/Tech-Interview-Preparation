@@ -33,7 +33,7 @@ private:
         ans = max({ans, root->val, left+right+root->val, left+root->val, right+root->val});
 
         return max(root->val, max(left,right)+root->val);   // in either case we can't skip the root value, we have to include it. I mean, like we can't skip a particular node in path, if we're
-                                                            // considering a path, then we've to consider all the nodes in that path
+                                                            // considering a path, then we've to consider all the nodes in that path. And also we can't return (left+root+right)
     }
 };
 
