@@ -1,6 +1,7 @@
-/*  LC Version:  Using string led to constant storage space
+/*  
+    
+    LC Version:
     Preorder traversal to serialize the binary tree.
-
 */
 
 class Codec {

@@ -45,11 +45,15 @@ class Solution {
         return combinations;
     }
 
-    public void generateAll(char[] current, int pos, List<String> result) {
-        if (pos == current.length) {
+    public void generateAll(char[] current, int pos, List<String> result) 
+    {
+        if (pos == current.length)
+        {
             if (valid(current))
                 result.add(new String(current));
-        } else {
+        }
+        else
+        {
             current[pos] = '(';
             generateAll(current, pos+1, result);
             current[pos] = ')';

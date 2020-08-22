@@ -83,7 +83,7 @@ vector<vector<int>> verticalOrder(TreeNode * root)
         pair<TreeNode*, int> temp = q.front();
         q.pop();
         
-        ans[temp.second - mm.first].push_back(temp.first->val);
+        ans[temp.second - mm.first].push_back(temp.first->val);  // subtracting the left extreme index, so that it index remains positive.
         
         if(temp.first->left)
             q.push({temp.first->left, temp.second-1});
