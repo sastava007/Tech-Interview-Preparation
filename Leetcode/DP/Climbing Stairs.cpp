@@ -22,3 +22,25 @@ public:
         return curr;
     }
 };
+
+/* 
+    Given a staircase, where ith step has cost[i]. Once you pay the cost, you can either climb 1 or 2 steps. You need to find minimum cost to reach the top of the floor,
+    and you can either start from the step with index 0, or the step with index 1.
+
+    dp[i] = min(dp[i-1], dp[i-2]) + i==n?0:cost[i]  Becz when we're at nth step, then we don't need to pay any cost as we've already reached the destination
+
+*/
+int minCostClimbingStairs(vector<int>& cost) 
+{
+    int n = cost.size();
+    int pre1 = cost[0], pre2 = cost[1], currCost;
+    
+    for(int i=2; i<=n; i++)
+    {
+        currCost = min(pre1, pre2) + (i==n?0:cost[i]);
+        
+        pre1 = pre2;
+        pre2 = currCost;
+    }
+    return currCost;
+}

@@ -1,11 +1,13 @@
 /*  
     For IPV4 add. we have to place 3 dots, such that each portion lies b/2 [0-255] and no portion should have a leading zero
-    What we are trying to do here is to partition the input string into 4 parts with 3 cuts. There are C(n, 3) ways to cut the string into 4 parts. In that sense, the time complexity is O(n^3). On second thought, however, because we are doing backtracking and removing lots of unnecessary checking, we are only checking three possibilities for each part (it has to be [0,255]), it becomes 3^4, which is just a constant, so it becomes O(1)
+    What we are trying to do here is to partition the input string into 4 parts with 3 cuts. There are C(n, 3) ways to cut the string into 4 parts. In that sense, the time complexity is O(n^3).
+    
+    But what we can do it to try all possible length for the 4 IP numbers. i.e length of each segment can be 1,2,3 so there will be total (3^4) combinations.
 
     DFS Approach
     TC: O(3^4) & Space: O(n) for output return oterwise O(1) depth of recursion tree is 4
-    
-    Input: "25525511135"  Output: ["255.255.11.135", "255.255.111.35"]
+
+    Input: "25525511135"  Output: ["255.255.11.135", "255.255.111.35"]]
 */
 
 class Solution

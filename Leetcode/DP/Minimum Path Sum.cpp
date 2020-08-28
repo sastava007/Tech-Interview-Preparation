@@ -27,7 +27,7 @@ int minPathSum(vector<vector<int>>& grid)
             }
             else if(i>0 && j>0)
             {
-                dp[i][j] = min(dp[i][j-1], dp[i-1][j])+grid[i][j];    
+                dp[i][j] = min(dp[i][j-1], dp[i-1][j]) + grid[i][j];    
             }
         }
     return dp[m-1][n-1];

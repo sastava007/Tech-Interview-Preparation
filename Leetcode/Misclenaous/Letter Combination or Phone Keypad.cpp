@@ -46,7 +46,7 @@ public:
             string x(1, c);
             temp += x;
             util(digits, pos+1, temp, result);
-            temp.pop_back();    // backtracking step i.e remove the last appended elemented
+            temp.pop_back();    // backtracking step i.e remove the last appended element
         }
     }
 };

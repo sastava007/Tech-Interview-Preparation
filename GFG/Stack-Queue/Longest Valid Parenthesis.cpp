@@ -6,71 +6,44 @@
     https://practice.geeksforgeeks.org/problems/longest-valid-parentheses/0 
 */
 
-#include<bits/stdc++.h>
-using namespace std;
-#define ll long long
-#define mod 1000000007
-#define mp make_pair
-#define pb push_back
-#define IOS ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(0);
-
-bool isBalanced(char x, char y)
-{
-    return (x=='(' && y==')');
-}
-
-int main()
-{
-    // IOS;    
-    int t,i;
-    cin>>t;
-    while (t--)
+class Solution {
+public:
+    
+    bool isBalanced(char x, char y)
     {
-        string a;
-        cin>>a;
-
-        stack<pair<char, int>> s;
-        int arr[a.length()];
-
-        for(i=0;i<a.length();i++)
+        return (x=='(' && y==')');
+    }
+    int longestValidParentheses(string s) 
+    {
+        vector<int> arr(s.length(), -1);
+        stack<pair<char, int>> stk;
+        
+        for(int i=0; i<s.length(); i++)
         {
             if(s.empty())
-                s.push({a[i], i});
-            else if(isBalanced(s.top().first, a[i]))
+                stk.push({s[i], i});
+            else if(!stk.empty() && isBalanced(stk.top().first, s[i]))
             {
-                arr[s.top().second]=1;
-                arr[i]=1;
-                s.pop();
+                arr[i] = 1;
+                arr[stk.top().second] = 1;
+                stk.pop();
             }
             else
-                s.push({a[i], i});
+                stk.push({s[i], i});
         }
-
-        while (!s.empty())
+        
+        int ans = 0, counter = 0;
+        for(int i: arr)
         {
-            arr[s.top().second]=-1;
-            s.pop();
-        }
-
-        int count=0, max_count=0;
-        for(auto it:arr)
-        {
-            if(it==-1)
-            {
-                max_count=max(max_count, count);
-                count=0;
-            }
+            if(i==1)
+                counter++;
             else
-            {
-                count++;
-            }
+                counter = 0;
+            ans = max(counter, ans);
         }
-        max_count=max(max_count, count);
-        cout<<max_count<<"\n";
-
+        return ans;
     }
-    return 0;
-}
+};
 
 /* One more solution without using extra array for storing indices, here we are pushing a extra pair{-1,-1} to build base for our valid substrings */
 
@@ -110,3 +83,42 @@ int main()
     }
     return 0;
 }
+
+/* Without using Stack, doing a 2 pass */
+
+class Solution {
+public:
+    int longestValidParentheses(string s) 
+    {
+        int open = 0, close = 0, maxlength = 0;
+
+        for(int i=0; i<s.length(); i++)     // This will remove all the exta unbalanced closing brackets
+        {
+            if(s[i]=='(')
+                open++;
+            else
+                close++;
+            
+            if(open == close)
+                maxlength = max(maxlength, open*2);
+            else if(close > open)
+                open = 0, close = 0;
+        }
+        
+        open = 0, close = 0;
+        
+        for(int i=s.length()-1; i>=0; i--)  // This will remove all the exta unbalanced opening brackets
+        {
+            if(s[i]=='(')
+                open++;
+            else
+                close++;
+            
+            if(open == close)
+                maxlength = max(maxlength, open*2);
+            else if(open > close)
+                open = 0, close = 0;
+        }
+        return maxlength;
+    }
+};

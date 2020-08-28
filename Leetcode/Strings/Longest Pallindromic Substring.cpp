@@ -2,8 +2,10 @@
     So idea is to generate odd & even length substrings around a center point, and for each of them find the maximum length.
         1. To generate odd length palindrome, Fix a centre and expand in both directions for longer palindromes, center = i, low = i-1 and high = i+1
         2. similarly for even length pallindrome, center = i, low = i-1 and high = i
+    
+    There can be total 2N-1 possible center, N for all charceters and remaining N-1 for centers in b/w 2 characters
 
-    TC: O(N^2) and O(1) Space without using DP
+    TC: O(N^2) and O(1) Space
 */
 
 string longestPalindrome(string s) 
@@ -14,7 +16,7 @@ string longestPalindrome(string s)
     int n = s.length(), maxlen = 1, low, high, start=0;
     for(int i=0; i<n; i++)      // point around which to center
     {
-        low = i-1, high = i-1;        //check for odd length substring, centered around i
+        low = i-1, high = i+1;        //check for odd length substring, centered around i
         while(low>=0 && high<n && s[low]==s[high])
         {
             if(high-low+1 > maxlen)
@@ -64,15 +66,15 @@ int longestPalSubstr(string str)
             table[i][i + 1] = true; 
             start = i; 
             maxLength = 2; 
-        } 
+        }
     } 
 
     // Check for lengths greater than 2, here K is length of substring
-    for (int k = 3; k <= n; ++k) { 
+    for (int k = 3; k <= n; k++) { 
         // Fix the starting index 
-        for (int i = 0; i < n - k + 1; ++i) {   // starting from index 'i' and length K
+        for (int i = 0; i < n - k + 1; i++) {   // starting from index 'i' and length K
 
-            int j = i + k - 1; 
+            int j = i + k - 1;
   
             // checking for sub-string from ith index to 
             // jth index iff str[i+1] to str[j-1] is a 

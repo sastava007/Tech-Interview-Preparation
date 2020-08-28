@@ -39,12 +39,12 @@ public:
                 if(dict.find(left)!=dict.end() && dict[left]!=i && isPallindrome(right))
                 {
                     result.push_back({i, dict[left]});
-                    if(left=="")
+                    if(left=="")    // Here we're checking this case explicity for "" string case in word list
                         result.push_back({dict[left], i});
                 }
                 
-                if(dict.find(right)!=dict.end() && dict[right]!=i && isPallindrome(left))
-                {
+                if(dict.find(right)!=dict.end() && dict[right]!=i && isPallindrome(left))   // We aren't doing the same explicit check over here becz right can never me ""
+                {                                                                           // as we're looping till  < word.length()
                     result.push_back({dict[right], i});
                 }
             }

@@ -6,23 +6,51 @@
 
 */
 
-public static String intToRoman(int num)
+class Solution {
+public:
+    string intToRoman(int num) 
+    {
+        string dict[] = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+        vector<int> val ={1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+            
+        int i=0;
+        string res;
+                         
+        while(num>0)	// Iterate until the number becomes zero, NO NEED to go until the last element in roman array
+        {
+            while(num>=val[i])
+            {
+                num -= val[i];
+                res += dict[i];
+            }
+            i++;
+        }
+        return res;
+    }
+};
+
+/* Roman to integer */	
+int romanToInt(string s) 
 {
-	if (num < 1 || num > 3999) return "";
+	unordered_map<char, int> m;
+	m['I'] = 1;
+	m['V'] = 5;
+	m['X'] = 10;
+	m['L'] = 50;
+	m['C'] = 100;
+	m['D'] = 500;
+	m['M'] = 1000;
 	
-	StringBuilder result = new StringBuilder();
-	
-	String[] roman = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
-	int[] values = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1 };
-	
-	int i = 0;
-            //iterate until the number becomes zero, NO NEED to go until the last element in roman array
-	while (num >0) {
-		while ( num >= values[i]) {
-			num -= values[i];
-			result.append(roman[i]);
-		}
-		i++;
+	int i = s.length()-1, prev = 0, ans=0;
+	while(i>=0)
+	{
+		int curr = m[s[i]];
+		if(curr >= prev)
+			ans += curr;
+		else
+			ans -= curr;
+		prev = curr;
+		i--;
 	}
-	return result.toString();
+	return ans;
 }
