@@ -1,0 +1,168 @@
+C++
+->basic syntax
+->STL for cp
+
+-> Pattern printing problems (improves thinking and loops)
+-> analysis and time complexity
+-> linear search basic traversal and circular array
+-> palindrome, armstrong, perfect,... numbers
+-> simple hashing problems
+-> prefix sum problems 1d 2d
+-> sliding window technique (problem)
+
+-> binary search
+-> gcd of two numbers in log n (euclidean and extended euc...)
+-> linear diphantine equation
+-> checking prine in sqrt(n) 
+-> sieve of eratosthenes
+-> segmented sieve
+-> finding prime factorition of number in log n 
+-> euler totient functions
+-> fermat little theorem
+-> wilsons theorm
+
+TOUGHER NUMBER THEORY
+-> find x^n in log n time
+-> modular airthmetic
+-> modular exponentiation 
+-> chinese remainder theorm
+-> factorial modulo mod
+-> finding nCr and nPr for queries in constant time
+-> inclusion and exclusion principle
+
+-> sorting algoritmms
+-> do problems which are constructive and have swapping terms in it
+-> solve problems related to two-pointer method
+-> bit manupulation(ls,rs,set,unset,msb,lsb) 
+-> power set of array/string using bit
+-> number of sub-arrays with xor as zero (problem)
+-> greedy algorithms
+-> kadane's algorithm and problems related to that
+-> job sequencing and activity selection problems
+
+end... number theory, bit manupulation, greedy algorithms
+
+😵RECURSION
+-> basic recursion problems (finding factorial)
+-> implement binary search
+-> implement modular exponentiation
+-> finding subsets with given sum
+-> merge sort and quick sort
+-> solve problems related to merge sort(count inversion problem)
+-> backtracking problems sudoku and nqueen (dp path problems)
+
+
+-> meet in the middle algorithm and problems
+-> divide and conquer (practice from codeforces only)
+-> next-greater/next-smaller element using stack
+-> problems related to paranthesis
+-> largest rectangular ares in histogram
+   (concept is used in lot of problems)
+-> problems related to heap (priority queue)(greedy, stl)
+
+
+
+☣️🦠☠️ HARDER TOPICS (dont give up!)
+
+
+STRINGS:
+-> learn about hashing on strings and solve problems, understand when collison happens.
+-> rabin karp algorithm
+-> prefix function
+-> kmp algorithm
+-> z-function
+-> manachers' algorithm
+-> solve various problems from different platforms
+
+
+TREES
+-> tree/graph representation
+-> DFS/BFS traversal int graph/tree
+-> diameter/height/level/etc of a tree
+-> euler tour of tree
+-> finding LCA using euler tour
+-> finding LCA using binary lifting (log n time per query)
+-> distance between two nodes
+-> subtree problems
+-> solve problems (spoj recommended)
+
+
+GRAPHS
+-> connected components
+-> topological sort
+-> cycle detection in graph
+-> bipartite check in graph
+-> shortest connected component (SCC) using Kosaraju's algorithm
+-> Dijkstra's algorithm (shortest path)
+-> bellman ford algorithm (shortest path when there are negative weights)
+-> floyd warshl algorithm
+-> solve problems (hackerearth, cp-algorithms)
+
+-> bridges in a graph
+-> articulation point in a graph
+-> minimum spanning tree using Kruskal's algorithm
+-> Prim's algorithm
+-> 0/1 BFS (dijkstra takes nlog n time might give TLE. but this works in linear time)
+-> finding bridges online
+-> solve problems
+
+
+🤯 DYNAMIC PROGRAMMING
+
+!!!avoid iterative DP if you are a beginner in DP
+instead start with recursion and try to memoise the solution.
+
+-> need to be expert in recursion
+-> understand memoisation
+-> initially solve all the common existing DP problems (LCS, knapsac, etc)
+-> solve atcoder educational contest on DP (all 26 questions!)
+-> solve problems from various platforms
+-> understand how do we write recurrence for digit DP (cf-blog) and solve problems on it.
+-> DP with bitmask and solve problems
+-> DP on trees
+-> SOS DP (cf- blog)
+
+
+-> disjoint set(using all optimisatios)
+-> offline queries using disjoint set (problem: colourful array on SPOJ)(for understanding above topic)
+-> Kruskal's algo using disjoint set and solve bunch of problens
+
+
+-> sparse table (not much important. segment trees do the job)
+-> fenwick tree and binary lifting on fenwick tree
+   (read about range update trick also)
+-> questions on fenwick tree
+
+
+
+-> Matrix exponentiation(problems)
+-> Sqrt decomposition technique(preferred over segment tree)
+-> update and query operations
+-> Mo's algorithm (powerful array from codeforces)
+-> Mo's algo on trees (long challenges mostly)
+-> Segment trees (most importent data structure) (Range queries and point updates)
+-> Lazy propagation on Segment trees (range updates)
+
+
+-> Spraue grundy theorm (SEEN VERY RARE)
+-> Flows and related problems (max flow, min flow) (cp-algorithm)
+-> heavy-light decomposition on trees 
+-> Convex hull algorithm
+-> FFT/NTT (any maths blog)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
