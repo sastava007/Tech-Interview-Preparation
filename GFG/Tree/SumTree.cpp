@@ -1,6 +1,36 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+bool isSumTreeUtil(Node* root, int &sum)
+{
+    if(root==NULL)
+    {
+        sum=0;
+        return true;
+    }
+    if(root->left==NULL && root->right==NULL)
+    {
+        sum=root->data;
+        return true;
+    }
+    
+    int leftSubTreeSum = 0, rightSubTreeSum=0;
+    bool left = isSumTreeUtil(root->left, leftSubTreeSum);
+    bool right = isSumTreeUtil(root->right, rightSubTreeSum);
+    
+    sum = leftSubTreeSum + rightSubTreeSum + root->data;
+    
+    return ((root->data==leftSubTreeSum+rightSubTreeSum)&&left&&right);
+}
+
+bool isSumTree(Node* root)
+{
+    int sum=0;
+    return isSumTreeUtil(root, sum);
+}
+
+/* Driver function */
+
 struct Node
 {
     int data;
@@ -95,32 +125,4 @@ int main()
         cout <<isSumTree(root) << endl;
     }
     return 1;
-}
-
-bool isSumTreeUtil(Node* root, int &sum)
-{
-    if(root==NULL)
-    {
-        sum=0;
-        return true;
-    }
-    if(root->left==NULL && root->right==NULL)
-    {
-        sum=root->data;
-        return true;
-    }
-    
-    int leftSubTreeSum = 0, rightSubTreeSum=0;
-    bool left = isSumTreeUtil(root->left, leftSubTreeSum);
-    bool right = isSumTreeUtil(root->right, rightSubTreeSum);
-    
-    sum=leftSubTreeSum+rightSubTreeSum+root->data;
-    
-    return ((root->data==leftSubTreeSum+rightSubTreeSum)&&left&&right);
-}
-
-bool isSumTree(Node* root)
-{
-    int sum=0;
-    return isSumTreeUtil(root, sum);
 }

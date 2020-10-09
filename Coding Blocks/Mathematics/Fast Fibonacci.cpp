@@ -61,7 +61,7 @@ ll solve(int n)
         ans=(ans + (t[1][i]*b[i])%mod)%mod;
     return ans;
 }
-main()
+int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(0);
@@ -77,4 +77,6 @@ main()
         cin>>n;
         cout<<solve(n)<<"\n";
     }
+    return 0;
 }
+// wapas se kar raha

@@ -2,16 +2,17 @@
     For each element we've 2 options, either we take it or not which lead to longest increasing subsequence which will be max of both the lengths. But in this approach many sub-problems
     will be solved multiple times which we can avoid by memoizing the result.
 
-    TC & Space: O(N^2)
+    memo[i][j] represent the length of LIS, using/not using nums[i] as previous element and using/not using nums[j] as current element
+
+    TC & Space: O(N^2) with memoization
 */
 
-
-public int lengthOfLIS(int[] nums)
+int lengthOfLIS(int[] nums)
 {
     vector<vector<int>> memo(nums.size()+1, vector<int>(nums.size()+1, -1));
     return lengthofLIS(nums, -1, 0, memo);
 }
-public int lengthofLIS(int[] nums, int previndex, int curpos, int[][] memo)
+int lengthofLIS(int[] nums, int previndex, int curpos, int[][] memo)
 {
     if (curpos == nums.length) {
         return 0;
@@ -36,7 +37,7 @@ public int lengthofLIS(int[] nums, int previndex, int curpos, int[][] memo)
     LIS[] = {1, 1, 1, 1} (initially)
     Iteration-wise simulation :
 
-    arr[2] > arr[1] {LIS[2] = max(LIS [2], LIS[1]+1)=2}
+    arr[2] > arr[1] {LIS[2] = max(LIS[2], LIS[1]+1)=2}
     arr[3] < arr[1] { No change }
     arr[3] < arr[2] { No change }
     arr[4] > arr[1] {LIS[4] = max(LIS [4], LIS[1]+1)=2}
