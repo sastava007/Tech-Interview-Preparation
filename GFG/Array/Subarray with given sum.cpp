@@ -31,7 +31,10 @@ public:
     }
 };
 
-/* Using hashing to store the current sum, works for both +ve/-ve numbers, It requires extra O(n) space */
+/* 
+    This approach consider that only one such instance of subbary sum exists, and if there are >1 such subarray then it would just print the first such occurrence from left
+    Hashing to store the current sum, works for both +ve/-ve numbers, TC: O(N) and Space: O(N)
+*/
 
 int sum = 0;
 unordered_map<int, int> m;

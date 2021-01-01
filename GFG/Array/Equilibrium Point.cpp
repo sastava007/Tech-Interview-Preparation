@@ -4,37 +4,20 @@
 #define ll long long
 using namespace std;
 
-int main()
-{
-    int t;
-    cin>>t;
-    while(t--)
-    {
-        int n, ans = -1;
-        cin>>n;
-        
-        ll a[n], sum = 0;
-        
-        for(int i=0;i<n;i++)
-        {
-            cin>>a[i];
-            sum += a[i];
-        }
+int equilibriumPoint(long long a[], int n) {
     
-        ll leftsum = 0;
-        for(int i=0;i<n;i++)
-        {
-            sum -= a[i];
-            
-            if(leftsum == sum)
-            {
-                ans = i+1;
-                break;
-            }
-            
-            leftsum += a[i];
-        }
-        cout<<ans<<"\n"; 
+    ll sum = 0;
+    for(int i=0; i<n; i++)
+        sum += a[i];
+
+    ll rightSum = sum, leftSum = 0;
+    for(int i=0; i<n; i++)
+    {   
+        rightSum -= a[i];
+        if(leftSum == rightSum)
+            return i+1;
+
+        leftSum += a[i];    
     }
-	return 0;
+    return -1;
 }

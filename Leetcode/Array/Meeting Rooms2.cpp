@@ -61,13 +61,10 @@ public:
     }
 };
 
-/*  */
+/* TC: O(N) and Space: O(N) */
+
 class Solution {
   public:
-    /**
-     * @param intervals: an array of meeting time intervals
-     * @return: the minimum number of conference rooms required
-     */
     int num[1001000];
     int minMeetingRooms(vector<Interval> &intervals) {
         // Write your code here
