@@ -20,13 +20,26 @@ public:
         
         while(fast && fast->next)
         {
-            if(slow == fast)
+            if(slow == fast)    // In case of cycle and loop always compares both the node and their value
                 return true;
             
             slow = slow->next;
             fast = fast->next->next;
         }
         return false;
+        
+        /* 
+            ListNode slow = head;
+            ListNode fast = head.next;
+            while (slow != fast) {
+                if (fast == null || fast.next == null) {
+                    return false;
+                }
+                slow = slow.next;
+                fast = fast.next.next;
+            }
+            return true; 
+        */
     }
 };
 

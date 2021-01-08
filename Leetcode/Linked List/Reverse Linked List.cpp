@@ -15,6 +15,22 @@ public:
         }
         return prev;
     }
+
+    /* Using Recursion */
+    
+    ListNode* reverseList(ListNode* head) 
+    {
+        return util(head, NULL);
+    }
+    ListNode* util(ListNode* head, ListNode* prev)
+    {
+        if(head==NULL)
+            return prev;
+        ListNode* temp = head->next;
+        head->next = prev;
+        prev = head;
+        return util(temp, prev);
+    }
 };
 
 /*  Reverse the LL b/w m-n(both inclusive). Assume this as partitioing the list into 3 parts and reversing the middle most part. We'll use conection and tail variables to connect the first - second

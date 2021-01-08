@@ -20,10 +20,16 @@ public:
         ListNode *p1 = headA, *p2 = headB;
         while(p1 != p2)
         {
-            p1 = p1==NULL?headB:p1->next;
+            p1 = p1==NULL?headB:p1->next;   // Don't check for p1->next, coz that way we'll never reach the same node is there's no intersection 
             p2 = p2==NULL?headA:p2->next;
-        }
-        
+        }      
         return p1;
     }
 };
+
+/* 
+
+    You can prove that: say A length = a + c, B length = b + c, after switching pointer, pointer A will move another b + c steps, pointer B will move a + c more steps, 
+    since a + c + b + c = b + c + a + c, it does not matter what value c is. Pointer A and B must meet after a + c + b (b + c + a) steps. If c == 0, they meet at NULL. 
+
+*/
