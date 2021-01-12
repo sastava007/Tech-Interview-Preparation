@@ -20,7 +20,7 @@ public:
         
         while(fast && fast->next)
         {
-            if(slow == fast)    // In case of cycle and loop always compares both the node and their value
+            if(slow == fast)    // In case of cycle and loop always compares both the node NOT their value
                 return true;
             
             slow = slow->next;

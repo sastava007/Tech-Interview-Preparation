@@ -1,83 +1,139 @@
 /* 
-    Sort a linked list using merge sort and O(1) space. A trivial solution is to use D&C which basically works from Top-Bottom but due to recursion the call stack would take O(logN) space.
-    So we've to built our solution from bottom-top just as we did in merge K sorted list i.e using step & length and increasing the step 2 times after every iteration.
+    A trivial solution is to use D&C which basically works from Top-Bottom but due to recursion the call stack would take O(logN) space.
+    So we've to built our solution from bottom-top just as we did in `Merge K sorted list` i.e using step & length and increasing the step 2 times after every iteration.
 
-      ...
     level 2        [ A0, A1, A2,  A3 ], [A4, A5, A6, A7] ,... , [ ..., An-2, An-1 ]
     level 1        [ A0, A1], [A2,  A3 ], [A4, A5], [A6, A7] ,... , [An-2, An-1]
     level 0        [ A0 ], [ A1] , [ A2 ],  [ A3 ],... , [ An-2 ], [ An-1 ]
 
-    Mrge sort is preferred over quick sort becz the memory allocation in linked list is diferent from arrays. As quick sort requires alot of random access to elements which isn't easy with
+    Idea is to first create sublist of size starting from 1 and increasing everytime with a multiple of 2. And to seperate the sublist from LL using spli() that Divide the linked list
+    into two lists, while the first list contains first 'N' ndoes returns the second list's head.
+    And to merge them we use tail, and points it's next to merge(left, right, tail) and later update/move forward it with pointer returned by merge()
+
+    Follow Up: Merge Sort over Quick Sort?
+    becz the memory allocation in linked list is diferent from arrays. As quick sort requires alot of random access to elements which isn't easy with
     linked list as it requires linaer time to reach a particular node. And also becz merge() of merge sort doesn't requires any extra space to merge to linked list which was required in case of
     arrays.
-
 */
+
+// TC: O(NlogN) & Space: O(1)
+
 class Solution {
 public:
     ListNode* sortList(ListNode* head) 
     {
         if(!head || !head->next)
             return head;
-        ListNode* curr = head;
-        int length = 0;
-        while(curr)
+        
+        int n = 0;
+        ListNode *runner = head;
+        while(runner)
         {
-            curr = curr->next;
-            length++;
+            runner = runner->next;
+            n++;
         }
+        ListNode *dummy = new ListNode(0);
+        dummy->next = head;    
         
-        ListNode dummy(0);
-        dummy.next = head;
-        
-        ListNode *left, *right, *tail;
-        
-        for(int i=1; i<length; i *= 2)
+        for(int step = 1; step<n; step*=2)
         {
-            curr = dummy.next;
-            tail = &dummy;
-            
+            ListNode *curr = dummy->next, *left, *right, *tail = dummy;
             while(curr)
             {
                 left = curr;
-                right = split(left, i);
-                curr = split(right, i);
+                right = split(left, step);
+                curr = split(right, step);
                 
-                tail = merge(left, right, tail);
+                tail = merge(left, right, tail);    
             }
         }
-        return dummy.next;
+        return dummy->next;
     }
-    
-    private:
-    ListNode* split(ListNode* head, int n)
+    ListNode* split(ListNode *head, int n)
     {
-        for(int i=1; i<n && head; i++)
+        for(int i=1; head && i<n; i++)  // First list contains the first 'N' nodes so keep on shifting and later close the end to seperate
             head = head->next;
         
-        if(!head)
-            return NULL;
-        
-        ListNode *temp = head->next;
-        head->next = NULL;
+        ListNode *temp = NULL;
+        if(head)
+        {
+            temp = head->next;  // return the head of second list
+            head->next = NULL;  // first list contain first 'n' nodes, and now close the end of first chain
+        }
         return temp;
     }
-    ListNode* merge(ListNode *l1, ListNode *l2, ListNode *head)
+    ListNode* merge(ListNode *left, ListNode *right, ListNode *tail)
     {
-        ListNode *cur = head;
-		while(l1 && l2){
-			if(l1->val > l2->val){
-				cur->next = l2;
-				cur = l2;
-				l2 = l2->next;
-			}
-			else{
-				cur->next = l1;
-				cur = l1;
-				l1 = l1->next;
-			}
-		}
-		cur->next = (l1 ? l1 : l2);
-		while(cur->next) cur = cur->next;
-		return cur;
+        ListNode *curr = tail;     // We're not creating a new dummy node unlike typical merge functions becz here we need to set the sorted list head's to tail->next
+        while(left && right)
+        {
+            if(left->val > right->val)
+                curr->next = right, right = right->next;
+            else
+                curr->next = left, left = left->next;
+            curr = curr->next;
+        }
+        curr->next = left?left:right;
+        
+        while(curr->next)   // As this is going to be the tail, which means this should be present at the end so keep on moving it towards the end
+            curr = curr->next;
+        return curr;
     }
+};
+
+/*  Using Top-Bottom D&C Approach TC: O(NlogN) & Space: O(logN)  */
+class Solution {
+private:
+    ListNode* findMiddle(ListNode* head)
+    {
+        ListNode *slow = head, *fast = head, *pre;
+        while(fast && fast->next)
+        {
+            pre = slow;
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+        if(pre)
+            pre->next = NULL;
+        return slow;
+    }
+    ListNode* merge(ListNode *left, ListNode *right)
+    {
+        if(!left)
+            return right;
+        if(!right)
+            return left;
+        
+        ListNode *dummy = new ListNode(0);
+        ListNode *p = dummy;
+        
+        while(left && right)
+        {
+            if(left->val<right->val)
+            {
+                p->next = left;
+                left = left->next;
+            }
+            else
+            {
+                p->next = right;
+                right = right->next;
+            }
+            p = p->next;
+        }
+        p->next = left?left:right;
+        return dummy->next;
+    }
+public:
+    ListNode* sortList(ListNode* head) 
+    {
+        if(!head || !head->next)
+            return head;
+        
+        ListNode *mid = findMiddle(head);
+        ListNode *left = sortList(head);
+        ListNode *right = sortList(mid);
+        
+        return merge(left, right);
+    }  
 };

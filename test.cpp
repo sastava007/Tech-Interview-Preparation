@@ -1,42 +1,51 @@
 #include <bits/stdc++.h>
 #define ll long long int
 using namespace std;
-ll ans = 0;
-unordered_map<ll, vector<ll>> mp;
-ll dfs(ll id)
+
+struct Node
 {
-  if (mp[id].size() == 0)
-    return 0;
-  vector<int> child;
-  for (int i = 0; i < mp[id].size(); i++)
+  int val;
+  struct Node* next;
+
+  Node(int n = 0)
   {
-    child.push_back(dfs(mp[id][i]));
+    val = n;
+    next = NULL;
   }
-  for (int i : child)
-  {
-    if (i == 0)
-    {
-      ans++;
-      return 1;
-    }
-  }
-  for (int i : child)
-  {
-    if (i == 1)
-      return 2;
-  }
-  return 0;
+};
+
+void fun(Node* head)
+{
+  // Node* temp = root;
+  // temp->val = 20;
+  // temp->next = NULL;
+
+  delete head;
+  // while(head!=NULL)
+  // {
+  //   cout<<head->val<<" ";
+  //   head = head->next;
+  // }
+
+  
+  // return head;
 }
+
+
 int main()
 {
-  ll n;
-  cin >> n;
-  for (ll i = 0; i < n - 1; i++)
+  Node* head = new Node();
+  head->next = new Node(2);
+  head->next->next = new Node(3);
+
+  // fun(head);
+  // cout<<"\n\n";
+
+  while(head!=NULL)
   {
-    ll x, y;
-    cin >> x >> y;
-    mp[x].push_back(y);
-    mp[y].push_back(x);
+    cout<<"Hello!";
+    cout<<head->val<<" ";
+    head = head->next;
   }
-  cout << (dfs(1) < 1 ? 1 : 0) + ans;
+
 }

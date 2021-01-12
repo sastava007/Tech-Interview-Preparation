@@ -5,10 +5,34 @@
     
     Space Complexity: O(1) as we're doing it iteratively so it will not consusme any stack space unlike O(logK)
     Reference: https://afteracademy.com/blog/merge-k-sorted-lists
+    
+    TC: O(NlogK) and Space: O(1)
+*/
 
- */
 
 class Solution {
+private:
+    ListNode* merge2Lists(ListNode *a, ListNode *b)
+    {
+        if(!a)
+            return b;
+        if(!b)
+            return a;
+        ListNode *dummy = new ListNode(0);
+        ListNode *p = dummy;
+        
+        while(a && b)
+        {
+            if(a->val<b->val)
+                p->next = a, a = a->next;
+            else
+                p->next = b, b = b->next;
+            p = p->next;
+        }
+        p->next = a?a:b;
+        return dummy->next;
+    }
+        
 public:
     ListNode* mergeKLists(vector<ListNode*>& lists) 
     {
@@ -16,62 +40,15 @@ public:
         if(k==0)
             return NULL;
         
-        int interval = 1;
-        while(interval<k)
+        for(int interval = 1; interval<k; interval *=2)
         {
-            int i=0;
-            while(interval+i<k)
+            int i = 0;
+            while(interval+i < k)
             {
-                lists[i]=mergeTwoSortedLists(lists[i], lists[interval+i]);
-                i=i+interval*2;
+                lists[i] = merge2Lists(lists[i], lists[interval+i]);
+                i = i + 2*interval;
             }
-            interval *= 2;
-        }   
+        }
         return lists[0];
-    }
-    
-private:
-    ListNode* mergeTwoSortedLists(ListNode* a, ListNode* b)
-    {
-       if(a==NULL)
-           return b;
-        if(b==NULL)
-            return a;
-        
-        ListNode* output  = NULL;   //create a dummy node
-        
-        if(a->val < b->val)
-        {
-            output = a;
-            a=a->next;
-        }
-        else
-        {
-            output=b;
-            b=b->next;
-        }
-        
-        ListNode* curr = output;    // a pointer to iterate over the LL
-        while(a!=NULL && b!=NULL)
-        {
-            if(a->val<b->val)
-            {
-                curr->next=a;
-                a=a->next;
-            }
-            else
-            {
-                curr->next=b;
-                b=b->next;
-            }
-            curr=curr->next;
-        }
-            
-        if(a!=NULL)     //If one of them get exhausted first, then add the remaining one
-            curr->next=a;
-        if(b!=NULL)
-            curr->next=b;
-        
-        return output;
     }
 };
