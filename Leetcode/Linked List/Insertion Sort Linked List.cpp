@@ -137,3 +137,36 @@ public:
         return merge(left, right);
     }  
 };
+
+/*  Insertion Sort 
+
+    Here we maintain a partially sorted list, and iterate over the LL, once we find a node having value < previous node value. We pick this node and start scanning
+    the partially sorted list to find it's correct position to insert and since this can be inserted at the start of the LL that's why we've used a dummy node.
+
+    TC: O(N2) & Space: O(1);
+*/
+
+ListNode* insertionSortList(ListNode* head) 
+{
+    ListNode *dummy = new ListNode(0);
+    dummy->next = head;
+    ListNode *pre = dummy, *curr = head;
+    
+    while(curr)
+    {
+        if(curr->next && (curr->next->val < curr->val)) // if curr->next->val < curr->val
+        {
+            ListNode *temp = curr->next->next;
+            while(pre->next && pre->next->val < curr->next->val)   // find the correct position to insert this (curr->next) node
+                pre = pre->next;
+            
+            curr->next->next = pre->next;
+            pre->next = curr->next;
+            curr->next = temp;
+            pre = dummy;
+        }
+        else    // It might be the case that the next node in list is also < then curr->val that's why not shifting forward curr before checking
+            curr = curr->next;
+    }
+    return dummy->next;
+}
