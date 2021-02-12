@@ -25,7 +25,7 @@ public:
                 delete(temp);
             }
             else
-                p = p->next;
+                p = p->next;  // not immediatly updating becz there could be chnace that node after the deleted node may also have the same value, so in that case it get skipped.
         }
         return dummy.next;
     }

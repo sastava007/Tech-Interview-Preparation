@@ -1,4 +1,6 @@
-/*  */
+/*  We've to do this in a single pass, i.e without calculating the length of list first. We can use 2 pointers (fast & slow) such that they're at difference of N nodes 
+    TC: O(N) and Space: O(1)
+*/
 
 class Solution {
 public:
