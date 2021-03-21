@@ -61,7 +61,7 @@ Node* lcaUtil(Node* root, int n1, int n2, bool &v1, bool &v2)
 bool find(Node* root, int k)    //check if key k is rooted under current node
 {
     if(root==NULL)
-        return true;
+        return false;
     
     bool left=find(root->left, k);
     bool right=find(root->right, k);

@@ -50,8 +50,9 @@ public:
         {
             TreeNode *node = s.top();
             s.pop();
-            if (output.size()) output += ",";
-                output += node ? to_string(node->val) : "#";    // if null node, then add "#" else add node->val
+            if (output.size())
+                output += ",";
+            output += node ? to_string(node->val) : "#";    // if null node, then add "#" else add node->val
             if (node) 
             {
                 s.push(node->right);

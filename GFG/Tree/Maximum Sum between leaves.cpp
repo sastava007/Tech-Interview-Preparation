@@ -3,32 +3,28 @@
     https://www.geeksforgeeks.org/find-maximum-path-sum-two-leaves-binary-tree/ 
 */
 
-int ans;
-
-int maxPathSumUtil(Node* root)
+int maxPathSumUtil(Node* root, int& ans)
 {
-    if(root==NULL)
+    if(!root)
         return 0;
-
-    int maxSumRootLeafLeft = maxPathSumUtil(root->left);
-    int maxSumRootLeafRight = maxPathSumUtil(root->right);
+    if(!root->left && !root->right)
+        return root->data;
+        
+    int maxPathSumLeftSubtree = maxPathSumUtil(root->left, ans);
+    int maxPathSumRightSubtree = maxPathSumUtil(root->right, ans);
 
     if(root->left && root->right)
     {
-        ans=max(ans, maxSumRootLeafLeft+maxSumRootLeafRight+root->data);
-        return max(maxSumRootLeafLeft, maxSumRootLeafRight)+root-data;
+        ans = max(ans, maxPathSumLeftSubtree+maxPathSumRightSubtree+root->data);
+        return max(maxPathSumLeftSubtree, maxPathSumRightSubtree)+root->data;
     }
-
-    !root->left?return(maxSumRootLeafRight+root->data) :  return(maxSumRootLeafLeft+root->data);
+        
+    return !root->left?maxPathSumRightSubtree+root->data : maxPathSumLeftSubtree+root->data;
 }
 
-int maxPathSum(Node *root) 
-{
-    ans = INT_MIN;
-    int temp = maxPathSumUtil(root);
-    
+int maxPathSum(Node* root)
+{ 
+    int ans = INT_MIN;
+    maxPathSumUtil(root, ans);
     return ans;
 }
-
-    if(!root->left && !root->right)
-        return root->data;
