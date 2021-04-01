@@ -10,23 +10,50 @@ public:
     {
         int diff=INT_MIN;
         
-        util(root, INT_MAX, INT_MIN, diff);
+        util(root, root->val, root->val, diff);
         
         return diff;
     }
-    
 private:
-    void util(TreeNode* root, int mn, int mx, int &diff)
+    void util(TreeNode* root, int cur_min, int cur_max, int &diff)
     {
         if(root==NULL)
            return;
+
+        diff = max(diff, cur_max-cur_min);  // preorder traversal
+
+        cur_min = min(cur_min, root->val);      
+        cur_max = max(cur_max, root->val);
         
-        mn=min(mn, root->val);      //preorder traversal
-        mx=max(mx, root->val);
+        util(root->left, cur_min, cur_max, diff);
+        util(root->right, cur_min, cur_max, diff);
+    }
+};
+
+/* Another approach */
+class Solution {
+public:
+    int maxAncestorDiff(TreeNode* root) 
+    {
+        int ans = 0;
         
-        diff=max(diff, mx-mn);
+        if(!root)
+            return ans;
+        util(root, root->val, root->val, ans);
+        return ans;
+    }
+private:
+    void util(TreeNode* root, int minInSubtree, int maxInSubtree, int &ans)
+    {
+        if(!root)
+            return;
+              
+        ans = max({ans, abs(minInSubtree-root->val), abs(maxInSubtree-root->val)});     // here I'm finding the max diff with each node value
         
-        util(root->left, mn, mx, diff);
-        util(root->right, mn, mx, diff);
+        minInSubtree = min(minInSubtree, root->val);
+        maxInSubtree = max(maxInSubtree, root->val);
+
+        util(root->left, minInSubtree, maxInSubtree, ans);
+        util(root->right, minInSubtree, maxInSubtree, ans);
     }
 };
