@@ -3,18 +3,19 @@
         1. To generate odd length palindrome, Fix a centre and expand in both directions for longer palindromes, center = i, low = i-1 and high = i+1
         2. similarly for even length pallindrome, center = i, low = i-1 and high = i
     
-    There can be total 2N-1 possible center, N for all charceters and remaining N-1 for centers in b/w 2 characters
+    There can be total 2N-1 possible center, N for all charceters as ceneter in case of ODD length pallindromic string, and N-1 centers 
+    in b/w 2 characters for even length pallindromic string.
 
     TC: O(N^2) and O(1) Space
 */
 
-string longestPalindrome(string s) 
+string longestPalindrome(string s)
 {
     if(s.length()==0)
         return "";
     
-    int n = s.length(), maxlen = 1, low, high, start=0;
-    for(int i=0; i<n; i++)      // point around which to center
+    int n = s.length(), low, high, start=0, maxlen = 1;       // All substrings of length 1 are palindromes 
+    for(int i=0; i<n; i++)   // point around which to center
     {
         low = i-1, high = i+1;        //check for odd length substring, centered around i
         while(low>=0 && high<n && s[low]==s[high])
@@ -40,14 +41,13 @@ string longestPalindrome(string s)
             low--;
         }
     }
-    
     return s.substr(start, maxlen);
 }
 
 /* We can also solve this using a DP approach, but that requires an O(N^2) extra space */
 
 int longestPalSubstr(string str) 
-{ 
+{
     int n = str.size(); 
 
     bool table[n][n];       // table[i][j] represents whether substring b/w ith & jth indexes are pallindrome or not
@@ -82,10 +82,10 @@ int longestPalSubstr(string str)
             if (table[i + 1][j - 1] && str[i] == str[j]) { 
                 table[i][j] = true; 
   
-                if (k > maxLength) { 
+                if (k > maxLength) {
                     start = i; 
                     maxLength = k; 
-                } 
+                }
             } 
         } 
     }

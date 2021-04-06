@@ -16,27 +16,24 @@ public:
         
         int i=0, j=0;
         
-        while(i<chars.size())       // 'i' to read the character array
+        while(i<chars.size())   // 'i' to read the character array
         {
-            chars[j]=chars[i];
+            char currentChar = chars[i];
             int count = 0;
-            while(i<chars.size() && chars[i]==chars[j])     // find the no. times char has occurred
+            while(i<chars.size() && chars[i] == currentChar)    // find the no. times char has occurred
             {
                 count++;
                 i++;
             }
             
-            if(count==1)        // if we have just 1 instance of that character, then no need to write back to original array ex: a1 doesn't make any sense
-                j++;
-            else
+            chars[j++] = currentChar;  // write head will start writing from the 'j', if count = 1 then it will just write the 'character' and increment further
+            
+            if(count != 1)
             {
-                for(char c: to_string(count))   // if counter is more than one digit, like if 'a' has occurred 10 times then a10 
-                    chars[++j] = c;
-                
-                j++;    // move to the next place, where we need to write
+                for(char c: to_string(count))   // max time this loop will run is log10(N) 
+                    chars[j++] = c;     // if count>1, then it will keep on writing each digit 
             }
         }
-        
-        return j;   // to get the resultant/modified vector<> just print all the characters till jth index 
+        return j;    // to get the resultant/modified vector<> just print all the characters till jth index 
     }
 };

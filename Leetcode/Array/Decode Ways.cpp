@@ -1,13 +1,12 @@
 /* Using DP memoizations, similar to Fibonaaci numbers */
 
-
 int numDecodings(string s) 
 {
     if(s.length()==0 || s[0]=='0')   //if empty string or if first digit is 0 then return 0
         return 0;
     
     int n = s.length();
-    vector<int> dp(n+1, 0);
+    vector<int> dp(n+1, 0);     // dp[i] means the #ways to decode string of length 'i'
     
     dp[0]  = 1;
     dp[1] = s[0]!='0' ? 1:0;        // string of length 1
@@ -23,7 +22,6 @@ int numDecodings(string s)
         if(second>=10 && second<=26)
             dp[i] += dp[i-2];
     }
-    
     return dp[n];
 }
 
@@ -60,5 +58,35 @@ public:
         }
         
         return cur;
+    }
+};
+
+/* Recursive Solution TC: Exponential */
+class Solution {
+public:
+    int numDecodings(string s) 
+    {
+        if(s.length() == 0 || s[0] == '0')
+            return 0;
+        return util(s, 0);
+    }
+private:
+    int util(string s, int i)
+    {
+        if(s[i]=='0') 
+            return 0;
+        if(i==s.size())
+            return 1;
+        
+        int first = stoi(s.substr(i, 1));
+        int second = stoi(s.substr(i,2));
+        
+        int count = 0;
+        if(first>=1 && first<=9)
+            count = util(s, i+1);
+        if(second>=10 && second<=26)
+            count += util(s, i+2);
+        
+        return count;
     }
 };

@@ -6,7 +6,7 @@
     The first tree in returned array is one which is smaller than target, and other one is larger.
     If root is null then return [null, null]
     If target < root->val then call for left subtree and attach the root->left with second element of returned array becz it will be larger than target but still lesser than root node value
-    And similarly, if target >= root->val, then call for right subtree and attach the root->left with first element of returned array as it is lesser than target but sill greater than root node value. 
+    And similarly, if target >= root->val, then call for right subtree and attach the root->right with first element of returned array as it is lesser than target but sill greater than root node value. 
 
     TC: O(H)
 

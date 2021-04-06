@@ -1,6 +1,6 @@
 /*  
     O(N) time and O(1) space: Idea is to iterate the string two times maintaining the count of opening & closing parenthsesi first pass will remove all the unbalanced closing parenthses
-    Wheras the second pass will remove all the unbalanced opening parenthesis.
+    wheras the second pass will remove all the unbalanced opening parenthesis.
 
     Input: s = "))(("
     Output: ""
@@ -76,9 +76,6 @@ string minRemoveToMakeValid(string s)
     return s;
 }
 
-
-
-
 /* O(N) time & O(N) Space: Basically the idea is similar to validating parenthesis. And later remove the parenthses which are not valid */
 
 class Solution {
@@ -86,7 +83,6 @@ public:
     string minRemoveToMakeValid(string s) 
     {
         stack<int> todo;
-        string temp;
         for(int i=0; i<s.length(); i++)
         {
             if(s[i]=='(')   //if opening bracket, then insert it's index into the stack
@@ -96,16 +92,22 @@ public:
                 if(!todo.empty() && s[todo.top()]=='(')
                     todo.pop();
                 else
-                    todo.push(i);   //put a placeholder like '*' or 'A'
+                    todo.push(i);   //put a placeholder like '#' or '*'
             }
             temp += s[i];
         }
 
-        while(!todo.empty())    //remove the parenthesis which are not valid
+        while(!todo.empty())
         {
-            temp.erase(todo.top(), 1);  //this one could take linear time, so instead of erasing put a placeholder at not balanced values and later delete them
-            todo.pop(); 
+            s[todo.top()] = '#';
+            todo.pop();
         }
-        return temp;
+        
+        string result = "";
+        for(char c: s)
+            if(c != '#')
+                result += c;
+        
+        return result;
     }
 };
