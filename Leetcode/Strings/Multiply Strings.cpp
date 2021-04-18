@@ -33,38 +33,34 @@ public:
     }
 };
 
-/* Without maintaining extra array O(1) space */
+/* Without maintaining extra array O(1) space, other than ofcourse that required for output string */
+
 string multiply(string num1, string num2) 
 {
-    int sz1=num1.size(),sz2=num2.size();
-    if (sz1==0 || sz2==0) return "";
-
-    string res(sz1+sz2,'0');  // the result can be at most sz1+sz2 digits
-
-    for (int i=sz2-1;i>=0;i--)
+    if(num1=="0" || num2=="0")
+        return "0";
+    
+    if(num1=="1")
+        return num2;
+    else if(num2=="1")
+        return num1;
+    
+    string result(num1.size()+num2.size(), '0');
+    for(int i=num1.size()-1; i>=0; i--)
     {
-        int start=sz1+i;
-        int carry=0,sum=0;
-        for (int j=sz1-1;j>=0;j--)
+        for(int j=num2.size()-1; j>=0; j--)
         {
-            sum = (num1[j]-'0')*(num2[i]-'0')+res[start-sz1+1+j]-'0'+carry;
-            carry = sum/10;
-            sum = sum%10;
-            res[start-sz1+1+j] = sum+'0';
-        }
-        if (carry)
-        {
-            sum = carry+res[start-sz1]-'0';
-            carry = sum/10;
-            sum = sum%10;
-            res[start-sz1] = sum+'0';
+            int sum = (num1[i]-'0')*(num2[j]-'0') + (result[i+j+1]-'0');
+            result[i+j+1] = sum%10+'0';
+            result[i+j] += sum/10;
         }
     }
-    int i=0;
-    while (i<sz1+sz2-1)     // we aren't iterating till last element, becz there can be a single 0 in our result too
-    {  
-        if (res[i]=='0') i++;
-        else break;
+    
+    for(int i=0; i<result.size(); i++)
+    {
+        if(result[i] != '0')   // to skip all the leading zeroes
+            return result.substr(i);
     }
-    return res.substr(i);
+    
+    return "0";     // this means that there were all leading zeroes     
 }

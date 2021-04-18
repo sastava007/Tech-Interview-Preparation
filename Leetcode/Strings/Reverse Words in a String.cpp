@@ -1,65 +1,58 @@
 /*  
-    Constant O(1) space
+    TC: O(N) & Space: O(1)
 
     Input: "the sky is blue"
     Output: "blue is sky the"
 
-    First reverse the entire string, then traverse through the string and reverse back the individual words
-
+    Idea is to start iterating from backwards, and once we get a string we'll reverse it before appending it to result
 */
 
 string reverseWords(string s) 
-{
-    int i=0, j=0, startIndex = 0, n=s.length();
-    
-    reverse(s.begin(), s.end());
-    while(i<n)
+{   
+    string result;
+    int i = (int)s.size()-1;
+    while(i >= 0)
     {
-        if(s[i] != ' ')
+        while(i >= 0 && s[i] == ' ')    // skip all the leading & trailing whitespaces
+            i--;
+        string temp = "";
+        while(i >= 0 && s[i] != ' ')    // append characters to get the word
+            temp += s[i--];
+        
+        if(temp != "")    // only add the words/ string which are non empty
         {
-            if(startIndex != 0)
-                s[startIndex++] = ' ';
-        
-            j = i;
-            while(j<n && s[j] != ' ')
-                s[startIndex++] = s[j++];
-            reverse(s.begin() + startIndex - (j-i), s.begin()+startIndex);
-            i = j;
+            reverse(temp.begin(), temp.end());
+            result += (temp + " ");
         }
-        
-        i++;
     }
-    return s.substr(0, startIndex);
+    result.pop_back();  // there is atleast 1 word in string, that's why we can perform pop_back without checking
+    return result;
 }
 
-// Using extra space, i.e first parse the input string and extract all the words inside a vector and later combine them
+/* Using extra space, i.e first parse the input string and extract all the words inside a vector and later combine them */
+
 string reverseWords(string s) 
 {
-    while(*s.begin()==' ')
-        s.erase(0, 1);
-    
-    while(*(s.end()-1)==' ')
-        s.pop_back(); 
-    
-    int i=0, n = s.length();
-    string result = "";
-    bool wordFound = false;
-    
-    while(i<n)
+    vector<string> v;
+    string result;
+    int i = 0;
+    while(i< s.size())
     {
+        while(i<s.size() && s[i] == ' ')    // skip all the leading & trailing whitespaces
+            i++;
         string temp = "";
-        while(i<n && s[i] != ' ')
-        {
+        while(i<s.size() && s[i] != ' ')    // append characters to get the word
             temp += s[i++];
-            wordFound = true;
-        }
-        if(wordFound)
-            result = " " + temp + result;
-        i++;
-        wordFound = false;
+        
+        if(temp!="")    // only add the words/ string which are non empty
+            v.push_back(temp);
     }
     
-    if(result != "")
-        result.erase(0,1);
+    for(int i = (int)v.size()-1; i>=0; i--)  // no need to explicitly reverse, instead iterate from backwards
+    {
+        result += v[i];
+        if(i != 0)
+            result += " ";
+    }
     return result;
 }

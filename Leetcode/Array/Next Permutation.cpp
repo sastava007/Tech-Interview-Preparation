@@ -9,7 +9,7 @@
 class Solution {
 public:
     void nextPermutation(vector<int>& nums) 
-    {   
+    {
         int i = nums.size()-2;
         while(i>=0 && nums[i]>=nums[i+1])   // find the first element from right which is not in descending order nums[i]<nums[i+1]
             i--;

@@ -17,10 +17,13 @@ public:
         unordered_map<char, int> m;
         
         for(char c: s)
-            m[c]++;
+            {
+                m[c]++;   //  Required string is only possible when char with max frequency is less than equal to half of size of given string.
+                if(m[c] > (s.size()+1)/2)
+                    return "";
+            }
 
         priority_queue<pair<int, char>> q;
-        
         for(auto it: m)
             q.push({it.second, it.first});
         
@@ -52,3 +55,50 @@ public:
         return result;
     }
 };
+
+/* Without using Sorting or Heap */
+public class Solution 
+{
+    public string ReorganizeString(string s)
+    {
+        if (s == null || s.Length < 2)
+            return s;
+            
+        int n = s.Length;
+        
+        // Calculate and store frequencies in char-frequency map.
+        // Find character and frequency with max frequency
+        int freqChar = -1;
+        int freqCharCount = -1;
+        int[] freq = new int[26];
+        for(int i = 0; i < n; i++)
+        {
+            freq[s[i] - 'a']++;
+            if (freq[s[i] - 'a'] > freqCharCount)
+            {
+                freqCharCount = freq[s[i] - 'a'];
+                freqChar = s[i] - 'a';
+            }
+        }
+        
+        // Required string is only possible when char with max frequency is less than equal to half of size of given string.
+        if (freqCharCount > (n + 1) / 2)
+            return "";
+        
+        StringBuilder str = new StringBuilder(s);
+        int position = 0;
+        // In case it is possible, arrange the most occuring character on even positions. 
+        // Arrange the remaining characters on alternate remaining positions. 
+        // This makes sure that no 2 same character occurs together.
+        for (int i = -1; i < 26; i++)
+        {
+            int current = (i == -1) ? freqChar : i;
+            while (freq[current]-- > 0)
+            {
+                str[position] = (char)('a' + current);
+                position = (position + 2 >= n) ? 1 : position + 2;
+            }
+        }
+        return str.ToString();
+    }
+}

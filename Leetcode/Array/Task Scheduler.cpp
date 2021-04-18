@@ -11,7 +11,7 @@
     Frame: "A[XXX]A[XXX]A[XXX]A"
     insert 'B': "ABXXABXXABXXA" <--- 'B' has higher frequency than the other characters, insert it first.
     insert 'E': "ABEXABEXABXXA"
-    insert 'F': "ABEFABEXABFXA" <--- each time try to fill the k-1 gaps as full or evenly as possible.
+    insert 'F': "ABEFABEXABFXA" <--- each time try to fill the n-1 gaps as full or evenly as possible.
     insert 'G': "ABEFABEGABFGA"
 
     Input:  ["A","A","A","A","A","A","B","C","D","E","F","G"], n = 2
@@ -56,36 +56,35 @@ class Solution {
 public:
     int leastInterval(vector<char>& tasks, int n) 
     {
-        vector<int> map(26,0);        
-        for(char c: tasks)
-            map[c-'A']++;
-
+        unordered_map<char, int> m;
+        int time = 0;
+        for(char task: tasks)
+            m[task]++;
+        
         priority_queue<int> q;  //max-heap
+        for(auto it: m)
+            q.push(it.second);
         
-        for(int i=0; i<26; i++)
-            if(map[i]>0)
-                q.push(map[i]);
-        
-        int cycles=0;
         while(!q.empty())
         {
-            vector<int> temp;
-            for(int i=0; i<n+1; i++)
+            int interval = n+1;
+            vector<int> remainingTasks;
+            while(interval > 0 && !q.empty())
             {
-                if(!q.empty())
-                {
-                    temp.push_back(q.top());
-                    q.pop();
-                }
+                int n = q.top();
+                q.pop();
+                
+                remainingTasks.push_back(n-1);      // decrease one instances of each task, as we have processed it one time
+                interval--;
+                time++;
             }
-            
-            for(int it: temp)   //decrease one instances of each task, as we have processed it one time
-                if(--it>0)      // if still needs to be processed then push it again into the queue
-                    q.push(it);
-            
-            cycles += q.empty()?temp.size():n+1;
+            for(int task: remainingTasks)
+                if(task>0)      // if still needs to be processed then push it again into the queue
+                    q.push(task);
+
+            time += !q.empty()?interval:0;  // if there are still elemnts in pq which means that they've multiple instance but less than to suffice for the interval, so add the remaining interval
         }
-        return cycles;
+        return time;
     }
 };
 

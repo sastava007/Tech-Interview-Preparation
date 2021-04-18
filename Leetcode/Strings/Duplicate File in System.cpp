@@ -9,34 +9,48 @@
 
 vector<vector<string>> findDuplicate(vector<string>& paths) 
 {
-    unordered_map<string, vector<string>> files;
+    unordered_map<string, vector<string>> m;
     vector<vector<string>> result;
-
-    for (string path : paths) {
-	    stringstream ss(path);
-	    string root;
-	    string s;
-	    getline(ss, root, ' ');     // becz everything before ' ' is part of root
-	    while (getline(ss, s, ' ')) 
+    
+    for(string path: paths)
+    {
+        int i = 0;
+        while(i < path.size())
         {
-		    string fileName = root + '/' + s.substr(0, s.find('('));
-		    string fileContent = s.substr(s.find('(') + 1, s.find(')') - s.find('(') - 1);
-		    files[fileContent].push_back(fileName);
-	    }
+            string directoryPath = "";
+            while(path[i] != ' ')
+            {
+                directoryPath += path[i];
+                i++;
+            }
+            i++; // skip the space
+            while(i < path.size())
+            {
+                string fileName, content;
+                while(i< path.size() && path[i] != '(')
+                    fileName += path[i++];
+                i++; // skip the (
+                while(i< path.size() &&  path[i] != ')')
+                    content += path[i++];
+                
+                m[content].push_back(directoryPath+"/"+fileName);
+                i+=2;   // skip the ')' and space
+            }
+        }
     }
-
-    for (auto file : files) {
-	    if (file.second.size() > 1)
-		    result.push_back(file.second);
-    }
+    for(auto it: m)
+        if(it.second.size() > 1)
+            result.push_back(it.second);
     return result;
 }
 
 /*
 
 1.  Imagine you are given a real file system, how will you search files? DFS or BFS ?
-    In general, BFS will use more memory then DFS. However BFS can take advantage of the locality of files in inside directories, and therefore will probably be faster.
+    In general, BFS will use more memory then DFS. However BFS can take advant  age of the locality of files in inside directories, and therefore will probably be faster.
     DFS consumes less memory, becz it only need to store the info. of next node to traverse, wheras BFS will first store all the nodes at that level & then only move to next.
+
+    Just for a file system, it's more common the case you have 100 files stored in one folder, instead of 100 level of directories
 
 2.  If the file content is very large (GB level), how will you modify your solution?
     In a real life solution we will not hash the entire file content, since it's not practical. Instead we will first map all the files according to size. Files with different sizes are guaranteed to be different. We will than hash a small part of the files with equal sizes (using MD5 for example). Only if the md5 is the same, we will compare the files byte by byte
@@ -49,6 +63,6 @@ vector<vector<string>> findDuplicate(vector<string>& paths)
     The most time consuming part is generating hash, we can optimize it by using efficient hashing algorithms 
 
 5.  How to make sure the duplicated files you find are not false positive?
-    We will use several filters to compare: File size, Hash and byte by byte comparisons.
+    We will use several filters to compare: File size, Hash and eventually byte by byte comparisons.
 
 */
