@@ -1,51 +1,48 @@
 /* 
-    Let diff be count of left parenthesis - count of right parenthesis. And Diff here should always be non-negative, becz we can't have more closing brackets than opening one
-    When we meet:
+    Idea is to iterate from L2R and keep the count of unpaired '(', and here we're maintaining lower & upper bound to store range of unpaired numbers.
+    So whenever we encounter an '(' we know that both lower & upper value will be incremented and when we encounter ')' we know that we need to decrement both lower 
+    and upper bounds.
+    But when we encounter '*' we've 3 possible option/ branches consider it as opening bracket and increment, or consider it as closing bracket and decrement. 
+    So we know that in such case our lower bound will get decreased and upper bound will get increased.
 
-    (, we increment diff.
-    ), we decrement diff.
-    *, we have three choices which makes the diff become a range [diff - 1, diff + 1].
+    Also we know that if our lower bound falls below 0, which means that there are more closing brackets but they can be compensated by '*'
 
-    So we use maxDiff/minDiff to record the maximum/minimum diff we can get.
-    When we meet:
+    But if upper bound falls <0, it means it's already invalid, we should return false. Becz this shows that no. of closing brackets is way to greter than opening brackets & 
+    even '*' can't compensate for this.
 
-    (, ++maxDiff and ++minDiff.
-    ), --maxDiff and --minDiff.
-    *, ++maxDiff and --minDiff.
-
-    If maxDiff become negative, it means it's already invalid, we should return false. Becz this shows that no. of closing brackets is way to greter than opening brackets & 
-    even * can't compensate for this.
-    https://leetcode.com/problems/valid-parenthesis-string/discuss/302732/C%2B%2B-O(S)-Time-O(1)-Space-One-Pass-with-Explanation 
+    https://fardolieri.github.io/Valid-Parenthesis-String/
 */
 
-class Solution {
-public:
-    bool checkValidString(string s) 
+bool checkValidString(string s) 
+{
+    int lower = 0, upper = 0;
+    for(char c: s)
     {
-        int minDiff=0, maxDiff=0;
-        for(char &c: s)
+        if(c=='(')
         {
-            if(c=='(')
-            {
-                maxDiff++;
-                minDiff++;
-            }
-            else if(c==')')
-            {
-                maxDiff--;
-                minDiff--;
-            }
-            else    //when * is encountered
-            {
-                maxDiff++;
-                minDiff--;
-            }
-            
-            if(maxDiff<0)   
-                return false;
-            minDiff=max(0, minDiff);    // Whenever minDiff falls below 0, we should force it to be 0 because we never accept negative diff during the process.
+            lower++;
+            upper++;
+        }
+        else if(c==')')
+        {
+            lower--;
+            upper--;
+        }
+        else
+        {
+            lower--;
+            upper++;
         }
         
-        return (minDiff==0);
+        if(lower < 0)   // Whenever lower limit falls below '0' we should force it to be '0' because we never accept negative val during the process.
+            lower = 0;
+        if(upper < 0)
+            return false;
     }
-};
+    return lower == 0;
+}
+
+/* 
+    A brute force way is try all possible 3 options using backracking.
+    TC: O(N*3^N) & Space: O(N)
+*/
