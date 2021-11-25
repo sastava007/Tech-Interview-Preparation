@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int numTriplets(vector<int>& nums1, vector<int>& nums2) {
+        //result of the function
+        int resultOfTriplet = 0;
+        
+        //Count type 1
+        for(unsigned int i=0; i < nums1.size(); i++){
+            for(unsigned int j=0; j < nums2.size(); j++){
+                for(unsigned int k=j+1; k < nums2.size(); k++){
+                    if((nums1[i]*nums1[i]) == nums2[j]*nums2[k]){
+                        resultOfTriplet++;
+                    }
+                }
+            }
+        }
+        
+        //Count type 2
+        for(int i=0; i < nums2.size(); i++){
+            for(int j=0; j < nums1.size(); j++){
+                for(int k=j+1; k < nums1.size(); k++){
+                    if((nums2[i]*nums2[i]) == nums1[j]*nums1[k]){
+                        resultOfTriplet++;
+                    }
+                }
+            }
+        }
+        
+        //Return result after working
+        return resultOfTriplet;
+    }
+};
